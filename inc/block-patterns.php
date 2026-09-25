@@ -34,40 +34,42 @@ if (!function_exists("medispace_register_block_patterns")):
             register_block_pattern_category($slug, $block_pattern_category);
         }
 
-        $block_patterns = [
-            // Flow 3 — Medical Coworking.
-            "medical/hero",
-
-            // Flow 2 — Construction. Додавати рядок сюди тільки коли
-            // відповідний файл вже реально існує в inc/patterns/construction/.
-            "construction/hero",
-        ];
+        // Auto-discovery: every inc/patterns/<flow>/<slug>.php file is a pattern.
+        // There is no manual list to keep in sync anymore — drop a file in and
+        // it registers itself on the next request. A file that isn't ready yet
+        // (missing title/content) is skipped rather than fataling the site.
+        $pattern_files = glob(get_theme_file_path("/inc/patterns/*/*.php"));
 
         /**
-         * Filters the theme block patterns.
+         * Filters the discovered pattern file paths before they're required.
          *
-         * @param array $block_patterns List of block patterns by name (folder/file, без .php).
+         * @param array $pattern_files Absolute paths to pattern files.
          */
-        $block_patterns = apply_filters(
-            "medispace_block_patterns",
-            $block_patterns,
+        $pattern_files = apply_filters(
+            "medispace_block_pattern_files",
+            $pattern_files ?: [],
         );
 
-        foreach ($block_patterns as $block_pattern) {
-            $pattern_path = get_theme_file_path(
-                "/inc/patterns/" . $block_pattern . ".php",
+        foreach ($pattern_files as $pattern_path) {
+            // inc/patterns/<flow>/<slug>.php -> registered as medispace/<flow>-<slug>.
+            $relative = str_replace(
+                get_theme_file_path("/inc/patterns/"),
+                "",
+                $pattern_path,
             );
+            $block_pattern = str_replace(["/", ".php"], ["-", ""], $relative);
 
-            // Захист на час розробки: якщо файл паттерна ще не створений —
-            // пропускаємо його, а не валимо весь сайт фатальною помилкою.
-            if (!file_exists($pattern_path)) {
+            $pattern = require $pattern_path;
+
+            if (
+                !is_array($pattern) ||
+                empty($pattern["title"]) ||
+                empty($pattern["content"])
+            ) {
                 continue;
             }
 
-            register_block_pattern(
-                "medispace/" . str_replace("/", "-", $block_pattern),
-                require $pattern_path,
-            );
+            register_block_pattern("medispace/" . $block_pattern, $pattern);
         }
     }
 endif;

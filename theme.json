@@ -5,7 +5,7 @@
     "appearanceTools": true,
     "layout": {
       "contentSize": "1086px",
-      "wideSize": "1920px"
+      "wideSize": "1380px"
     },
     "color": {
       "custom": true,
@@ -16,38 +16,54 @@
     },
     "typography": {
       "customFontSize": false,
-      "fontFamilies": [],
+          "fontFamilies": [
+				{
+					"fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
+					"slug": "system-font",
+					"name": "System Font"
+				},
+				{
+					"fontFamily": "Inter, sans-serif",
+					"slug": "body-font",
+					"name": "Inter"
+				},
+				{
+					"fontFamily": "Poppins, sans-serif",
+					"slug": "heading-font",
+					"name": "Poppins"
+				}
+			],
       "fontSizes": [
         { "slug": "body-s", "name": "Body S", "size": "14px", "fluid": false },
         { "slug": "body-m", "name": "Body M", "size": "16px", "fluid": false },
         { "slug": "body-l", "name": "Body L", "size": "18px", "fluid": false },
         { "slug": "button", "name": "Button", "size": "16px", "fluid": false },
         {
-          "slug": "h5",
+          "slug": "h-5",
           "name": "H5",
           "size": "20px",
           "fluid": { "min": "18px", "max": "20px" }
         },
         {
-          "slug": "h4",
+          "slug": "h-4",
           "name": "H4",
           "size": "24px",
           "fluid": { "min": "20px", "max": "24px" }
         },
         {
-          "slug": "h3",
+          "slug": "h-3",
           "name": "H3",
           "size": "28px",
           "fluid": { "min": "22px", "max": "28px" }
         },
         {
-          "slug": "h2",
+          "slug": "h-2",
           "name": "H2",
           "size": "36px",
           "fluid": { "min": "28px", "max": "36px" }
         },
         {
-          "slug": "h1",
+          "slug": "h-1",
           "name": "H1",
           "size": "52px",
           "fluid": { "min": "34px", "max": "52px" }

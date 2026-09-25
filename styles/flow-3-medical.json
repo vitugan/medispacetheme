@@ -25,12 +25,16 @@
 					"name": "Lora",
 					"fontFamily": "\"Lora\", serif",
 					"fontFace": [
-						{
-							"fontFamily": "Lora",
-							"fontWeight": "400 700",
-							"fontStyle": "normal",
-							"src": [ "file:./assets/fonts/lora/Lora-VariableFont.woff2" ]
-						}
+						{"fontFamily": "Lora", "fontWeight": "400 700", "fontStyle": "italic", "fontDisplay": "swap", "src": ["file:./assets/fonts/lora/lora-cyrillic-ext-400-700-italic.woff2"], "unicodeRange": "U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F"},
+						{"fontFamily": "Lora", "fontWeight": "400 700", "fontStyle": "italic", "fontDisplay": "swap", "src": ["file:./assets/fonts/lora/lora-cyrillic-400-700-italic.woff2"], "unicodeRange": "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116"},
+						{"fontFamily": "Lora", "fontWeight": "400 700", "fontStyle": "italic", "fontDisplay": "swap", "src": ["file:./assets/fonts/lora/lora-vietnamese-400-700-italic.woff2"], "unicodeRange": "U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB"},
+						{"fontFamily": "Lora", "fontWeight": "400 700", "fontStyle": "italic", "fontDisplay": "swap", "src": ["file:./assets/fonts/lora/lora-latin-ext-400-700-italic.woff2"], "unicodeRange": "U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF"},
+						{"fontFamily": "Lora", "fontWeight": "400 700", "fontStyle": "italic", "fontDisplay": "swap", "src": ["file:./assets/fonts/lora/lora-400-700-italic.woff2"], "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"},
+						{"fontFamily": "Lora", "fontWeight": "400 700", "fontStyle": "normal", "fontDisplay": "swap", "src": ["file:./assets/fonts/lora/lora-cyrillic-ext-400-700.woff2"], "unicodeRange": "U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F"},
+						{"fontFamily": "Lora", "fontWeight": "400 700", "fontStyle": "normal", "fontDisplay": "swap", "src": ["file:./assets/fonts/lora/lora-cyrillic-400-700.woff2"], "unicodeRange": "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116"},
+						{"fontFamily": "Lora", "fontWeight": "400 700", "fontStyle": "normal", "fontDisplay": "swap", "src": ["file:./assets/fonts/lora/lora-vietnamese-400-700.woff2"], "unicodeRange": "U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB"},
+						{"fontFamily": "Lora", "fontWeight": "400 700", "fontStyle": "normal", "fontDisplay": "swap", "src": ["file:./assets/fonts/lora/lora-latin-ext-400-700.woff2"], "unicodeRange": "U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF"},
+						{"fontFamily": "Lora", "fontWeight": "400 700", "fontStyle": "normal", "fontDisplay": "swap", "src": ["file:./assets/fonts/lora/lora-400-700.woff2"], "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"}
 					]
 				},
 				{
@@ -38,12 +42,16 @@
 					"name": "Rubik",
 					"fontFamily": "\"Rubik\", sans-serif",
 					"fontFace": [
-						{
-							"fontFamily": "Rubik",
-							"fontWeight": "400 600",
-							"fontStyle": "normal",
-							"src": [ "file:./assets/fonts/rubik/Rubik-VariableFont.woff2" ]
-						}
+						{"fontFamily": "Rubik", "fontWeight": "300 900", "fontStyle": "italic", "fontDisplay": "swap", "src": ["file:./assets/fonts/rubik/rubik-cyrillic-ext-300-900-italic.woff2"], "unicodeRange": "U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F"},
+						{"fontFamily": "Rubik", "fontWeight": "300 900", "fontStyle": "italic", "fontDisplay": "swap", "src": ["file:./assets/fonts/rubik/rubik-cyrillic-300-900-italic.woff2"], "unicodeRange": "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116"},
+						{"fontFamily": "Rubik", "fontWeight": "300 900", "fontStyle": "italic", "fontDisplay": "swap", "src": ["file:./assets/fonts/rubik/rubik-hebrew-300-900-italic.woff2"], "unicodeRange": "U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F"},
+						{"fontFamily": "Rubik", "fontWeight": "300 900", "fontStyle": "italic", "fontDisplay": "swap", "src": ["file:./assets/fonts/rubik/rubik-latin-ext-300-900-italic.woff2"], "unicodeRange": "U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF"},
+						{"fontFamily": "Rubik", "fontWeight": "300 900", "fontStyle": "italic", "fontDisplay": "swap", "src": ["file:./assets/fonts/rubik/rubik-300-900-italic.woff2"], "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"},
+						{"fontFamily": "Rubik", "fontWeight": "300 900", "fontStyle": "normal", "fontDisplay": "swap", "src": ["file:./assets/fonts/rubik/rubik-cyrillic-ext-300-900.woff2"], "unicodeRange": "U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F"},
+						{"fontFamily": "Rubik", "fontWeight": "300 900", "fontStyle": "normal", "fontDisplay": "swap", "src": ["file:./assets/fonts/rubik/rubik-cyrillic-300-900.woff2"], "unicodeRange": "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116"},
+						{"fontFamily": "Rubik", "fontWeight": "300 900", "fontStyle": "normal", "fontDisplay": "swap", "src": ["file:./assets/fonts/rubik/rubik-hebrew-300-900.woff2"], "unicodeRange": "U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F"},
+						{"fontFamily": "Rubik", "fontWeight": "300 900", "fontStyle": "normal", "fontDisplay": "swap", "src": ["file:./assets/fonts/rubik/rubik-latin-ext-300-900.woff2"], "unicodeRange": "U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF"},
+						{"fontFamily": "Rubik", "fontWeight": "300 900", "fontStyle": "normal", "fontDisplay": "swap", "src": ["file:./assets/fonts/rubik/rubik-300-900.woff2"], "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"}
 					]
 				}
 			]
@@ -73,11 +81,11 @@
 					"fontWeight": "600"
 				}
 			},
-			"h1": { "typography": { "fontSize": "var(--wp--preset--font-size--h1)", "lineHeight": "1.25" } },
-			"h2": { "typography": { "fontSize": "var(--wp--preset--font-size--h2)", "lineHeight": "1.25" } },
-			"h3": { "typography": { "fontSize": "var(--wp--preset--font-size--h3)", "lineHeight": "1.25" } },
-			"h4": { "typography": { "fontSize": "var(--wp--preset--font-size--h4)", "lineHeight": "1.25" } },
-			"h5": { "typography": { "fontSize": "var(--wp--preset--font-size--h5)", "lineHeight": "1.25" } },
+			"h1": { "typography": { "fontSize": "var(--wp--preset--font-size--h-1)", "lineHeight": "1.25" } },
+			"h2": { "typography": { "fontSize": "var(--wp--preset--font-size--h-2)", "lineHeight": "1.25" } },
+			"h3": { "typography": { "fontSize": "var(--wp--preset--font-size--h-3)", "lineHeight": "1.25" } },
+			"h4": { "typography": { "fontSize": "var(--wp--preset--font-size--h-4)", "lineHeight": "1.25" } },
+			"h5": { "typography": { "fontSize": "var(--wp--preset--font-size--h-5)", "lineHeight": "1.25" } },
 			"link": {
 				"color": { "text": "var(--wp--preset--color--primary)" },
 				":hover": { "color": { "text": "var(--wp--preset--color--dark)" } }

@@ -25,8 +25,8 @@ return [
 		<!-- wp:column {"verticalAlignment":"center"} -->
 		<div class="wp-block-column is-vertically-aligned-center">
 
-			<!-- wp:heading {"level":1,"fontSize":"h1"} -->
-			<h1 class="wp-block-heading has-h1-font-size">Flexible Medical &amp; Therapy Office Spaces for Rent</h1>
+			<!-- wp:heading {"level":1,"fontSize":"h-1"} -->
+			<h1 class="wp-block-heading has-h-1-font-size">Flexible Medical &amp; Therapy Office Spaces for Rent</h1>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"fontSize":"body-m","style":{"spacing":{"margin":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|50"}}}} -->
@@ -79,8 +79,8 @@ return [
 
 			<!-- wp:column -->
 			<div class="wp-block-column">
-				<!-- wp:heading {"level":3,"fontSize":"h3","textColor":"primary"} -->
-				<h3 class="wp-block-heading has-primary-color has-text-color has-h3-font-size">100+</h3>
+				<!-- wp:heading {"level":3,"fontSize":"h-3","textColor":"primary"} -->
+				<h3 class="wp-block-heading has-primary-color has-text-color has-h-3-font-size">100+</h3>
 				<!-- /wp:heading -->
 				<!-- wp:paragraph {"fontSize":"body-s"} -->
 				<p class="has-body-s-font-size">Healthcare providers launch their practices</p>
@@ -90,8 +90,8 @@ return [
 
 			<!-- wp:column -->
 			<div class="wp-block-column">
-				<!-- wp:heading {"level":3,"fontSize":"h3","textColor":"primary"} -->
-				<h3 class="wp-block-heading has-primary-color has-text-color has-h3-font-size">95%</h3>
+				<!-- wp:heading {"level":3,"fontSize":"h-3","textColor":"primary"} -->
+				<h3 class="wp-block-heading has-primary-color has-text-color has-h-3-font-size">95%</h3>
 				<!-- /wp:heading -->
 				<!-- wp:paragraph {"fontSize":"body-s"} -->
 				<p class="has-body-s-font-size">Satisfaction rate from our clients</p>
@@ -101,8 +101,8 @@ return [
 
 			<!-- wp:column -->
 			<div class="wp-block-column">
-				<!-- wp:heading {"level":3,"fontSize":"h3","textColor":"primary"} -->
-				<h3 class="wp-block-heading has-primary-color has-text-color has-h3-font-size">200+</h3>
+				<!-- wp:heading {"level":3,"fontSize":"h-3","textColor":"primary"} -->
+				<h3 class="wp-block-heading has-primary-color has-text-color has-h-3-font-size">200+</h3>
 				<!-- /wp:heading -->
 				<!-- wp:paragraph {"fontSize":"body-s"} -->
 				<p class="has-body-s-font-size">Fully stocked exam rooms</p>

@@ -1,46 +1,43 @@
 This file is a merged representation of a subset of the codebase, containing files not matching ignore patterns, combined into a single document by Repomix.
 
-<file_summary>
-This section contains a summary of this file.
+# File Summary
 
-<purpose>
+## Purpose
 This file contains a packed representation of a subset of the repository's contents that is considered the most important context.
 It is designed to be easily consumable by AI systems for analysis, code review,
 or other automated processes.
-</purpose>
 
-<file_format>
+## File Format
 The content is organized as follows:
 1. This summary section
 2. Repository information
 3. Directory structure
 4. Repository files (if enabled)
 5. Multiple file entries, each consisting of:
-  - File path as an attribute
-  - Full contents of the file
-</file_format>
+  a. A header with the file path (## File: path/to/file)
+  b. The full contents of the file in a code block
 
-<usage_guidelines>
+## Usage Guidelines
 - This file should be treated as read-only. Any changes should be made to the
   original repository files, not this packed version.
 - When processing this file, use the file path to distinguish
   between different files in the repository.
 - Be aware that this file may contain sensitive information. Handle it with
   the same level of security as you would the original repository.
-</usage_guidelines>
 
-<notes>
+## Notes
 - Some files may have been excluded based on .gitignore rules and Repomix's configuration
 - Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
-- Files matching these patterns are excluded: node_modules, build, dist, .git
+- Files matching these patterns are excluded: node_modules/**, vendor/**, *.min.js, *.min.css, dist/**, build/**, .git/**, *.zip, *.log, composer.lock, package-lock.json, yarn.lock
 - Files matching patterns in .gitignore are excluded
 - Files matching default ignore patterns are excluded
 - Files are sorted by Git change count (files with more changes are at the bottom)
-</notes>
 
-</file_summary>
-
-<directory_structure>
+# Directory Structure
+```
+.agents/
+  COMPLETION_PLAN.md
+  pen-to-fse-skill-design.md
 assets/
   css/
     patterns.css
@@ -80,6 +77,7 @@ assets/
       hero/
         hero-collage.png
         trusted-badge.png
+    placeholder.svg
 inc/
   admin/
     flow-selector.php
@@ -104,14 +102,345 @@ templates/
   index.html
   template-construction-home.html
 functions.php
+index.php
 style.css
 theme.json
-</directory_structure>
+```
 
-<files>
-This section contains the contents of the repository's files.
+# Files
 
-<file path="assets/css/patterns.css">
+## File: .agents/COMPLETION_PLAN.md
+```markdown
+# Completion & Release Plan: MediSpace WordPress Theme (Envato Ready)
+
+This plan outlines the steps required to prepare the **MediSpace** block theme for a final production release on Envato (ThemeForest). It covers registering plugin dependencies, setting up demo content imports, cleaning up code, manually verifying quality, and packaging the theme.
+
+---
+
+## Phase 1: Core (Theme Foundations & Demo Import)
+
+- [ ] **1.1. Setup TGM Plugin Activation (TGMPA)**
+  - Integrate the TGMPA library to recommend and/or force-install the required plugins:
+    - **Safe SVG** (for secure SVG uploads)
+    - **One Click Demo Import** (OCDI)
+    - **The Icon Block** (`outermost/icon-block`)
+    - **MediSpace Core** (companion plugin containing custom blocks and CPTs)
+  - Place TGMPA configuration in `inc/tgmpa.php` and require it in `functions.php`.
+
+- [ ] **1.2. Configure One Click Demo Import (OCDI)**
+  - Prepare the demo import files structure inside `inc/demo-import/` (or a dedicated folder):
+    - Content XML file (`content.xml`) containing demo pages, posts, and navigation menus.
+    - Customizer data (`widgets.wie` / `customizer.dat` if applicable).
+  - Register the demos for the active flows (e.g., `Medical Coworking` and `Construction Firm`) via the `ocdi/import_files` filter.
+  - Set up default front page and menu assignments after import completes using the `ocdi/after_import` hook.
+
+- [ ] **1.3. Implement Core Page Templates & Patterns from Figma**
+  - Implement full page block patterns (e.g., Home, About, Services, Contact, Portfolio) for both current designs:
+    - **Medical Coworking**
+    - **Construction Firm**
+  - Register any additional block templates or style variations inside `styles/` as JSON.
+
+---
+
+## Phase 2: Refactoring & Clean up (Envato Standards & i18n)
+
+- [ ] **2.1. Code Comments & Structural Clean Up**
+  - Search and remove all Ukrainian comments from PHP/CSS/JS files (translating code explanations to English where necessary, or deleting redundant ones).
+  - Clean up any unused files, helper scripts, or commented-out code snippets.
+
+- [ ] **2.2. Internationalization (i18n)**
+  - Ensure all hardcoded strings (especially in `inc/admin/flow-selector.php` and template files) are wrapped in standard WordPress translation functions: `__()`, `_e()`, `esc_html__()`, `esc_html_e()`, `esc_attr__()`, etc.
+  - Standardize text domain to `medispace`.
+  - Prepare for POT generation (to be run as part of final release preparation).
+
+- [ ] **2.3. Manage Flow Selector Visibility**
+  - Add a flag/constant or helper function to easily toggle the dynamic development flow selector.
+  - Before Envato submission, ensure the flow selector screen is disabled/hidden so only the user's selected flow is active and packaged, or configure it so it is only visible in development environments.
+
+- [ ] **2.4. Envato Coding Standards Validation**
+  - Ensure strict security guidelines are followed:
+    - Escaping all outputs (`esc_html`, `esc_attr`, `esc_url`, `wp_kses_post`).
+    - Using proper database sanitization and prepared queries.
+    - Checking for prefixing on all functions, classes, and globals to prevent naming collisions.
+
+---
+
+## Phase 3: Tests (Manual QA Checklist)
+
+- [ ] **3.1. Create manual verification scenarios for QA:**
+  - **Cross-Browser Verification:** Verify rendering in Chrome, Safari, Firefox, and Edge.
+  - **Responsiveness Check:** Test mobile, tablet, and desktop viewports.
+  - **Flow Switching Validation:** Confirm that switching between designs via the flow selector applies the correct font families, color palettes, templates, and header/footer areas without database residue.
+  - **Plugin Interoperability:** Validate that block layouts render correctly when dependent plugins (like *The Icon Block* or *MediSpace Core*) are active or inactive.
+
+---
+
+## Phase 4: Deploy (Packaging Script)
+
+- [ ] **4.1. Write a Theme Packager Script**
+  - Create a lightweight CLI script (e.g., `bin/package.php` or `package.sh`) to bundle the theme for release.
+  - The script must build a clean ZIP file named `medispace.zip` containing only production files.
+  - **Excluded paths:**
+    - `.git/` and `.gitignore`
+    - `.agents/`
+    - `repomix-output.xml`
+    - Any developer configurations (e.g., `composer.json` / `package.json` if only used for dev tools)
+```
+
+## File: .agents/pen-to-fse-skill-design.md
+```markdown
+# Design: pen.dev → WordPress FSE pattern/template-part skill
+
+## Summary
+
+This document defines a Claude Code skill, **`pen-to-fse`**, that converts one section of a
+pen.dev (Pencil) design into a ready WordPress FSE (block theme) file for the **medispace**
+theme — either a block pattern (`inc/patterns/<flow>/<slug>.php`) or a template part
+(`parts/<slug>.html`), plus any design tokens the section genuinely needs.
+
+The skill reads the section either from a live Pencil MCP connection or from a pasted,
+already-exported node-tree JSON. It writes the block markup by judgement against a
+node-to-block mapping table (not a mechanical 1:1 converter), presents a compact
+"design node → chosen block" outline for approval *before* writing anything, then writes the
+file and runs a shipped Node validator over the result. Registration of new patterns is
+automatic (a one-time glob-based change to `inc/block-patterns.php`, made as part of this
+plan, replaces the theme's current hand-maintained pattern list).
+
+Two flows exist in this theme today — **medical** and **construction** — each with its own
+style variation (`styles/flow-3-medical.json`, `styles/flow-2-construction.json`) holding
+colors and font families, while spacing and font sizes are shared in the root `theme.json`.
+The skill always works within one flow at a time and never invents new tokens — it reuses
+the nearest existing one from the correct file for that flow.
+
+## Terms
+
+- **section** — one top-level band of a pen.dev design (hero, features, testimonials) that
+  becomes exactly one WordPress output file.
+  *Avoid:* screen, page, frame.
+- **flow** — a medispace design variant, currently `medical` or `construction`, each with its
+  own style variation JSON, header/footer template parts, and pattern folder.
+  *Avoid:* theme, variant, skin.
+- **pattern file** — `inc/patterns/<flow>/<slug>.php` returning
+  `['title' => .., 'categories' => .., 'content' => ..]`, picked up automatically by a glob
+  in `inc/block-patterns.php`.
+  *Avoid:* template, partial.
+- **token** — a preset value reachable as `var:preset|...` — colors and font families come
+  from the flow's own style variation file, font sizes and spacing sizes come from the shared
+  root `theme.json`.
+  *Avoid:* variable, CSS var.
+- **escape hatch** — the route taken when a design node has no clean core-block equivalent: a
+  `.medispace-*` class plus a rule in `assets/css/patterns.css`, reached only after native
+  block supports and a wrapping group have both been tried and failed.
+  *Avoid:* hack, workaround.
+
+## Why
+
+The user wants to turn pen.dev design sections into working WordPress FSE output for this
+theme without hand-transcribing block markup each time, while keeping the result
+indistinguishable from what's already in the codebase: valid, escaped, token-driven, and
+registered the way the theme already registers things. The brief specifically named the
+places this tends to go wrong — telling a pattern from a template part, mapping design intent
+to the right core block (not just visually similar markup), tokens vs. hand-written CSS,
+naming, responsiveness, image handling, and design nodes with no block equivalent — and asked
+that the skill be grilled on exactly those points before anything was built.
+
+## Locked decisions
+
+**Q1 — Pattern registration.** New pattern files are picked up automatically: `inc/block-patterns.php`
+is changed once, from a hand-maintained `$block_patterns` array to a glob over
+`inc/patterns/*/*.php`. After that one-time change, the skill only ever writes one new file
+per section — no shared registry file to edit or forget.
+*Rejected:* Keep the hand-maintained list and have the skill edit it every run — honest to
+the current code, but makes every run touch a shared file two runs could conflict over, and a
+missed line means a pattern that silently doesn't exist. Move to WordPress-standard
+header-comment auto-registration in `patterns/*.php` — the cleanest long-term answer, but it
+strands the two existing patterns and their PHP-built image URLs until a separate migration.
+
+**Q2 — Pattern vs. template part.** Zero guessing from content: the skill never infers
+template-part-vs-pattern from a section's name. It is either told explicitly in the
+invocation, or (per Q5) defaults to pattern when nothing is said.
+*Rejected:* A name-based rule (header/footer/nav → template part) — correct most of the time,
+but still a silent guess for the cases where it isn't.
+
+**Q3 — How the conversion actually happens.** Hybrid: the agent writes the block tree by
+judgement, guided by a node-to-block mapping table in the skill, then a shipped validator
+script checks the mechanical parts of the result (see Q10).
+*Rejected:* Instructions-only, no validator — leaves exactly the attribute/serialized-HTML
+mirroring bugs that are easy to get subtly wrong on a deeply nested group. A pure converter
+script with no judgement — pen layout is intent-free (a row of three cards could be columns,
+a grid, or a flexed group), so a mechanical converter produces technically valid markup
+nobody actually wants.
+
+**Q6 — Pre-generation approval.** Before any file is written, the skill shows a compact outline
+— one line per design node mapping to its chosen block (e.g. *"Row of 3 cards → core/columns,
+each card → core/group with core/heading + core/paragraph + core/button"*) — and only writes
+the file after that's approved or corrected.
+*Rejected:* Showing the full generated markup for review instead of an outline — buries the one
+decision that matters (which block for which node) inside hundreds of lines of
+comment-mirrored HTML. No preview step at all — skips the checkpoint entirely.
+
+**Q7 — Escape-hatch escalation order.** When a design node has no clean block equivalent, the
+skill escalates in order: (1) try native block supports (`style.spacing`/`border`/`typography`/
+`color` attributes), (2) then a wrapping `core/group` with an inline style, (3) only as a last
+resort, a `.medispace-<section>-<element>` class plus a new rule in `assets/css/patterns.css`.
+Every case that reaches step 3 is called out explicitly in the Q6 outline.
+*Rejected:* Skipping straight to custom CSS for anything not an exact 1:1 mapping — would have
+turned the existing hero's plain border-radius and padding (both ordinary block supports) into
+needless custom CSS. Stopping to ask the user for every node with no clean mapping — stalls the
+whole conversion on the one node in twenty that actually needs it.
+
+**Q8 — Tokens: reuse only, never invent.** The skill never adds new tokens. Colors and font
+families are always taken from the correct flow's own file — `styles/flow-2-construction.json`
+for construction, `styles/flow-3-medical.json` for medical — and spacing/font sizes from the
+shared root `theme.json`. Every design value in the pen section is snapped to the nearest
+existing token from those files, and every substitution is called out in the Q6 outline (e.g.
+*"design color #5a89dc → token `primary` #5886d8"*).
+*Rejected:* Always adding a new token for anything not an exact match — risks palette bloat,
+several near-duplicate blues from different sections rounding differently. A hybrid that adds
+a new token only when nothing is close enough — was the agent's own recommendation, but the
+user explicitly chose strict reuse-only instead: tokens come only from the existing files, no
+exceptions, confirmed in the Q8 thread.
+
+**Q9 — Input formats.** The skill supports both inputs from the brief, tried in this order:
+(1) the Pencil MCP tools, when an app link is given and the desktop app is reachable; (2) a
+pasted JSON blob, which — since `.pen` files are encrypted and off-limits to `Read`/`Grep` —
+is always an already-exported node-tree (e.g. from a Pencil `execute` call), never the raw
+`.pen` file itself. This session hit the MCP-unavailable case directly: `get_app_state` and
+`read_skill` both failed with *"failed to connect to running Pencil app: desktop"* while
+grounding this plan, confirming the pasted-JSON fallback is a real, not hypothetical, need.
+*Rejected:* MCP-only, failing cleanly when the app isn't running — would have made this very
+planning session a dead end. JSON-only, never touching Pencil MCP tools — throws away a real
+convenience whenever the app is available.
+
+**Q10 — Validator script scope.** A Node script shipped in the skill folder, run after every
+generated file, checks: (1) every attribute in the leading block comment matches the
+serialized HTML that follows it, (2) every `var:preset|category|slug` reference resolves to a
+real entry in root `theme.json` or the flow's style variation, (3) every image `src` points at
+a file that actually exists under `assets/images/`, (4) no raw, un-escaped string
+concatenation appears outside `esc_url`/`esc_attr`/`esc_html`/`wp_kses_post`. A failure blocks
+the Q6 approval step until fixed.
+*Rejected:* An eyeball checklist in SKILL.md with no separate script — reintroduces exactly the
+judgement-misses-mechanical-bugs risk that motivated the Q3 hybrid in the first place. A
+WP-CLI command that parses the pattern through WordPress's real block parser — the most
+rigorous option, but assumes a working WP-CLI and database context this environment doesn't
+guarantee (the Pencil MCP failure earlier in this session is a reminder that assumed tooling
+isn't always there).
+
+**Q11 — Image handling.** Each image is copied/exported into
+`assets/images/<flow>/<section-slug>/<name>.<ext>`, preserving its original format, and
+referenced exactly like the existing hero pattern (`MEDISPACE_THEME_URL` + `esc_url`), with
+alt text wrapped for i18n (`esc_attr__()`). When a specific image can't be copied (no MCP
+access to the asset, or it wasn't included in the pasted JSON), the skill inserts a
+placeholder — `assets/images/placeholder.svg`, sized to match the original's aspect ratio —
+and flags that node explicitly in the Q6 outline (`⚠ placeholder — needs manual replacement`)
+so it's never missed after approval.
+*Rejected:* Leaving images as external URLs from pen.dev's own asset host — breaks the
+self-contained-theme expectation an Envato review checks for, and ties every page load to an
+asset host that may not be reachable once the design tool is out of the loop. Force-converting
+every image to WebP on import — a reasonable idea, but not this skill's call to make unasked;
+some assets (e.g. `icon-mark.svg`, `icon-money.svg` in the construction hero) are already
+optimized SVGs where re-encoding could lose quality.
+
+**Q12 — Responsive behavior.** The skill defaults to WordPress's own responsive block behavior
+— `core/columns` auto-stacks below the mobile breakpoint, group layouts wrap — and only writes
+a custom `@media` rule in `patterns.css` when an effect needs something blocks don't do
+natively, following the same escalation spirit as Q7. This mirrors the theme's one existing
+precedent: `.medispace-hero-badge`'s `@media (max-width: 782px)` rule switching it from
+absolute to static positioning.
+*Rejected:* Always asking the user for explicit breakpoint behavior per section — most sections
+(a heading-paragraph-button stack, a 3-column feature grid) get correct mobile behavior for
+free from core blocks; asking every time contradicts the same don't-interrupt-the-common-case
+reasoning already settled in Q5 and Q7. Desktop-only for v1, mobile as a manual follow-up —
+ships something that visibly breaks on a phone the moment it's previewed.
+
+## Routine choices
+
+- **Q4 — File naming convention.** Keep the theme's existing layout exactly as-is:
+  `inc/patterns/<flow>/<section-slug>.php`, kebab-case section slug, category auto-derived as
+  `medispace-<flow>` from the folder name. No migration needed — this is already the layout
+  the two existing hero patterns use, so the Q1 glob change works with zero file moves.
+- **Q5 — Default when pattern-vs-part isn't specified.** When an invocation doesn't say
+  `--part` (or otherwise name a template part), the skill silently defaults to generating a
+  **pattern** — the overwhelming majority case. A template part is only ever produced when the
+  invocation explicitly asks for one. (Note: the agent's own recommendation was a narrower
+  hybrid — default to pattern except ask via a clarifying question specifically when the
+  section's name contains header/footer/nav — but the user chose the simpler always-default
+  rule instead.)
+
+## Verified facts
+
+- `patterns/` is currently empty; the theme's two real patterns live at
+  `inc/patterns/medical/hero.php` and `inc/patterns/construction/hero.php`.
+- Registration was, before this plan, a hand-maintained `$block_patterns` array in
+  `inc/block-patterns.php` that silently `continue`s past any listed file that doesn't exist —
+  a deliberate development-time guard, not an error case to preserve.
+- Colors and font families live per-flow in `styles/flow-2-construction.json` and
+  `styles/flow-3-medical.json`; spacing sizes and font sizes live in the shared root
+  `theme.json`, whose own color palette is intentionally empty
+  (`"custom": true, "defaultPalette": false, "palette": []`) — colors only ever come from the
+  active style variation.
+- `theme.json`'s `templateParts` currently lists only header/footer entries per flow, each with
+  an explicit `area`.
+- `assets/css/patterns.css` already contains a real example of the Q7 escape hatch:
+  `.medispace-hero-badge` (absolute positioning) plus a `@media (max-width: 782px)` rule
+  switching it to static — proof this pattern is already how the theme handles what blocks
+  can't do natively.
+- The existing hero patterns already mirror every style attribute between the leading block
+  comment and the serialized HTML (a WordPress requirement for the block to parse as valid),
+  and already build image URLs with `MEDISPACE_THEME_URL` + `esc_url`. Alt text is currently
+  hardcoded and not i18n-wrapped (`alt="Медичний кабінет"` in an otherwise-English theme) — a
+  pre-existing inconsistency, out of scope to fix here, but the new skill will always produce
+  i18n-wrapped alt text going forward.
+- The Pencil MCP tools (`get_app_state`, `read_skill`) failed to connect during this planning
+  session — `"failed to connect to running Pencil app: desktop"` — confirming the Q9
+  pasted-JSON fallback addresses a real, observed failure mode, not a hypothetical one.
+- `inc/block-patterns.php` already registers exactly two pattern categories,
+  `medispace-medical` and `medispace-construction`, matching the Q4 folder-derived category
+  convention.
+
+## Risks
+
+- The Q1 glob change to `inc/block-patterns.php` is a one-time edit to a shared file; done
+  carelessly it could register a stray `.php` left under `inc/patterns/`. Mitigation: scope the
+  glob tightly to `inc/patterns/*/*.php` and validate each returned array has the required
+  keys (`title`, `categories`, `content`) before calling `register_block_pattern`.
+- The Q11 placeholder-image fallback means a generated pattern can ship with a visibly fake
+  image if the `⚠ placeholder` flag in the Q6 outline is missed before commit — the outline is
+  the only safeguard, there's no second check later.
+- Q8's strict reuse-only policy means a genuinely new brand color introduced by a future design
+  will always be silently rounded to the nearest existing token, by design. If a real palette
+  expansion is ever needed, that stays a manual `theme.json`/style-variation edit outside this
+  skill's scope.
+- The Q10 validator only catches what it's coded to catch (attribute mirroring, token
+  resolution, image existence, escaping) — it does not and cannot judge whether the chosen
+  Gutenberg block is the right one for the design's intent. That call rests entirely on the Q6
+  outline approval, with no automated backstop behind it.
+
+## Deferred
+
+None — no question was deferred during this interview.
+
+## Open threads
+
+None left open. The two threaded discussions (Q8 on token sourcing, Q11 on the placeholder
+fallback) both resolved into their question's final answer rather than remaining unresolved.
+```
+
+## File: assets/images/placeholder.svg
+```xml
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Placeholder image">
+	<rect width="800" height="600" fill="#e2e8ec"/>
+	<rect x="1" y="1" width="798" height="598" fill="none" stroke="#c2ccd1" stroke-width="2"/>
+	<g stroke="#9aa7ad" stroke-width="2" fill="none">
+		<path d="M320 220h160v160H320z"/>
+		<circle cx="360" cy="260" r="14"/>
+		<path d="M320 350l50-50 40 40 70-70 40 40v60H320z"/>
+	</g>
+</svg>
+```
+
+## File: assets/css/patterns.css
+```css
 /* ==========================================================================
    Hero — Home
    ========================================================================== */
@@ -134,9 +463,10 @@ This section contains the contents of the repository's files.
    ========================================================================== */
 
 /* ... наступна секція, коли дійдемо ... */
-</file>
+```
 
-<file path="assets/fonts/lora/font-face.css">
+## File: assets/fonts/lora/font-face.css
+```css
 /* cyrillic-ext */
 @font-face {
 	font-family: 'Lora';
@@ -236,9 +566,10 @@ This section contains the contents of the repository's files.
 	src: url(./lora-400-700.woff2) format('woff2');
 	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-</file>
+```
 
-<file path="assets/fonts/rubik/font-face.css">
+## File: assets/fonts/rubik/font-face.css
+```css
 /* cyrillic-ext */
 @font-face {
 	font-family: 'Rubik';
@@ -338,9 +669,10 @@ This section contains the contents of the repository's files.
 	src: url(./rubik-300-900.woff2) format('woff2');
 	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-</file>
+```
 
-<file path="assets/images/construction/hero/icon-mark.svg">
+## File: assets/images/construction/hero/icon-mark.svg
+```xml
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_896_3871)">
 <path d="M5.64434 5.64434C5.23176 6.05692 4.99997 6.6165 4.99997 7.19997V8.19997C4.99964 8.78087 4.76957 9.33806 4.35997 9.74997L3.65997 10.45C3.45437 10.6544 3.29121 10.8975 3.17988 11.1652C3.06855 11.4329 3.01123 11.72 3.01123 12.01C3.01123 12.2999 3.06855 12.587 3.17988 12.8547C3.29121 13.1225 3.45437 13.3655 3.65997 13.57L4.35997 14.27C4.76957 14.6819 4.99964 15.2391 4.99997 15.82V16.82C4.99997 17.4034 5.23176 17.963 5.64434 18.3756C6.05692 18.7882 6.6165 19.02 7.19997 19.02H8.19997C8.78087 19.0203 9.33806 19.2504 9.74997 19.66L10.45 20.36C10.6544 20.5656 10.8975 20.7287 11.1652 20.8401C11.4329 20.9514 11.72 21.0087 12.01 21.0087C12.2999 21.0087 12.587 20.9514 12.8547 20.8401C13.1225 20.7287 13.3655 20.5656 13.57 20.36L14.27 19.66C14.6819 19.2504 15.2391 19.0203 15.82 19.02H16.82C17.4034 19.02 17.963 18.7882 18.3756 18.3756C18.7882 17.963 19.02 17.4034 19.02 16.82V15.82C19.0203 15.2391 19.2504 14.6819 19.66 14.27L20.36 13.57C20.5656 13.3655 20.7287 13.1225 20.8401 12.8547C20.9514 12.587 21.0087 12.2999 21.0087 12.01C21.0087 11.72 20.9514 11.4329 20.8401 11.1652C20.7287 10.8975 20.5656 10.6544 20.36 10.45L19.66 9.74997C19.25 9.33797 19.02 8.77997 19.02 8.19997V7.19997C19.02 6.6165 18.7882 6.05692 18.3756 5.64434C17.963 5.23176 17.4034 4.99997 16.82 4.99997H15.82C15.24 4.99997 14.682 4.76997 14.27 4.35997L13.57 3.65997C13.3655 3.45437 13.1225 3.29121 12.8547 3.17988C12.587 3.06855 12.2999 3.01123 12.01 3.01123C11.72 3.01123 11.4329 3.06855 11.1652 3.17988C10.8975 3.29121 10.6544 3.45437 10.45 3.65997L9.74997 4.35997C9.33806 4.76957 8.78087 4.99964 8.19997 4.99997H7.19997C6.6165 4.99997 6.05692 5.23176 5.64434 5.64434Z" stroke="#0385CB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -352,9 +684,10 @@ This section contains the contents of the repository's files.
 </clipPath>
 </defs>
 </svg>
-</file>
+```
 
-<file path="assets/images/construction/hero/icon-money.svg">
+## File: assets/images/construction/hero/icon-money.svg
+```xml
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_896_3849)">
 <path d="M3.68508 15.4442C3.23279 14.3522 3 13.1819 3 12C3 10.8181 3.23279 9.64778 3.68508 8.55585C4.13738 7.46392 4.80031 6.47177 5.63604 5.63604C6.47177 4.80031 7.46392 4.13738 8.55585 3.68508C9.64778 3.23279 10.8181 3 12 3C13.1819 3 14.3522 3.23279 15.4442 3.68508C16.5361 4.13738 17.5282 4.80031 18.364 5.63604C19.1997 6.47177 19.8626 7.46392 20.3149 8.55585C20.7672 9.64778 21 10.8181 21 12C21 13.1819 20.7672 14.3522 20.3149 15.4442C19.8626 16.5361 19.1997 17.5282 18.364 18.364C17.5282 19.1997 16.5361 19.8626 15.4442 20.3149C14.3522 20.7672 13.1819 21 12 21C10.8181 21 9.64778 20.7672 8.55585 20.3149C7.46392 19.8626 6.47177 19.1997 5.63604 18.364C4.80031 17.5282 4.13738 16.5361 3.68508 15.4442Z" stroke="#0385CB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -368,9 +701,10 @@ This section contains the contents of the repository's files.
 </clipPath>
 </defs>
 </svg>
-</file>
+```
 
-<file path="assets/images/construction/hero/icon-process.svg">
+## File: assets/images/construction/hero/icon-process.svg
+```xml
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_896_3830)">
 <path d="M3.58579 7.41421C3.21071 7.03914 3 6.53043 3 6C3 5.46957 3.21071 4.96086 3.58579 4.58579C3.96086 4.21071 4.46957 4 5 4C5.53043 4 6.03914 4.21071 6.41421 4.58579C6.78929 4.96086 7 5.46957 7 6C7 6.53043 6.78929 7.03914 6.41421 7.41421C6.03914 7.78929 5.53043 8 5 8C4.46957 8 3.96086 7.78929 3.58579 7.41421Z" stroke="#0385CB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -388,9 +722,10 @@ This section contains the contents of the repository's files.
 </clipPath>
 </defs>
 </svg>
-</file>
+```
 
-<file path="inc/admin/flow-selector.php">
+## File: inc/admin/flow-selector.php
+```php
 <?php
 /**
  * Medispace Theme: Flow Selector (admin setup screen)
@@ -573,6 +908,18 @@ add_action("admin_post_medispace_set_flow", function () {
         exit();
     }
 
+    // Clear DB customizations for templates and parts to prevent blocking the new flow.
+    $overrides = get_posts([
+        "post_type" => ["wp_template", "wp_template_part"],
+        "post_name__in" => ["front-page", "home", "header", "footer"],
+        "posts_per_page" => -1,
+        "post_status" => "any",
+    ]);
+
+    foreach ($overrides as $override) {
+        wp_delete_post($override->ID, true);
+    }
+
     wp_safe_redirect(
         add_query_arg(
             "medispace_updated",
@@ -681,9 +1028,10 @@ function medispace_styles_were_customized($global_styles_id)
 
     return md5($post->post_content) !== $last_hash;
 }
-</file>
+```
 
-<file path="inc/patterns/construction/hero.php">
+## File: inc/patterns/construction/hero.php
+```php
 <?php
 
 return [
@@ -757,9 +1105,10 @@ return [
 <!-- /wp:cover --></div>
 <!-- /wp:group -->',
 ];
-</file>
+```
 
-<file path="inc/patterns/medical/hero.php">
+## File: inc/patterns/medical/hero.php
+```php
 <?php
 /**
  * Pattern: Hero - Medical
@@ -881,9 +1230,10 @@ return [
 </div>
 <!-- /wp:group -->',
 ];
-</file>
+```
 
-<file path="inc/block-patterns.php">
+## File: inc/block-patterns.php
+```php
 <?php
 /**
  * Medispace Theme: Block Patterns
@@ -920,48 +1270,51 @@ if (!function_exists("medispace_register_block_patterns")):
             register_block_pattern_category($slug, $block_pattern_category);
         }
 
-        $block_patterns = [
-            // Flow 3 — Medical Coworking.
-            "medical/hero",
-
-            // Flow 2 — Construction. Додавати рядок сюди тільки коли
-            // відповідний файл вже реально існує в inc/patterns/construction/.
-            "construction/hero",
-        ];
+        // Auto-discovery: every inc/patterns/<flow>/<slug>.php file is a pattern.
+        // There is no manual list to keep in sync anymore — drop a file in and
+        // it registers itself on the next request. A file that isn't ready yet
+        // (missing title/content) is skipped rather than fataling the site.
+        $pattern_files = glob(get_theme_file_path("/inc/patterns/*/*.php"));
 
         /**
-         * Filters the theme block patterns.
+         * Filters the discovered pattern file paths before they're required.
          *
-         * @param array $block_patterns List of block patterns by name (folder/file, без .php).
+         * @param array $pattern_files Absolute paths to pattern files.
          */
-        $block_patterns = apply_filters(
-            "medispace_block_patterns",
-            $block_patterns,
+        $pattern_files = apply_filters(
+            "medispace_block_pattern_files",
+            $pattern_files ?: [],
         );
 
-        foreach ($block_patterns as $block_pattern) {
-            $pattern_path = get_theme_file_path(
-                "/inc/patterns/" . $block_pattern . ".php",
+        foreach ($pattern_files as $pattern_path) {
+            // inc/patterns/<flow>/<slug>.php -> registered as medispace/<flow>-<slug>.
+            $relative = str_replace(
+                get_theme_file_path("/inc/patterns/"),
+                "",
+                $pattern_path,
             );
+            $block_pattern = str_replace(["/", ".php"], ["-", ""], $relative);
 
-            // Захист на час розробки: якщо файл паттерна ще не створений —
-            // пропускаємо його, а не валимо весь сайт фатальною помилкою.
-            if (!file_exists($pattern_path)) {
+            $pattern = require $pattern_path;
+
+            if (
+                !is_array($pattern) ||
+                empty($pattern["title"]) ||
+                empty($pattern["content"])
+            ) {
                 continue;
             }
 
-            register_block_pattern(
-                "medispace/" . str_replace("/", "-", $block_pattern),
-                require $pattern_path,
-            );
+            register_block_pattern("medispace/" . $block_pattern, $pattern);
         }
     }
 endif;
 
 add_action("init", "medispace_register_block_patterns", 9);
-</file>
+```
 
-<file path="inc/flow-template-resolver.php">
+## File: inc/flow-template-resolver.php
+```php
 <?php
 /**
  * Medispace Theme: Flow Template Resolution
@@ -1009,7 +1362,10 @@ function medispace_resolve_flow_template($template, $id, $template_type)
 
     // Map of managed generic slugs to their registry key, scoped by template type.
     $managed = [
-        "wp_template" => ["front-page" => "front_page_template"],
+        "wp_template" => [
+            "front-page" => "front_page_template",
+            "home"       => "front_page_template",
+        ],
         "wp_template_part" => [
             "header" => "header_template_part",
             "footer" => "footer_template_part",
@@ -1067,9 +1423,86 @@ function medispace_resolve_flow_template($template, $id, $template_type)
 
     return $new_template;
 }
-</file>
 
-<file path="inc/flows.php">
+add_filter("get_block_templates", "medispace_resolve_flow_templates", 10, 3);
+
+/**
+ * Filters the list of queried block templates to inject the active flow's home template.
+ *
+ * Why this filter is needed:
+ * On the front end, WordPress resolves the main page template by calling `get_block_templates()`
+ * with a query for the template hierarchy (e.g. ['front-page', 'index'] or ['home', 'index']).
+ * This queries multiple templates at once and applies the plural `get_block_templates` filter,
+ * completely bypassing the singular `get_block_template` filter. To ensure the active flow's
+ * home template is selected, we must hook here and inject it into the queried templates array.
+ *
+ * @param WP_Block_Template[] $query_result Array of found block templates.
+ * @param array               $query        Query variables.
+ * @param string              $template_type 'wp_template' or 'wp_template_part'.
+ * @return WP_Block_Template[]
+ */
+function medispace_resolve_flow_templates($query_result, $query, $template_type)
+{
+    if ("wp_template" !== $template_type) {
+        return $query_result;
+    }
+
+    $slugs = isset($query["slug__in"]) ? $query["slug__in"] : [];
+
+    if (empty($slugs)) {
+        return $query_result;
+    }
+
+    // Slugs we want to resolve dynamically.
+    $target_slugs = ["front-page", "home"];
+    $intersect = array_intersect($slugs, $target_slugs);
+
+    if (empty($intersect)) {
+        return $query_result;
+    }
+
+    // If there is already a database override (user customization) for a target slug, let it win.
+    foreach ($query_result as $tpl) {
+        if (in_array($tpl->slug, $target_slugs) && "custom" === $tpl->source) {
+            return $query_result;
+        }
+    }
+
+    $flow_slug = medispace_get_active_flow();
+    if (!$flow_slug) {
+        return $query_result;
+    }
+
+    $flows = medispace_get_available_flows();
+    if (!isset($flows[$flow_slug])) {
+        return $query_result;
+    }
+
+    foreach ($intersect as $slug) {
+        // Check if this slug was already resolved (e.g. from the DB or a physical file).
+        $exists = false;
+        foreach ($query_result as $tpl) {
+            if ($tpl->slug === $slug) {
+                $exists = true;
+                break;
+            }
+        }
+
+        if (!$exists) {
+            $id = get_stylesheet() . "//" . $slug;
+            $resolved = medispace_resolve_flow_template(null, $id, "wp_template");
+            if ($resolved) {
+                $query_result[] = $resolved;
+            }
+        }
+    }
+
+    return $query_result;
+}
+```
+
+## File: inc/flows.php
+```php
 <?php
 /**
  * Medispace Theme: Flow Registry
@@ -1143,9 +1576,10 @@ if (!function_exists("medispace_get_active_flow")):
         return $flow;
     }
 endif;
-</file>
+```
 
-<file path="parts/footer-construction.html">
+## File: parts/footer-construction.html
+```html
 <!-- wp:group {"metadata":{"name":"Footer default"},"className":"alignwide","style":{"spacing":{"padding":{"top":"80px","bottom":"24px"}}},"backgroundColor":"gray-100","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignwide has-gray-100-background-color has-background" style="padding-top:80px;padding-bottom:24px"><!-- wp:columns {"className":"alignwide footer-inner"} -->
 <div class="wp-block-columns alignwide footer-inner"><!-- wp:column {"metadata":{"name":"Contact"}} -->
@@ -1249,9 +1683,10 @@ endif;
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
-</file>
+```
 
-<file path="parts/footer-medical.html">
+## File: parts/footer-medical.html
+```html
 <!-- wp:group {"tagName":"footer","align":"full","backgroundColor":"light-gray","style":{"spacing":{"padding":{"top":"var:preset|spacing|80","bottom":"0","left":"var:preset|spacing|100","right":"var:preset|spacing|100"}}},"layout":{"type":"constrained"}} -->
 <footer class="wp-block-group alignfull has-light-gray-background-color has-background" style="padding-top:var(--wp--preset--spacing--80);padding-right:var(--wp--preset--spacing--100);padding-bottom:0;padding-left:var(--wp--preset--spacing--100)">
 
@@ -1346,9 +1781,10 @@ endif;
 
 </footer>
 <!-- /wp:group -->
-</file>
+```
 
-<file path="parts/header-construction.html">
+## File: parts/header-construction.html
+```html
 <!-- wp:group {"metadata":{"name":"Header inner"},"align":"full","className":"header-inner","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"}}},"layout":{"type":"constrained","contentSize":"1380px"}} -->
 <div
     class="wp-block-group alignfull header-inner"
@@ -1408,9 +1844,10 @@ endif;
     <!-- /wp:group -->
 </div>
 <!-- /wp:group -->
-</file>
+```
 
-<file path="parts/header-medical.html">
+## File: parts/header-medical.html
+```html
 <!-- wp:group {"tagName":"header","align":"full","backgroundColor":"white","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|100","right":"var:preset|spacing|100"}}},"layout":{"type":"constrained"}} -->
 <header class="wp-block-group alignfull has-white-background-color has-background" style="padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--100);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--100)">
 
@@ -1456,9 +1893,10 @@ endif;
 
 </header>
 <!-- /wp:group -->
-</file>
+```
 
-<file path="styles/flow-2-construction.json">
+## File: styles/flow-2-construction.json
+```json
 {
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 3,
@@ -1574,9 +2012,10 @@ endif;
 		}
 	}
 }
-</file>
+```
 
-<file path="styles/flow-3-medical.json">
+## File: styles/flow-3-medical.json
+```json
 {
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 3,
@@ -1690,17 +2129,19 @@ endif;
 		}
 	}
 }
-</file>
+```
 
-<file path="templates/front-page-medical.html">
+## File: templates/front-page-medical.html
+```html
 <!-- wp:template-part {"slug":"header-medical","tagName":"header"} /-->
 
 <!-- wp:pattern {"slug":"medispace/medical-hero"} /-->
 
 <!-- wp:template-part {"slug":"footer-medical","tagName":"footer"} /-->
-</file>
+```
 
-<file path="templates/index.html">
+## File: templates/index.html
+```html
 <!-- wp:template-part {"slug":"header","tagName":"header"} /-->
 
 <!-- wp:group {"tagName":"main","layout":{"type":"constrained"}} -->
@@ -1711,20 +2152,20 @@ endif;
 <!-- /wp:group -->
 
 <!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
-</file>
+```
 
-<file path="templates/template-construction-home.html">
+## File: templates/template-construction-home.html
+```html
 <!-- wp:template-part {"slug":"header-construction","tagName":"header"} /-->
-
 <!-- wp:pattern {"slug":"medispace/construction-hero"} /-->
-
 <!-- wp:template-part {"slug":"footer-construction","tagName":"footer"} /-->
-</file>
+```
 
-<file path="functions.php">
+## File: functions.php
+```php
 <?php
 /**
- * This file adds functions to the medispace theme for WordPress.
+ * This file' adds functions to the medispace theme for WordPress.
  *
  * @package medispace
  * @author  Ecdevstudio
@@ -1768,9 +2209,16 @@ add_action("wp_enqueue_scripts", function () {
         ),
     );
 });
-</file>
+```
 
-<file path="style.css">
+## File: index.php
+```php
+<?php
+// Silence is golden.
+```
+
+## File: style.css
+```css
 /*
 Theme Name: Medispace
 Theme URI: http://medispace.ecdevstudio.com/
@@ -1788,9 +2236,10 @@ Tags: custom-logo, custom-menu
 Medispace WordPress Theme, Copyright 2025 EcDev Studio
 Medispace is distributed under the terms of the GNU GPL v2 or later.
 */
-</file>
+```
 
-<file path="theme.json">
+## File: theme.json
+```json
 {
   "$schema": "https://schemas.wp.org/trunk/theme.json",
   "version": 3,
@@ -1798,7 +2247,7 @@ Medispace is distributed under the terms of the GNU GPL v2 or later.
     "appearanceTools": true,
     "layout": {
       "contentSize": "1086px",
-      "wideSize": "1920px"
+      "wideSize": "1380px"
     },
     "color": {
       "custom": true,
@@ -1878,6 +2327,4 @@ Medispace is distributed under the terms of the GNU GPL v2 or later.
     }
   ]
 }
-</file>
-
-</files>
+```

@@ -37,8 +37,7 @@ if (!function_exists("medispace_get_available_flows")):
                 "style_variation" => "flow-2-construction",
                 "screenshot" =>
                     "/assets/images/construction/screenshot-flow.png",
-                "front_page_template" =>
-                    "/templates/template-construction-home.html",
+                "front_page_template" => "/templates/front-page-construction.html",
                 "header_template_part" => "/parts/header-construction.html",
                 "footer_template_part" => "/parts/footer-construction.html",
             ],
