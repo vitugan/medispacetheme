@@ -16,6 +16,22 @@
 }
 
 /* ==========================================================================
+   Shared utilities
+   ========================================================================== */
+
+/* Buttons that span the full width on mobile, as in the designs (add className "is-mobile-full" to core/buttons). */
+@media (max-width: 599px) {
+	.wp-block-buttons.is-mobile-full {
+		align-self: stretch;
+	}
+
+	.wp-block-buttons.is-mobile-full > .wp-block-button,
+	.wp-block-buttons.is-mobile-full > .wp-block-button > .wp-block-button__link {
+		width: 100%;
+	}
+}
+
+/* ==========================================================================
    Footer — Construction
    ========================================================================== */
 
@@ -46,18 +62,6 @@
 		left: auto;
 		right: 0;
 		width: 52%;
-	}
-}
-
-/* Mobile: full-width button, as in the design. */
-@media (max-width: 599px) {
-	.cta-banner .wp-block-buttons {
-		align-self: stretch;
-	}
-
-	.cta-banner .wp-block-button,
-	.cta-banner .wp-block-button__link {
-		width: 100%;
 	}
 }
 
