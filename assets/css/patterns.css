@@ -278,6 +278,36 @@
 	opacity: 0;
 }
 
+/* Smooth open/close. Core hides a closed panel with display:none ([inert]); allow-discrete keeps it
+   rendered while it animates, @starting-style gives the opening state, interpolate-size lets height
+   animate to/from auto (Chromium; other browsers still fade, height snaps). */
+@media (prefers-reduced-motion: no-preference) {
+	.process-steps .wp-block-accordion-panel {
+		interpolate-size: allow-keywords;
+		overflow: hidden;
+		height: auto;
+		opacity: 1;
+		transition:
+			height 0.35s ease,
+			opacity 0.35s ease,
+			margin-block-start 0.35s ease,
+			display 0.35s allow-discrete;
+	}
+
+	.process-steps .wp-block-accordion-panel[inert] {
+		height: 0;
+		opacity: 0;
+	}
+
+	@starting-style {
+		.process-steps .wp-block-accordion-panel:not([inert]) {
+			height: 0;
+			opacity: 0;
+			margin-block-start: 0;
+		}
+	}
+}
+
 /* ==========================================================================
    Why Choose Us
    ========================================================================== */
