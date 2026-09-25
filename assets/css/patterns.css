@@ -71,18 +71,25 @@
 	align-items: stretch;
 }
 
-/* Badge pinned top-right, text at the bottom: the inner container fills the card height. */
+/* Badge pinned top-right, text panel full-width at the bottom: the inner container fills the card. */
 .blog-card .wp-block-cover__inner-container {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	align-items: flex-start;
-	gap: var(--wp--preset--spacing--40);
+	align-items: stretch;
 }
 
-.blog-card__badge {
+/* Outranks core's `:root :where(.is-layout-flow) > :first-child` (0,2,0) margin reset regardless of load order. */
+.blog-card .wp-block-cover__inner-container > .blog-card__badge {
 	align-self: flex-end;
+	margin: var(--wp--preset--spacing--40);
 	box-shadow: 0 1px 3.5px rgba(25, 33, 61, 0.08);
+}
+
+/* Frosted text panel: backdrop blur is not a block support. */
+.blog-card__content {
+	-webkit-backdrop-filter: blur(7px);
+	backdrop-filter: blur(7px);
 }
 
 .blog-card .wp-block-post-title {
