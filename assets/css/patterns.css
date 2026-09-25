@@ -213,6 +213,72 @@
 }
 
 /* ==========================================================================
+   Our process (inc/patterns/construction/process.php, core accordion)
+   ========================================================================== */
+
+/* Mobile: heading and intro are centered in the design (left-aligned on desktop). */
+@media (max-width: 781px) {
+	.process-section .process-head {
+		text-align: center;
+	}
+}
+
+.process-steps .wp-block-accordion-heading {
+	margin: 0;
+	font-size: var(--wp--preset--font-size--h-5);
+	line-height: 1.2;
+}
+
+/* Core gives the toggle 8px vertical padding and an underline on hover; the design has neither. */
+.process-steps .wp-block-accordion-heading__toggle {
+	padding: 0;
+	gap: var(--wp--preset--spacing--50);
+}
+
+.process-steps .wp-block-accordion-heading__toggle:hover .wp-block-accordion-heading__toggle-title {
+	text-decoration: none;
+}
+
+/* Icon: "+" closed, "-" open (core rotates its "+" into "x"). Drawn with two 16x2 bars. */
+.process-steps .wp-block-accordion-heading__toggle-icon {
+	position: relative;
+	flex: 0 0 24px;
+	width: 24px;
+	height: 24px;
+	font-size: 0;
+	color: var(--wp--preset--color--gray-50);
+	transition: color 0.2s ease;
+}
+
+.process-steps .wp-block-accordion-heading__toggle-icon::before,
+.process-steps .wp-block-accordion-heading__toggle-icon::after {
+	content: "";
+	position: absolute;
+	top: 11px;
+	left: 4px;
+	width: 16px;
+	height: 2px;
+	background: currentColor;
+	transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.process-steps .wp-block-accordion-heading__toggle-icon::after {
+	transform: rotate(90deg);
+}
+
+.process-steps .wp-block-accordion-heading__toggle:hover .wp-block-accordion-heading__toggle-icon {
+	color: var(--wp--preset--color--gray-100);
+}
+
+.process-steps .wp-block-accordion-item.is-open > .wp-block-accordion-heading .wp-block-accordion-heading__toggle-icon {
+	transform: none;
+}
+
+.process-steps .wp-block-accordion-item.is-open > .wp-block-accordion-heading .wp-block-accordion-heading__toggle-icon::after {
+	opacity: 0;
+}
+
+/* ==========================================================================
    Why Choose Us
    ========================================================================== */
 
