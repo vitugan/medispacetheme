@@ -197,6 +197,22 @@
 }
 
 /* ==========================================================================
+   Feature cards (inc/pattern-parts/feature-cards.php)
+   ========================================================================== */
+
+/* Text takes the rest of the row and drops below the icon when the card is narrower than
+   icon + gap + 240px (mobile), as in the design. Flex sizing of a child is not a block setting here. */
+.feature-card > .feature-card__text {
+	flex: 1 1 240px;
+	min-width: 0;
+}
+
+/* Cards in a grid row stretch to the tallest one; keep wrapped lines at the top. */
+.wp-block-group.feature-card {
+	align-content: flex-start;
+}
+
+/* ==========================================================================
    Why Choose Us
    ========================================================================== */
 
