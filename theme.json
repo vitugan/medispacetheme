@@ -88,6 +88,9 @@
       ]
     }
   },
+  "styles": {
+    "css": ".wp-site-blocks > * + * { margin-block-start: 0; }"
+  },
   "templateParts": [
   	{ "name": "header-medical", "title": "Header - Medical", "area": "header" },
   	{ "name": "footer-medical", "title": "Footer - Medical", "area": "footer" },
