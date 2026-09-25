@@ -25,8 +25,8 @@ return [
 <div class="wp-block-button"><a class="wp-block-button__link wp-element-button">Talk to an expert</a></div>
 <!-- /wp:button -->
 
-<!-- wp:button {"textColor":"background","className":"is-style-outline","style":{"elements":{"link":{"color":{"text":"var:preset|color|background"}}}},"borderColor":"background"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-background-color has-text-color has-link-color has-border-color has-background-border-color wp-element-button">View portfolio</a></div>
+<!-- wp:button {"className":"is-style-outline-light"} -->
+<div class="wp-block-button is-style-outline-light"><a class="wp-block-button__link wp-element-button">View portfolio</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->

@@ -6,6 +6,9 @@
 		"color": {
 			"palette": [
 				{ "slug": "primary", "name": "Primary", "color": "#5886d8" },
+				{ "slug": "primary-hover", "name": "Primary Hover", "color": "#659cff" },
+				{ "slug": "primary-pressed", "name": "Primary Pressed", "color": "#4773c2" },
+				{ "slug": "disabled", "name": "Disabled", "color": "#9fa8b9" },
 				{ "slug": "dark", "name": "Dark", "color": "#0c3072" },
 				{ "slug": "light-blue", "name": "Light Blue", "color": "#e2f1ff" },
 				{ "slug": "light-gray", "name": "Light Gray", "color": "#f1f1f1" },
@@ -57,6 +60,18 @@
 			]
 		},
 		"custom": {
+			"button": {
+				"arrow": {
+					"size": "36px",
+					"gap": "8px",
+					"color": "var(--wp--preset--color--white)",
+					"background": "var(--wp--preset--color--primary)",
+					"background-hover": "var(--wp--preset--color--primary-hover)",
+					"background-active": "var(--wp--preset--color--primary-pressed)",
+					"background-disabled": "var(--wp--preset--color--disabled)",
+					"font-weight": "600"
+				}
+			},
 			"radius": {
 				"s": "16px",
 				"m": "30px",
@@ -98,18 +113,30 @@
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--body)",
 					"fontSize": "var(--wp--preset--font-size--button)",
-					"fontWeight": "600"
+					"fontWeight": "600",
+					"lineHeight": "1.5"
 				},
-				"border": { "radius": "16px" },
+				"border": {
+					"radius": "16px",
+					"width": "1px",
+					"style": "solid",
+					"color": "var(--wp--preset--color--primary)"
+				},
 				"spacing": {
-					"padding": {
-						"top": "var(--wp--preset--spacing--40)",
-						"bottom": "var(--wp--preset--spacing--40)",
-						"left": "var(--wp--preset--spacing--50)",
-						"right": "var(--wp--preset--spacing--50)"
-					}
+					"padding": { "top": "15px", "bottom": "15px", "left": "23px", "right": "23px" }
 				},
-				":hover": { "color": { "background": "var(--wp--preset--color--dark)" } }
+				":hover": {
+					"color": { "background": "var(--wp--preset--color--primary-hover)" },
+					"border": { "color": "var(--wp--preset--color--primary-hover)" }
+				},
+				":focus": {
+					"color": { "background": "var(--wp--preset--color--primary-hover)" },
+					"border": { "color": "var(--wp--preset--color--primary-hover)" }
+				},
+				":active": {
+					"color": { "background": "var(--wp--preset--color--primary-pressed)" },
+					"border": { "color": "var(--wp--preset--color--primary-pressed)" }
+				}
 			}
 		},
 		"blocks": {

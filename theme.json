@@ -34,6 +34,7 @@
 				}
 			],
       "fontSizes": [
+        { "slug": "caption", "name": "Caption", "size": "12px", "fluid": false },
         { "slug": "body-s", "name": "Body S", "size": "14px", "fluid": false },
         { "slug": "body-m", "name": "Body M", "size": "16px", "fluid": false },
         { "slug": "body-l", "name": "Body L", "size": "18px", "fluid": false },
@@ -60,13 +61,13 @@
           "slug": "h-2",
           "name": "H2",
           "size": "36px",
-          "fluid": { "min": "28px", "max": "36px" }
+          "fluid": { "min": "32px", "max": "36px" }
         },
         {
           "slug": "h-1",
           "name": "H1",
           "size": "52px",
-          "fluid": { "min": "34px", "max": "52px" }
+          "fluid": { "min": "46px", "max": "52px" }
         }
       ]
     },
