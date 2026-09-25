@@ -114,6 +114,12 @@
 }
 
 /* Card typography and spacing from the design (block defaults differ). */
+/* Slides are width:100% plus their own padding; without border-box every slide is wider than the
+   viewport and the offset accumulates slide by slide (the block relies on a global box-sizing reset). */
+.projects-slider .wp-swiper-hero-slider__inner .swiper-slide {
+	box-sizing: border-box;
+}
+
 /* border-box: cardMaxWidth is the card's full width in the design (531px incl. padding). */
 .projects-slider .wp-swiper-hero-slider__inner .wps-card {
 	box-sizing: border-box;
