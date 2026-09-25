@@ -16,6 +16,52 @@
 }
 
 /* ==========================================================================
+   Footer — Construction
+   ========================================================================== */
+
+/* Current page link is highlighted in the design; theme.json cannot target the current menu item. */
+.footer-nav .current-menu-item > a {
+	color: var(--wp--preset--color--primary-hover);
+}
+
+/* ==========================================================================
+   Call to Action banner (inc/pattern-parts/cta-banner.php)
+   ========================================================================== */
+
+/* Cover defaults to min-height:430px; the banner is sized by its padding. `minHeight:0` is not saved by the block. */
+.cta-banner.wp-block-cover {
+	min-height: 0;
+	/* Tint the photo: it is multiplied onto a dark primary-tinted base (blend modes are not in theme.json). */
+	background-color: color-mix(in srgb, var(--wp--preset--color--primary) 28%, color-mix(in srgb, var(--wp--preset--color--white) 6%, var(--wp--preset--color--gray-100)));
+	isolation: isolate;
+}
+
+.cta-banner .wp-block-cover__image-background {
+	mix-blend-mode: multiply;
+}
+
+/* Desktop: the photo occupies only the right half, as in the design (cover always stretches it full width). */
+@media (min-width: 782px) {
+	.cta-banner .wp-block-cover__image-background {
+		left: auto;
+		right: 0;
+		width: 52%;
+	}
+}
+
+/* Mobile: full-width button, as in the design. */
+@media (max-width: 599px) {
+	.cta-banner .wp-block-buttons {
+		align-self: stretch;
+	}
+
+	.cta-banner .wp-block-button,
+	.cta-banner .wp-block-button__link {
+		width: 100%;
+	}
+}
+
+/* ==========================================================================
    Why Choose Us
    ========================================================================== */
 
