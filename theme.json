@@ -75,6 +75,7 @@
       "section-gap": "clamp(60px, 7.3vw, 140px)"
     },
     "spacing": {
+      "defaultSpacingSizes": false,
       "customSpacingSize": false,
       "units": ["px", "%", "vw", "em", "rem"],
       "spacingSizes": [
