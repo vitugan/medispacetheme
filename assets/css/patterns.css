@@ -101,6 +101,96 @@
 }
 
 /* ==========================================================================
+   Our projects slider (MediSpace Core swiper-slider, className "projects-slider")
+   ========================================================================== */
+
+/* The block writes hex colors inline as --wps-* on the inner wrapper; !important re-points them
+   to the active flow's palette so the slider follows the style variation. */
+.projects-slider .wp-swiper-hero-slider__inner {
+	--wps-accent: var(--wp--preset--color--primary) !important;
+	--wps-dark: var(--wp--preset--color--gray-100) !important;
+	--wps-text: var(--wp--preset--color--gray-80) !important;
+	--wps-overlay: color-mix(in srgb, var(--wp--preset--color--gray-100) 40%, transparent) !important;
+}
+
+/* Card typography and spacing from the design (block defaults differ). */
+/* border-box: cardMaxWidth is the card's full width in the design (531px incl. padding). */
+.projects-slider .wp-swiper-hero-slider__inner .wps-card {
+	box-sizing: border-box;
+	box-shadow: none;
+}
+
+.projects-slider .wp-swiper-hero-slider__inner .wps-badge {
+	padding: 10px;
+	margin-bottom: 24px;
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--body-s);
+	font-weight: 700;
+	line-height: 1.5;
+}
+
+.projects-slider .wp-swiper-hero-slider__inner .wps-title {
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--h-3);
+	font-weight: 600;
+	line-height: 1.2;
+	margin-bottom: 16px;
+}
+
+.projects-slider .wp-swiper-hero-slider__inner .wps-description {
+	font-size: var(--wp--preset--font-size--body-m);
+	line-height: 1.5;
+	margin-bottom: 40px;
+}
+
+.projects-slider .wp-swiper-hero-slider__inner .wps-link {
+	gap: 6px;
+	font-family: var(--wp--preset--font-family--heading);
+	font-weight: 500;
+}
+
+.projects-slider .wp-swiper-hero-slider__inner .wps-link svg {
+	width: 24px;
+	height: 24px;
+}
+
+/* Pagination: grey inactive dots, 30px apart. */
+.projects-slider .wp-swiper-hero-slider__inner .swiper-pagination-bullets {
+	gap: 30px;
+}
+
+.projects-slider .wp-swiper-hero-slider__inner .swiper-pagination-bullet {
+	background-color: var(--wp--preset--color--gray-30);
+}
+
+.projects-slider .wp-swiper-hero-slider__inner .swiper-pagination-bullet-active {
+	background-color: var(--wp--preset--color--white);
+}
+
+/* Mobile: 473px tall, card 16px from the edges with 32px padding. */
+@media (max-width: 768px) {
+	.projects-slider .wp-swiper-hero-slider__inner .swiper {
+		height: 473px;
+	}
+
+	.projects-slider .wp-swiper-hero-slider__inner .swiper-slide {
+		padding: 40px 16px 0;
+	}
+
+	.projects-slider .wp-swiper-hero-slider__inner .wps-card {
+		padding: 32px;
+	}
+
+	.projects-slider .wp-swiper-hero-slider__inner .wps-title {
+		font-size: var(--wp--preset--font-size--h-4);
+	}
+
+	.projects-slider .wp-swiper-hero-slider__inner .wps-description {
+		margin-bottom: 30px;
+	}
+}
+
+/* ==========================================================================
    Why Choose Us
    ========================================================================== */
 
