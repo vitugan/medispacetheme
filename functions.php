@@ -29,6 +29,7 @@ require MEDISPACE_THEME_PATH . '/inc/flow-template-resolver.php';
 require MEDISPACE_THEME_PATH . "/inc/admin/flow-selector.php";
 require MEDISPACE_THEME_PATH . '/inc/fonts/custom-fonts.php';
 require MEDISPACE_THEME_PATH . "/inc/block-styles.php";
+require MEDISPACE_THEME_PATH . "/inc/query-sticky-first.php";
 
 add_action("init", function () {
     register_block_pattern_category("medispace-sections", [

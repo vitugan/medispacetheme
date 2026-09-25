@@ -71,6 +71,9 @@
         }
       ]
     },
+    "custom": {
+      "section-gap": "clamp(60px, 7.3vw, 140px)"
+    },
     "spacing": {
       "customSpacingSize": false,
       "units": ["px", "%", "vw", "em", "rem"],
