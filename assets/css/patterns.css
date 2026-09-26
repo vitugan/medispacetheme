@@ -16,6 +16,53 @@
 }
 
 /* ==========================================================================
+   Hero — Construction (inc/patterns/construction/hero.php)
+   ========================================================================== */
+
+/* Sized by its content; core cover defaults to min-height:430px and centers the content. */
+.home-hero.wp-block-cover {
+	min-height: 0;
+	align-items: stretch;
+}
+
+.home-hero .wp-block-cover__inner-container {
+	display: flex;
+	flex-direction: column;
+}
+
+/* Frosted features bar along the bottom (semi-transparent white + backdrop blur). */
+.home-hero .hero-features {
+	margin-top: clamp(40px, 6.7vw, 129px);
+	padding: 32px 66px;
+	background-color: color-mix(in srgb, var(--wp--preset--color--white) 50%, transparent);
+	-webkit-backdrop-filter: blur(17.5px);
+	backdrop-filter: blur(17.5px);
+}
+
+.home-hero .hero-feature__icon {
+	background-color: color-mix(in srgb, var(--wp--preset--color--primary-hover) 25%, transparent);
+}
+
+/* Dividers between features on desktop: 28px gap, 1px line, 28px padding. */
+.home-hero .hero-features > .hero-feature + .hero-feature {
+	padding-left: 28px;
+	border-left: 1px solid var(--wp--preset--color--primary);
+}
+
+@media (max-width: 781px) {
+	.home-hero .hero-features {
+		flex-direction: column;
+		align-items: flex-start;
+		padding: var(--wp--preset--spacing--40);
+	}
+
+	.home-hero .hero-features > .hero-feature + .hero-feature {
+		padding-left: 0;
+		border-left: 0;
+	}
+}
+
+/* ==========================================================================
    Shared utilities
    ========================================================================== */
 
