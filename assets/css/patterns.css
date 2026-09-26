@@ -16,6 +16,84 @@
 }
 
 /* ==========================================================================
+   Header — Construction (inc/patterns/construction/header.php)
+   ========================================================================== */
+
+/* Menu takes the space between logo and CTA, links centered in it. */
+.site-header .site-header__nav {
+	flex: 1 1 auto;
+}
+
+.site-header .site-header__nav .wp-block-navigation-item__content:hover {
+	color: var(--wp--preset--color--primary);
+}
+
+/* The CTA inside the menu exists for the mobile overlay only. */
+.site-header .site-header__nav .wp-block-navigation__responsive-container:not(.is-menu-open) .site-header__menu-cta {
+	display: none;
+}
+
+/* Services dropdown: white panel with the design's shadow. */
+.site-header .site-header__nav .wp-block-navigation__submenu-container {
+	padding: var(--wp--preset--spacing--40) 0;
+	border: 0 !important;
+	box-shadow: 0 4px 17.5px rgba(0, 0, 0, 0.08);
+	font-weight: 500;
+}
+
+.site-header .site-header__nav .wp-block-navigation__submenu-container .wp-block-navigation-item__content {
+	padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--50);
+	white-space: nowrap;
+}
+
+@media (max-width: 599px) {
+	/* Mobile bar: smaller logo (123x20 in the design), CTA moves into the menu overlay. */
+	.site-header .site-header__logo img {
+		width: 123px !important;
+		height: 20px !important;
+	}
+
+	.site-header .site-header__cta {
+		display: none;
+	}
+
+	/* Burger sits at the right edge, not in the middle of the free space. */
+	.site-header .site-header__nav {
+		flex: 0 0 auto;
+	}
+
+	/* Overlay: centered links, full-width CTA at the bottom. */
+	.site-header .site-header__nav .is-menu-open .wp-block-navigation__responsive-container-content {
+		align-items: center;
+		min-height: calc(100vh - 8rem);
+		padding-bottom: var(--wp--preset--spacing--70);
+	}
+
+	.site-header .site-header__nav .is-menu-open .wp-block-navigation__container {
+		align-items: center;
+		gap: var(--wp--preset--spacing--50);
+	}
+
+	.site-header .site-header__nav .is-menu-open .site-header__menu-cta {
+		margin-top: auto;
+		width: 100%;
+		box-sizing: border-box;
+		padding: 0 var(--wp--preset--spacing--40);
+	}
+
+	/* In the overlay the submenu is an inline list, not a floating panel. */
+	.site-header .site-header__nav .is-menu-open .wp-block-navigation__submenu-container {
+		box-shadow: none;
+		padding: var(--wp--preset--spacing--30) 0 0;
+	}
+
+	.site-header .site-header__nav .is-menu-open .site-header__menu-cta .wp-block-button,
+	.site-header .site-header__nav .is-menu-open .site-header__menu-cta .wp-block-button__link {
+		width: 100%;
+	}
+}
+
+/* ==========================================================================
    Hero — Construction (inc/patterns/construction/hero.php)
    ========================================================================== */
 
