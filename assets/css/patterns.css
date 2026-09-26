@@ -474,24 +474,24 @@
 	}
 }
 
-.process-steps .wp-block-accordion-heading {
+:is(.process-steps, .faq-list) .wp-block-accordion-heading {
 	margin: 0;
 	font-size: var(--wp--preset--font-size--h-5);
 	line-height: 1.2;
 }
 
 /* Core gives the toggle 8px vertical padding and an underline on hover; the design has neither. */
-.process-steps .wp-block-accordion-heading__toggle {
+:is(.process-steps, .faq-list) .wp-block-accordion-heading__toggle {
 	padding: 0;
 	gap: var(--wp--preset--spacing--50);
 }
 
-.process-steps .wp-block-accordion-heading__toggle:hover .wp-block-accordion-heading__toggle-title {
+:is(.process-steps, .faq-list) .wp-block-accordion-heading__toggle:hover .wp-block-accordion-heading__toggle-title {
 	text-decoration: none;
 }
 
 /* Icon: "+" closed, "-" open (core rotates its "+" into "x"). Drawn with two 16x2 bars. */
-.process-steps .wp-block-accordion-heading__toggle-icon {
+:is(.process-steps, .faq-list) .wp-block-accordion-heading__toggle-icon {
 	position: relative;
 	flex: 0 0 24px;
 	width: 24px;
@@ -501,8 +501,8 @@
 	transition: color 0.2s ease;
 }
 
-.process-steps .wp-block-accordion-heading__toggle-icon::before,
-.process-steps .wp-block-accordion-heading__toggle-icon::after {
+:is(.process-steps, .faq-list) .wp-block-accordion-heading__toggle-icon::before,
+:is(.process-steps, .faq-list) .wp-block-accordion-heading__toggle-icon::after {
 	content: "";
 	position: absolute;
 	top: 11px;
@@ -513,11 +513,11 @@
 	transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.process-steps .wp-block-accordion-heading__toggle-icon::after {
+:is(.process-steps, .faq-list) .wp-block-accordion-heading__toggle-icon::after {
 	transform: rotate(90deg);
 }
 
-.process-steps .wp-block-accordion-heading__toggle:hover .wp-block-accordion-heading__toggle-icon {
+:is(.process-steps, .faq-list) .wp-block-accordion-heading__toggle:hover .wp-block-accordion-heading__toggle-icon {
 	color: var(--wp--preset--color--gray-100);
 }
 
@@ -614,6 +614,60 @@
 
 .service-card .wp-block-read-more.service-card__more:hover::after {
 	transform: translateX(4px);
+}
+
+/* ==========================================================================
+   FAQ (inc/patterns/construction/faq.php, core accordion)
+   ========================================================================== */
+
+/* Question in the body font, 18px bold (the heading font is Poppins). */
+.faq-list .wp-block-accordion-heading {
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--body-l);
+	font-weight: 700;
+	line-height: 1.3;
+}
+
+/* White card, grey while open. The icon is dark; core's 45deg turn makes "+" an "x". */
+.faq-list .wp-block-accordion-item {
+	background-color: var(--wp--preset--color--white);
+	transition: background-color 0.2s ease;
+}
+
+.faq-list .wp-block-accordion-item.is-open {
+	background-color: var(--wp--preset--color--light-gray);
+}
+
+.faq-list .wp-block-accordion-heading__toggle-icon {
+	color: var(--wp--preset--color--gray-100);
+}
+
+/* Same smooth open/close as the process steps. */
+@media (prefers-reduced-motion: no-preference) {
+	.faq-list .wp-block-accordion-panel {
+		interpolate-size: allow-keywords;
+		overflow: hidden;
+		height: auto;
+		opacity: 1;
+		transition:
+			height 0.35s ease,
+			opacity 0.35s ease,
+			margin-block-start 0.35s ease,
+			display 0.35s allow-discrete;
+	}
+
+	.faq-list .wp-block-accordion-panel[inert] {
+		height: 0;
+		opacity: 0;
+	}
+
+	@starting-style {
+		.faq-list .wp-block-accordion-panel:not([inert]) {
+			height: 0;
+			opacity: 0;
+			margin-block-start: 0;
+		}
+	}
 }
 
 /* ==========================================================================
