@@ -19,6 +19,67 @@
    Header — Construction (inc/patterns/construction/header.php)
    ========================================================================== */
 
+/* Two logos in the markup: dark by default, light while the overlay header is transparent. */
+.site-header .site-header__logo--light {
+	display: none;
+}
+
+.site-header .site-header__brand {
+	gap: 0;
+}
+
+/* Submenu panel is always white with dark text, whatever the header state. */
+.site-header .site-header__nav .wp-block-navigation__submenu-container {
+	color: var(--wp--preset--color--gray-100) !important;
+	background-color: var(--wp--preset--color--white) !important;
+}
+
+/* Overlay header (className "is-overlay" on the template part, pages that open with a hero):
+   fixed and transparent over the hero with white text and the light logo; white with dark text
+   and a shadow once scrolled (.is-scrolled from assets/js/header.js). Phones keep the plain
+   white header, as in the design. !important: the preset color classes use it. */
+@media (min-width: 600px) {
+	header.is-overlay {
+		position: fixed;
+		top: var(--wp-admin--admin-bar--height, 0px);
+		left: 0;
+		right: 0;
+		z-index: 100;
+	}
+
+	header.is-overlay .site-header {
+		background-color: transparent !important;
+		box-shadow: none !important;
+		transition: background-color 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	header.is-overlay.is-scrolled .site-header {
+		background-color: var(--wp--preset--color--white) !important;
+		box-shadow: 0 4px 17.5px rgba(0, 0, 0, 0.05) !important;
+	}
+
+	header.is-overlay:not(.is-scrolled) .site-header__logo--dark {
+		display: none;
+	}
+
+	header.is-overlay:not(.is-scrolled) .site-header__logo--light {
+		display: block;
+	}
+
+	header.is-overlay:not(.is-scrolled) .site-header__nav.has-text-color {
+		color: var(--wp--preset--color--white) !important;
+	}
+
+	header.is-overlay:not(.is-scrolled) .site-header__nav .wp-block-navigation-item__content:hover {
+		color: var(--wp--preset--color--primary-hover);
+	}
+
+	/* The first section starts under the fixed header (92px) plus its own top padding. */
+	header.is-overlay + main > :first-child {
+		padding-top: calc(92px + clamp(40px, 6.25vw, 120px)) !important;
+	}
+}
+
 /* Menu takes the space between logo and CTA, links centered in it. */
 .site-header .site-header__nav {
 	flex: 1 1 auto;
@@ -62,14 +123,78 @@
 		flex: 0 0 auto;
 	}
 
-	/* Overlay: centered links, full-width CTA at the bottom. */
+	/* Overlay: logo top-left (decorative - the navigation block cannot hold an image),
+	   centered links, full-width CTA pinned to the bottom. */
+	.site-header .site-header__nav .is-menu-open .wp-block-navigation__responsive-dialog::before {
+		content: "";
+		position: absolute;
+		top: 20px;
+		left: var(--wp--preset--spacing--40);
+		width: 123px;
+		height: 20px;
+		background: url("../images/construction/header/logo-dark.svg") left center / contain no-repeat;
+	}
+
 	.site-header .site-header__nav .is-menu-open .wp-block-navigation__responsive-container-content {
+		display: flex;
+		flex-direction: column;
 		align-items: center;
-		min-height: calc(100vh - 8rem);
-		padding-bottom: var(--wp--preset--spacing--70);
+		min-height: calc(100dvh - 60px);
+		padding-bottom: 40px;
+	}
+
+	/* Services: collapsed until tapped (assets/js/header.js), chevron turns, light-blue panel. */
+	.site-header .site-header__nav .is-menu-open .has-child {
+		align-self: stretch;
+		align-items: center;
+	}
+
+	.site-header .site-header__nav .is-menu-open .has-child:not(.is-expanded) > .wp-block-navigation__submenu-container {
+		display: none !important;
+	}
+
+	.site-header .site-header__nav .is-menu-open .has-child > .wp-block-navigation-submenu__toggle {
+		display: none !important;
+	}
+
+	.site-header .site-header__nav .is-menu-open .has-child > .wp-block-navigation-item__content {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	.site-header .site-header__nav .is-menu-open .has-child > .wp-block-navigation-item__content::after {
+		content: "";
+		width: 16px;
+		height: 16px;
+		background-color: currentColor;
+		-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E") center / contain no-repeat;
+		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E") center / contain no-repeat;
+		transition: transform 0.2s ease;
+	}
+
+	.site-header .site-header__nav .is-menu-open .has-child.is-expanded > .wp-block-navigation-item__content {
+		color: var(--wp--preset--color--primary);
+	}
+
+	.site-header .site-header__nav .is-menu-open .has-child.is-expanded > .wp-block-navigation-item__content::after {
+		transform: rotate(180deg);
+	}
+
+	.site-header .site-header__nav .is-menu-open .has-child.is-expanded > .wp-block-navigation__submenu-container {
+		display: flex !important;
+		align-items: center;
+		width: 100vw !important;
+		margin-left: calc(50% - 50vw) !important;
+		margin-top: var(--wp--preset--spacing--40);
+		padding: var(--wp--preset--spacing--40) 0 !important;
+		background-color: var(--wp--preset--color--light-blue) !important;
+		gap: var(--wp--preset--spacing--30);
 	}
 
 	.site-header .site-header__nav .is-menu-open .wp-block-navigation__container {
+		align-self: stretch;
+		width: 100%;
 		align-items: center;
 		gap: var(--wp--preset--spacing--50);
 	}

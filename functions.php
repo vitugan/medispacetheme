@@ -38,6 +38,15 @@ add_action("init", function () {
 });
 
 add_action("wp_enqueue_scripts", function () {
+    // Overlay header scroll state (transparent over the hero, white once scrolled).
+    wp_enqueue_script(
+        "medispace-header",
+        MEDISPACE_THEME_URL . "/assets/js/header.js",
+        [],
+        filemtime(MEDISPACE_THEME_PATH . "/assets/js/header.js"),
+        ["in_footer" => true, "strategy" => "defer"],
+    );
+
     wp_enqueue_style(
         "medispace-patterns",
         get_template_directory_uri() . "/assets/css/patterns.css",
