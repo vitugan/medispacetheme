@@ -617,6 +617,150 @@
 }
 
 /* ==========================================================================
+   Contact us: map + form (inc/patterns/construction/contact-us.php)
+   ========================================================================== */
+
+/* The map block wraps inner blocks in a group limited by an undefined --theme-content-width:
+   align the card with the wide layout instead, 60px from the top (40px on phones). */
+.contact-map .cover-map__content > .wp-block-group {
+	max-width: var(--wp--style--global--wide-size) !important;
+	padding: clamp(40px, 3.2vw, 60px) var(--wp--preset--spacing--40);
+	box-sizing: border-box;
+}
+
+/* Leaflet puts the marker in the middle of the map; the design shows it to the right of the card
+   (below it on phones). Extend the map past the right (bottom) edge, clipped, so its center -
+   and the marker - land at ~70% of the width (~82% of the height on phones). */
+.contact-map {
+	overflow: hidden;
+}
+
+@media (min-width: 600px) {
+	.contact-map .cover-map__background {
+		right: -40%;
+	}
+}
+
+@media (max-width: 599px) {
+	.contact-map .cover-map__background {
+		bottom: -65%;
+	}
+}
+
+/* Grey map like the design (the marker keeps its color: it is in the marker pane). */
+.contact-map .leaflet-tile-pane {
+	filter: grayscale(1) contrast(0.9) brightness(1.05);
+}
+
+.contact-map .contact-card {
+	max-width: 603px;
+	box-sizing: border-box;
+}
+
+.contact-map .contact-card h2 {
+	margin: 0;
+}
+
+/* Phones: the plugin stacks the map above the content; the design keeps the card over the map
+   with the map (and its marker) showing below it. */
+@media (max-width: 599px) {
+	.contact-map .cover-map__background {
+		position: absolute !important;
+		min-height: 0 !important;
+	}
+
+	.contact-map .cover-map__content > .wp-block-group {
+		padding-bottom: 294px;
+	}
+}
+
+/* Theme Contact Form 7 form (inc/contact-form.php). */
+.medispace-form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--50);
+}
+
+.medispace-form__row {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--wp--preset--spacing--50);
+}
+
+@media (max-width: 599px) {
+	.medispace-form__row {
+		grid-template-columns: 1fr;
+	}
+}
+
+.medispace-form .wpcf7-form-control-wrap {
+	display: block;
+}
+
+.medispace-form input[type="text"],
+.medispace-form input[type="email"],
+.medispace-form input[type="tel"],
+.medispace-form textarea {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 18px 16px;
+	border: 1px solid var(--wp--preset--color--gray-20);
+	border-radius: 0;
+	background: var(--wp--preset--color--white);
+	color: var(--wp--preset--color--gray-100);
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--body-s);
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+.medispace-form input::placeholder,
+.medispace-form textarea::placeholder {
+	color: var(--wp--preset--color--gray-50);
+}
+
+.medispace-form textarea {
+	height: 92px;
+	resize: vertical;
+}
+
+.medispace-form input:focus,
+.medispace-form textarea:focus {
+	outline: none;
+	border-color: var(--wp--preset--color--primary);
+}
+
+/* Submit looks like the theme's primary button (CF7 renders an <input>, not a button block). */
+.medispace-form .wpcf7-submit {
+	align-self: flex-start;
+	min-width: 232px;
+	padding: 15px 23px;
+	border: 1px solid var(--wp--preset--color--primary);
+	background: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--white);
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--button);
+	font-weight: 600;
+	cursor: pointer;
+	transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.medispace-form .wpcf7-submit:hover {
+	background: var(--wp--preset--color--primary-hover);
+	border-color: var(--wp--preset--color--primary-hover);
+}
+
+@media (max-width: 599px) {
+	.medispace-form .wpcf7-submit {
+		align-self: stretch;
+	}
+}
+
+.medispace-contact-form .wpcf7-spinner {
+	position: absolute;
+}
+
+/* ==========================================================================
    Why Choose Us
    ========================================================================== */
 

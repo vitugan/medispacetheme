@@ -30,6 +30,7 @@ require MEDISPACE_THEME_PATH . "/inc/admin/flow-selector.php";
 require MEDISPACE_THEME_PATH . '/inc/fonts/custom-fonts.php';
 require MEDISPACE_THEME_PATH . "/inc/block-styles.php";
 require MEDISPACE_THEME_PATH . "/inc/query-sticky-first.php";
+require MEDISPACE_THEME_PATH . "/inc/contact-form.php";
 
 /**
  * Required plugins (MediSpace Core, Contact Form 7).
