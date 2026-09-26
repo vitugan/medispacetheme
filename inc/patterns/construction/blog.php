@@ -8,7 +8,7 @@
  * @package Medispace
  */
 
-$medispace_gradient = "linear-gradient(180deg,rgba(8,32,44,0) 0%,var(--wp--preset--color--gray-100) 100%)";
+$medispace_gradient = "linear-gradient(180deg,rgba(7,11,27,0) 0%,#070b1b 100%)";
 
 return [
     "title" => __("Latest news - Construction", "medispace"),

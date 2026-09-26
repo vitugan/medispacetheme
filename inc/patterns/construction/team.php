@@ -10,7 +10,7 @@
  */
 
 $medispace_team_dir = MEDISPACE_THEME_URL . "/assets/images/construction/team";
-$medispace_gradient = "linear-gradient(180deg,rgba(8,32,44,0) 0%,var(--wp--preset--color--gray-100) 100%)";
+$medispace_gradient = "linear-gradient(180deg,rgba(7,11,27,0) 0%,#070b1b 100%)";
 
 $medispace_contact_row = function ($icon, $text, $href) use ($medispace_team_dir) {
     return '<!-- wp:group {"metadata":{"name":"' . ($icon === "phone" ? "Phone" : "Email") . '"},"style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
@@ -39,8 +39,8 @@ $medispace_cards = "";
 foreach ($medispace_people as [$slug, $role, $name, $phone, $email]) {
     $img = esc_url($medispace_team_dir . "/" . $slug . ".webp");
     $medispace_cards .= '<!-- wp:cover {"url":"' . $img . '","alt":"' . esc_attr($name) . '","dimRatio":0,"isUserOverlayColor":true,"focalPoint":{"x":0.5,"y":0.2},"minHeight":397,"isDark":true,"metadata":{"name":"' . esc_attr($name) . '"},"className":"team-card","style":{"spacing":{"padding":{"top":"0","right":"0","bottom":"0","left":"0"}}},"layout":{"type":"default"}} -->
-<div class="wp-block-cover team-card" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;min-height:397px"><img class="wp-block-cover__image-background" alt="' . esc_attr($name) . '" src="' . $img . '" style="object-position:50% 20%" data-object-fit="cover" data-object-position="50% 20%"/><span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"metadata":{"name":"Panel"},"className":"team-card__content","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","right":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|50"},"blockGap":"var:preset|spacing|50"},"color":{"gradient":"' . $medispace_gradient . '"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
-<div class="wp-block-group team-card__content has-background" style="background:' . $medispace_gradient . ';padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)"><!-- wp:group {"metadata":{"name":"Main"},"style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","orientation":"vertical"}} -->
+<div class="wp-block-cover team-card" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;min-height:397px"><img class="wp-block-cover__image-background" alt="' . esc_attr($name) . '" src="' . $img . '" style="object-position:50% 20%" data-object-fit="cover" data-object-position="50% 20%"/><span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"metadata":{"name":"Panel"},"className":"team-card__content","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","right":"var:preset|spacing|50","bottom":"14px","left":"var:preset|spacing|50"},"blockGap":"var:preset|spacing|50"},"color":{"gradient":"' . $medispace_gradient . '"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
+<div class="wp-block-group team-card__content has-background" style="background:' . $medispace_gradient . ';padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:14px;padding-left:var(--wp--preset--spacing--50)"><!-- wp:group {"metadata":{"name":"Main"},"style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group"><!-- wp:paragraph {"textColor":"white"} -->
 <p class="has-white-color has-text-color">' . esc_html($role) . '</p>
 <!-- /wp:paragraph -->
