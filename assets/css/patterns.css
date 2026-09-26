@@ -518,7 +518,7 @@
 }
 
 :is(.process-steps, .faq-list) .wp-block-accordion-heading__toggle:hover .wp-block-accordion-heading__toggle-icon {
-	color: var(--wp--preset--color--gray-100);
+	color: var(--wp--preset--color--primary-hover);
 }
 
 .process-steps .wp-block-accordion-item.is-open > .wp-block-accordion-heading .wp-block-accordion-heading__toggle-icon {
