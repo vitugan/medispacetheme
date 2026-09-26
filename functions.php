@@ -31,6 +31,17 @@ require MEDISPACE_THEME_PATH . '/inc/fonts/custom-fonts.php';
 require MEDISPACE_THEME_PATH . "/inc/block-styles.php";
 require MEDISPACE_THEME_PATH . "/inc/query-sticky-first.php";
 
+/**
+ * Required plugins (MediSpace Core, Contact Form 7).
+ */
+require_once MEDISPACE_THEME_PATH . "/inc/activation/class-tgm-plugin-activation.php";
+require_once MEDISPACE_THEME_PATH . "/inc/activation/tgm-config.php";
+
+// Pattern CSS in the editor canvas too, so sections look the same while editing.
+add_action("after_setup_theme", function () {
+    add_editor_style("assets/css/patterns.css");
+});
+
 add_action("init", function () {
     register_block_pattern_category("medispace-sections", [
         "label" => __("MediSpace Sections", "medispace"),

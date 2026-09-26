@@ -25,7 +25,7 @@ return [
             [
                 "icon" => $medispace_icons . "/icon-expertise.svg",
                 "title" => __("Industry-specific expertise", "medispace"),
-                "text" => __("Our exclusive focus on medical offices ensures an in-depth understanding of unique requirements and industry standarts,", "medispace"),
+                "text" => __("Our exclusive focus on medical offices ensures an in-depth understanding of unique requirements and industry standarts.", "medispace"),
             ],
             [
                 "icon" => $medispace_icons . "/icon-cabinetry.svg",
