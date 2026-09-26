@@ -16,6 +16,607 @@
 }
 
 /* ==========================================================================
+   Header — Construction (inc/patterns/construction/header.php)
+   ========================================================================== */
+
+/* Two logos in the markup: dark by default, light while the overlay header is transparent. */
+.site-header .site-header__logo--light {
+	display: none;
+}
+
+.site-header .site-header__brand {
+	gap: 0;
+}
+
+/* Submenu panel is always white with dark text, whatever the header state. */
+.site-header .site-header__nav .wp-block-navigation__submenu-container {
+	color: var(--wp--preset--color--gray-100) !important;
+	background-color: var(--wp--preset--color--white) !important;
+}
+
+/* Overlay header (className "is-overlay" on the template part, pages that open with a hero; front end only,
+   the editor canvas body has .editor-styles-wrapper and keeps the normal header):
+   fixed and transparent over the hero with white text and the light logo; white with dark text
+   and a shadow once scrolled (.is-scrolled from assets/js/header.js). Phones keep the plain
+   white header, as in the design. !important: the preset color classes use it. */
+@media (min-width: 600px) {
+	body:not(.editor-styles-wrapper) header.is-overlay {
+		position: fixed;
+		top: var(--wp-admin--admin-bar--height, 0px);
+		left: 0;
+		right: 0;
+		z-index: 100;
+	}
+
+	body:not(.editor-styles-wrapper) header.is-overlay .site-header {
+		background-color: transparent !important;
+		box-shadow: none !important;
+		transition: background-color 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	body:not(.editor-styles-wrapper) header.is-overlay.is-scrolled .site-header {
+		background-color: var(--wp--preset--color--white) !important;
+		box-shadow: 0 4px 17.5px rgba(0, 0, 0, 0.05) !important;
+	}
+
+	body:not(.editor-styles-wrapper) header.is-overlay:not(.is-scrolled) .site-header__logo--dark {
+		display: none;
+	}
+
+	body:not(.editor-styles-wrapper) header.is-overlay:not(.is-scrolled) .site-header__logo--light {
+		display: block;
+	}
+
+	body:not(.editor-styles-wrapper) header.is-overlay:not(.is-scrolled) .site-header__nav.has-text-color {
+		color: var(--wp--preset--color--white) !important;
+	}
+
+	body:not(.editor-styles-wrapper) header.is-overlay:not(.is-scrolled) .site-header__nav .wp-block-navigation-item__content:hover {
+		color: var(--wp--preset--color--primary-hover);
+	}
+
+	/* The first section starts under the fixed header (92px) plus its own top padding. */
+	body:not(.editor-styles-wrapper) header.is-overlay + main > :first-child {
+		padding-top: calc(92px + clamp(40px, 6.25vw, 120px)) !important;
+	}
+}
+
+/* Menu takes the space between logo and CTA, links centered in it. */
+.site-header .site-header__nav {
+	flex: 1 1 auto;
+}
+
+.site-header .site-header__nav .wp-block-navigation-item__content:hover {
+	color: var(--wp--preset--color--primary);
+}
+
+/* The CTA inside the menu exists for the mobile overlay only. */
+.site-header .site-header__nav .wp-block-navigation__responsive-container:not(.is-menu-open) .site-header__menu-cta {
+	display: none;
+}
+
+/* Services dropdown: white panel with the design's shadow. */
+.site-header .site-header__nav .wp-block-navigation__submenu-container {
+	padding: var(--wp--preset--spacing--40) 0;
+	border: 0 !important;
+	box-shadow: 0 4px 17.5px rgba(0, 0, 0, 0.08);
+	font-weight: 500;
+}
+
+.site-header .site-header__nav .wp-block-navigation__submenu-container .wp-block-navigation-item__content {
+	padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--50);
+	white-space: nowrap;
+}
+
+@media (max-width: 599px) {
+	/* Mobile bar: smaller logo (123x20 in the design), CTA moves into the menu overlay. */
+	.site-header .site-header__logo img {
+		width: 123px !important;
+		height: 20px !important;
+	}
+
+	.site-header .site-header__cta {
+		display: none;
+	}
+
+	/* Burger sits at the right edge, not in the middle of the free space. */
+	.site-header .site-header__nav {
+		flex: 0 0 auto;
+	}
+
+	/* Overlay: logo top-left (decorative - the navigation block cannot hold an image),
+	   centered links, full-width CTA pinned to the bottom. */
+	.site-header .site-header__nav .is-menu-open .wp-block-navigation__responsive-dialog::before {
+		content: "";
+		position: absolute;
+		top: 20px;
+		left: var(--wp--preset--spacing--40);
+		width: 123px;
+		height: 20px;
+		background: url("../images/construction/header/logo-dark.svg") left center / contain no-repeat;
+	}
+
+	.site-header .site-header__nav .is-menu-open .wp-block-navigation__responsive-container-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		min-height: calc(100dvh - 60px);
+		padding-bottom: 40px;
+	}
+
+	/* Services: collapsed until tapped (assets/js/header.js), chevron turns, light-blue panel. */
+	.site-header .site-header__nav .is-menu-open .has-child {
+		align-self: stretch;
+		align-items: center;
+	}
+
+	.site-header .site-header__nav .is-menu-open .has-child:not(.is-expanded) > .wp-block-navigation__submenu-container {
+		display: none !important;
+	}
+
+	.site-header .site-header__nav .is-menu-open .has-child > .wp-block-navigation-submenu__toggle {
+		display: none !important;
+	}
+
+	.site-header .site-header__nav .is-menu-open .has-child > .wp-block-navigation-item__content {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	.site-header .site-header__nav .is-menu-open .has-child > .wp-block-navigation-item__content::after {
+		content: "";
+		width: 16px;
+		height: 16px;
+		background-color: currentColor;
+		-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E") center / contain no-repeat;
+		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E") center / contain no-repeat;
+		transition: transform 0.2s ease;
+	}
+
+	.site-header .site-header__nav .is-menu-open .has-child.is-expanded > .wp-block-navigation-item__content {
+		color: var(--wp--preset--color--primary);
+	}
+
+	.site-header .site-header__nav .is-menu-open .has-child.is-expanded > .wp-block-navigation-item__content::after {
+		transform: rotate(180deg);
+	}
+
+	.site-header .site-header__nav .is-menu-open .has-child.is-expanded > .wp-block-navigation__submenu-container {
+		display: flex !important;
+		align-items: center;
+		width: 100vw !important;
+		margin-left: calc(50% - 50vw) !important;
+		margin-top: var(--wp--preset--spacing--40);
+		padding: var(--wp--preset--spacing--40) 0 !important;
+		background-color: var(--wp--preset--color--light-blue) !important;
+		gap: var(--wp--preset--spacing--30);
+	}
+
+	.site-header .site-header__nav .is-menu-open .wp-block-navigation__container {
+		align-self: stretch;
+		width: 100%;
+		align-items: center;
+		gap: var(--wp--preset--spacing--50);
+	}
+
+	.site-header .site-header__nav .is-menu-open .site-header__menu-cta {
+		margin-top: auto;
+		width: 100%;
+		box-sizing: border-box;
+		padding: 0 var(--wp--preset--spacing--40);
+	}
+
+	/* In the overlay the submenu is an inline list, not a floating panel. */
+	.site-header .site-header__nav .is-menu-open .wp-block-navigation__submenu-container {
+		box-shadow: none;
+		padding: var(--wp--preset--spacing--30) 0 0;
+	}
+
+	.site-header .site-header__nav .is-menu-open .site-header__menu-cta .wp-block-button,
+	.site-header .site-header__nav .is-menu-open .site-header__menu-cta .wp-block-button__link {
+		width: 100%;
+	}
+}
+
+/* ==========================================================================
+   Hero — Construction (inc/patterns/construction/hero.php)
+   ========================================================================== */
+
+/* Sized by its content; core cover defaults to min-height:430px and centers the content. */
+.home-hero.wp-block-cover {
+	min-height: 0;
+	align-items: stretch;
+}
+
+.home-hero .wp-block-cover__inner-container {
+	display: flex;
+	flex-direction: column;
+}
+
+/* Frosted features bar along the bottom (semi-transparent white + backdrop blur). */
+.home-hero .hero-features {
+	margin-top: clamp(40px, 6.7vw, 129px);
+	padding: 32px 66px;
+	background-color: color-mix(in srgb, var(--wp--preset--color--white) 50%, transparent);
+	-webkit-backdrop-filter: blur(17.5px);
+	backdrop-filter: blur(17.5px);
+}
+
+.home-hero .hero-feature__icon {
+	background-color: color-mix(in srgb, var(--wp--preset--color--primary-hover) 25%, transparent);
+}
+
+/* Dividers between features on desktop: 28px gap, 1px line, 28px padding. */
+.home-hero .hero-features > .hero-feature + .hero-feature {
+	padding-left: 28px;
+	border-left: 1px solid var(--wp--preset--color--primary);
+}
+
+@media (max-width: 781px) {
+	.home-hero .hero-features {
+		flex-direction: column;
+		align-items: flex-start;
+		padding: var(--wp--preset--spacing--40);
+	}
+
+	.home-hero .hero-features > .hero-feature + .hero-feature {
+		padding-left: 0;
+		border-left: 0;
+	}
+}
+
+/* ==========================================================================
+   Shared utilities
+   ========================================================================== */
+
+/* Buttons that span the full width on mobile, as in the designs (add className "is-mobile-full" to core/buttons). */
+@media (max-width: 599px) {
+	.wp-block-buttons.is-mobile-full {
+		align-self: stretch;
+	}
+
+	.wp-block-buttons.is-mobile-full > .wp-block-button,
+	.wp-block-buttons.is-mobile-full > .wp-block-button > .wp-block-button__link {
+		width: 100%;
+	}
+}
+
+/* ==========================================================================
+   Footer — Construction
+   ========================================================================== */
+
+/* Current page link is highlighted in the design; theme.json cannot target the current menu item. */
+.footer-nav .current-menu-item > a {
+	color: var(--wp--preset--color--primary-hover);
+}
+
+/* ==========================================================================
+   Call to Action banner (inc/pattern-parts/cta-banner.php)
+   ========================================================================== */
+
+/* Cover defaults to min-height:430px; the banner is sized by its padding. `minHeight:0` is not saved by the block. */
+.cta-banner.wp-block-cover {
+	min-height: 0;
+	/* Tint the photo: it is multiplied onto a dark primary-tinted base (blend modes are not in theme.json). */
+	background-color: color-mix(in srgb, var(--wp--preset--color--primary) 28%, color-mix(in srgb, var(--wp--preset--color--white) 6%, var(--wp--preset--color--gray-100)));
+	isolation: isolate;
+}
+
+.cta-banner .wp-block-cover__image-background {
+	mix-blend-mode: multiply;
+}
+
+/* Desktop: the photo occupies only the right half, as in the design (cover always stretches it full width). */
+@media (min-width: 782px) {
+	.cta-banner .wp-block-cover__image-background {
+		left: auto;
+		right: 0;
+		width: 52%;
+	}
+}
+
+/* ==========================================================================
+   Latest news cards (inc/patterns/construction/blog.php)
+   ========================================================================== */
+
+/* Fallback tone for posts without a featured image (the card text is white). */
+.blog-card.wp-block-cover {
+	background-color: var(--wp--preset--color--gray-30);
+	align-items: stretch;
+}
+
+/* Badge pinned top-right, text panel full-width at the bottom: the inner container fills the card. */
+.blog-card .wp-block-cover__inner-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: stretch;
+}
+
+/* Outranks core's `:root :where(.is-layout-flow) > :first-child` (0,2,0) margin reset regardless of load order. */
+.blog-card .wp-block-cover__inner-container > .blog-card__badge {
+	align-self: flex-end;
+	margin: var(--wp--preset--spacing--40);
+	box-shadow: 0 1px 3.5px rgba(25, 33, 61, 0.08);
+}
+
+/* Frosted text panel: backdrop blur is not a block support. */
+.blog-card__content {
+	-webkit-backdrop-filter: blur(7px);
+	backdrop-filter: blur(7px);
+}
+
+.blog-card .wp-block-post-title {
+	margin: 0;
+}
+
+/* ==========================================================================
+   Our projects slider (MediSpace Core swiper-slider, className "projects-slider")
+   ========================================================================== */
+
+/* The block writes hex colors inline as --wps-* on the inner wrapper; !important re-points them
+   to the active flow's palette so the slider follows the style variation. */
+.projects-slider .wp-swiper-hero-slider__inner {
+	--wps-accent: var(--wp--preset--color--primary) !important;
+	--wps-dark: var(--wp--preset--color--gray-100) !important;
+	--wps-text: var(--wp--preset--color--gray-80) !important;
+	--wps-overlay: color-mix(in srgb, var(--wp--preset--color--gray-100) 40%, transparent) !important;
+}
+
+/* Card typography and spacing from the design (block defaults differ). */
+/* Slides are width:100% plus their own padding; without border-box every slide is wider than the
+   viewport and the offset accumulates slide by slide (the block relies on a global box-sizing reset). */
+.projects-slider .wp-swiper-hero-slider__inner .swiper-slide {
+	box-sizing: border-box;
+}
+
+/* border-box: cardMaxWidth is the card's full width in the design (531px incl. padding). */
+.projects-slider .wp-swiper-hero-slider__inner .wps-card {
+	box-sizing: border-box;
+	box-shadow: none;
+}
+
+.projects-slider .wp-swiper-hero-slider__inner .wps-badge {
+	padding: 10px;
+	margin-bottom: 24px;
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--body-s);
+	font-weight: 700;
+	line-height: 1.5;
+}
+
+.projects-slider .wp-swiper-hero-slider__inner .wps-title {
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--h-3);
+	font-weight: 600;
+	line-height: 1.2;
+	margin-bottom: 16px;
+}
+
+.projects-slider .wp-swiper-hero-slider__inner .wps-description {
+	font-size: var(--wp--preset--font-size--body-m);
+	line-height: 1.5;
+	margin-bottom: 40px;
+}
+
+.projects-slider .wp-swiper-hero-slider__inner .wps-link {
+	gap: 6px;
+	font-family: var(--wp--preset--font-family--heading);
+	font-weight: 500;
+}
+
+.projects-slider .wp-swiper-hero-slider__inner .wps-link svg {
+	width: 24px;
+	height: 24px;
+}
+
+/* Pagination: grey inactive dots, 30px apart. */
+.projects-slider .wp-swiper-hero-slider__inner .swiper-pagination-bullets {
+	gap: 30px;
+}
+
+.projects-slider .wp-swiper-hero-slider__inner .swiper-pagination-bullet {
+	background-color: var(--wp--preset--color--gray-30);
+}
+
+.projects-slider .wp-swiper-hero-slider__inner .swiper-pagination-bullet-active {
+	background-color: var(--wp--preset--color--white);
+}
+
+/* Mobile: 473px tall, card 16px from the edges with 32px padding. */
+@media (max-width: 768px) {
+	.projects-slider .wp-swiper-hero-slider__inner .swiper {
+		height: 473px;
+	}
+
+	.projects-slider .wp-swiper-hero-slider__inner .swiper-slide {
+		padding: 40px 16px 0;
+	}
+
+	.projects-slider .wp-swiper-hero-slider__inner .wps-card {
+		padding: 32px;
+	}
+
+	.projects-slider .wp-swiper-hero-slider__inner .wps-title {
+		font-size: var(--wp--preset--font-size--h-4);
+	}
+
+	.projects-slider .wp-swiper-hero-slider__inner .wps-description {
+		margin-bottom: 30px;
+	}
+}
+
+/* ==========================================================================
+   Feature cards (inc/pattern-parts/feature-cards.php)
+   ========================================================================== */
+
+/* Text takes the rest of the row and drops below the icon when the card is narrower than
+   icon + gap + 240px (mobile), as in the design. Flex sizing of a child is not a block setting here. */
+.feature-card > .feature-card__text {
+	flex: 1 1 240px;
+	min-width: 0;
+}
+
+/* Cards in a grid row stretch to the tallest one; keep wrapped lines at the top. */
+.wp-block-group.feature-card {
+	align-content: flex-start;
+}
+
+/* ==========================================================================
+   Our process (inc/patterns/construction/process.php, core accordion)
+   ========================================================================== */
+
+/* Mobile: heading and intro are centered in the design (left-aligned on desktop). */
+@media (max-width: 781px) {
+	.process-section .process-head {
+		text-align: center;
+	}
+}
+
+.process-steps .wp-block-accordion-heading {
+	margin: 0;
+	font-size: var(--wp--preset--font-size--h-5);
+	line-height: 1.2;
+}
+
+/* Core gives the toggle 8px vertical padding and an underline on hover; the design has neither. */
+.process-steps .wp-block-accordion-heading__toggle {
+	padding: 0;
+	gap: var(--wp--preset--spacing--50);
+}
+
+.process-steps .wp-block-accordion-heading__toggle:hover .wp-block-accordion-heading__toggle-title {
+	text-decoration: none;
+}
+
+/* Icon: "+" closed, "-" open (core rotates its "+" into "x"). Drawn with two 16x2 bars. */
+.process-steps .wp-block-accordion-heading__toggle-icon {
+	position: relative;
+	flex: 0 0 24px;
+	width: 24px;
+	height: 24px;
+	font-size: 0;
+	color: var(--wp--preset--color--gray-50);
+	transition: color 0.2s ease;
+}
+
+.process-steps .wp-block-accordion-heading__toggle-icon::before,
+.process-steps .wp-block-accordion-heading__toggle-icon::after {
+	content: "";
+	position: absolute;
+	top: 11px;
+	left: 4px;
+	width: 16px;
+	height: 2px;
+	background: currentColor;
+	transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.process-steps .wp-block-accordion-heading__toggle-icon::after {
+	transform: rotate(90deg);
+}
+
+.process-steps .wp-block-accordion-heading__toggle:hover .wp-block-accordion-heading__toggle-icon {
+	color: var(--wp--preset--color--gray-100);
+}
+
+.process-steps .wp-block-accordion-item.is-open > .wp-block-accordion-heading .wp-block-accordion-heading__toggle-icon {
+	transform: none;
+}
+
+.process-steps .wp-block-accordion-item.is-open > .wp-block-accordion-heading .wp-block-accordion-heading__toggle-icon::after {
+	opacity: 0;
+}
+
+/* Smooth open/close. Core hides a closed panel with display:none ([inert]); allow-discrete keeps it
+   rendered while it animates, @starting-style gives the opening state, interpolate-size lets height
+   animate to/from auto (Chromium; other browsers still fade, height snaps). */
+@media (prefers-reduced-motion: no-preference) {
+	.process-steps .wp-block-accordion-panel {
+		interpolate-size: allow-keywords;
+		overflow: hidden;
+		height: auto;
+		opacity: 1;
+		transition:
+			height 0.35s ease,
+			opacity 0.35s ease,
+			margin-block-start 0.35s ease,
+			display 0.35s allow-discrete;
+	}
+
+	.process-steps .wp-block-accordion-panel[inert] {
+		height: 0;
+		opacity: 0;
+	}
+
+	@starting-style {
+		.process-steps .wp-block-accordion-panel:not([inert]) {
+			height: 0;
+			opacity: 0;
+			margin-block-start: 0;
+		}
+	}
+}
+
+/* ==========================================================================
+   Service cards (inc/patterns/construction/services.php, Query Loop)
+   ========================================================================== */
+
+/* Equal-height cards: the text part fills the card and "Learn more" sits at the bottom. */
+.service-cards .wp-block-post-template > li > .service-card {
+	height: 100%;
+}
+
+.service-card > .service-card__text {
+	flex: 1 1 auto;
+}
+
+.service-card .wp-block-post-featured-image {
+	margin: 0;
+}
+
+.service-card .wp-block-post-title {
+	margin: 0;
+}
+
+.service-card .wp-block-post-excerpt__excerpt {
+	margin: 0;
+	line-height: 1.5;
+}
+
+/* "Learn more" link with the design's arrow; read-more has no icon option. */
+.service-card .wp-block-read-more.service-card__more {
+	margin-top: auto;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	color: var(--wp--preset--color--primary);
+	font-family: var(--wp--preset--font-family--heading);
+	font-weight: 500;
+	line-height: 1.3;
+	text-decoration: none;
+}
+
+.service-card .wp-block-read-more.service-card__more::after {
+	content: "";
+	width: 24px;
+	height: 24px;
+	background-color: currentColor;
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") center / contain no-repeat;
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") center / contain no-repeat;
+	transition: transform 0.2s ease;
+}
+
+.service-card .wp-block-read-more.service-card__more:hover {
+	color: var(--wp--preset--color--primary-hover);
+}
+
+.service-card .wp-block-read-more.service-card__more:hover::after {
+	transform: translateX(4px);
+}
+
+/* ==========================================================================
    Why Choose Us
    ========================================================================== */
 
