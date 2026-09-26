@@ -342,7 +342,8 @@
 }
 
 /* Frosted text panel: backdrop blur is not a block support. */
-.blog-card__content {
+.blog-card__content,
+.team-card__content {
 	-webkit-backdrop-filter: blur(7px);
 	backdrop-filter: blur(7px);
 }
@@ -620,6 +621,32 @@
 
 .service-card .wp-block-read-more.service-card__more:hover::after {
 	transform: translateX(4px);
+}
+
+/* ==========================================================================
+   Team cards (inc/patterns/construction/team.php)
+   ========================================================================== */
+
+/* Photo card with the frosted panel pinned to the bottom, full width. */
+.team-card.wp-block-cover {
+	background-color: var(--wp--preset--color--gray-30);
+	align-items: stretch;
+}
+
+.team-card .wp-block-cover__inner-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+.team-card .wp-block-heading,
+.team-card p {
+	margin: 0;
+}
+
+/* The 16px icon image is inline by default and takes a 24px line box: tile would be 32px, not 24. */
+.team-card .wp-block-image {
+	line-height: 0;
 }
 
 /* ==========================================================================
