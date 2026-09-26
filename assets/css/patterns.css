@@ -458,6 +458,12 @@
 	min-width: 0;
 }
 
+/* Stacked cards (icon above centered text): the text takes its natural height. */
+.feature-card.is-stacked > .feature-card__text {
+	flex: 0 1 auto;
+	align-self: stretch;
+}
+
 /* Cards in a grid row stretch to the tallest one; keep wrapped lines at the top. */
 .wp-block-group.feature-card {
 	align-content: flex-start;
