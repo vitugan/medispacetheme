@@ -19,13 +19,46 @@
    Page hero (inc/pattern-parts/page-hero.php)
    ========================================================================== */
 
-/* Sized by its padding (core cover defaults to min-height:430px); text column 534px. */
+/* Sized by its padding on phones and tablets (core cover defaults to min-height:430px), 482px
+   tall from 1024px up like the design; text column 534px. */
 .page-hero.wp-block-cover {
 	min-height: 0;
 }
 
+@media (min-width: 1024px) {
+	.page-hero.wp-block-cover {
+		min-height: 482px;
+	}
+}
+
+/* A custom content position shrinks the cover's inner container to its content; keep it full
+   width so the wide text group lines up with the header logo. */
+.wp-block-cover.page-hero.has-custom-content-position.has-custom-content-position .wp-block-cover__inner-container {
+	width: 100%;
+}
+
 .page-hero .page-hero__text {
 	max-width: 534px;
+}
+
+/* Breadcrumbs (core block): "Home → Services" in the design's light grey (#CED2D5). */
+.page-hero .page-hero__breadcrumbs {
+	color: #ced2d5;
+}
+
+.page-hero .page-hero__breadcrumbs a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.page-hero .page-hero__breadcrumbs a:hover {
+	color: var(--wp--preset--color--white);
+}
+
+/* Core Breadcrumbs separator ("→" set on the block): full color, 8px each side. */
+.page-hero .page-hero__breadcrumbs li:not(:last-child)::after {
+	margin: 0 8px;
+	opacity: 1;
 }
 
 /* ==========================================================================
@@ -91,7 +124,7 @@
 	/* The first section starts under the fixed header (92px) plus its own top padding. */
 	/* Front page: sections sit directly in <main>; page templates: inside the post content. */
 	body:not(.editor-styles-wrapper) header.is-overlay + main > :first-child:not(.wp-block-post-content),
-	body:not(.editor-styles-wrapper) header.is-overlay + main > .wp-block-post-content > :first-child {
+	body:not(.editor-styles-wrapper) header.is-overlay + main > .wp-block-post-content:first-child > :first-child {
 		padding-top: calc(92px + clamp(40px, 6.25vw, 120px)) !important;
 	}
 }

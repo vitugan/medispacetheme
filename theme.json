@@ -110,6 +110,11 @@
       "name": "page-sections",
       "title": "Full-width sections",
       "postTypes": ["page"]
+    },
+    {
+      "name": "page-hero",
+      "title": "Page with hero",
+      "postTypes": ["page"]
     }
   ]
 }
