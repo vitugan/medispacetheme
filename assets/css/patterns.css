@@ -514,6 +514,11 @@
    Feature cards (inc/pattern-parts/feature-cards.php)
    ========================================================================== */
 
+/* Section title in a 534px column like the design (longer titles wrap). */
+.wp-block-heading.feature-cards__title {
+	max-width: 534px;
+}
+
 /* Text takes the rest of the row and drops below the icon when the card is narrower than
    icon + gap + 240px (mobile), as in the design. Flex sizing of a child is not a block setting here. */
 .feature-card > .feature-card__text {
