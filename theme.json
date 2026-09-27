@@ -107,8 +107,8 @@
   ],
   "customTemplates": [
     {
-      "name": "template-construction-home",
-      "title": "Construction Home (dev preview)",
+      "name": "page-sections",
+      "title": "Full-width sections",
       "postTypes": ["page"]
     }
   ]

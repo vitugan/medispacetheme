@@ -21,6 +21,9 @@
  */
 
 add_filter("get_block_template", "medispace_resolve_flow_template", 10, 3);
+// The core/template-part block loads theme parts through get_block_file_template(), not
+// get_block_template(), so generic "header"/"footer" parts in templates need this hook too.
+add_filter("get_block_file_template", "medispace_resolve_flow_template", 10, 3);
 
 /**
  * @param WP_Block_Template|null $template      Result so far (null = nothing found in DB or theme files).
