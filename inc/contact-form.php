@@ -76,3 +76,19 @@ if (!function_exists("medispace_contact_form_block")):
 <!-- /wp:contact-form-7/contact-form-selector -->';
     }
 endif;
+
+/**
+ * Renders the shortcode inside the Contact Form 7 block wherever the block is used.
+ *
+ * The block saves a plain [contact-form-7] shortcode and relies on the_content's do_shortcode.
+ * Block templates run do_shortcode before do_blocks, so a form coming from a pattern in a
+ * template (the Services archive's "Contact us") would print the raw shortcode.
+ */
+function medispace_render_contact_form_block($block_content)
+{
+    if (false === strpos($block_content, "[contact-form-7")) {
+        return $block_content;
+    }
+    return do_shortcode($block_content);
+}
+add_filter("render_block_contact-form-7/contact-form-selector", "medispace_render_contact_form_block");

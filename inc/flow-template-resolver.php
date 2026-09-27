@@ -46,38 +46,9 @@ function medispace_resolve_flow_template($template, $id, $template_type)
 
     $slug = $parts[1];
 
-    // Map of managed generic slugs to their registry key, scoped by template type.
-    $managed = [
-        "wp_template" => [
-            "front-page" => "front_page_template",
-            "home"       => "front_page_template",
-        ],
-        "wp_template_part" => [
-            "header" => "header_template_part",
-            "footer" => "footer_template_part",
-        ],
-    ];
+    $file_path = medispace_flow_template_file($slug, $template_type);
 
-    if (empty($managed[$template_type][$slug])) {
-        return $template;
-    }
-
-    $flow_slug = medispace_get_active_flow();
-
-    if (!$flow_slug) {
-        return $template;
-    }
-
-    $flows = medispace_get_available_flows();
-
-    if (!isset($flows[$flow_slug])) {
-        return $template;
-    }
-
-    $file_key = $managed[$template_type][$slug];
-    $file_path = MEDISPACE_THEME_PATH . $flows[$flow_slug][$file_key];
-
-    if (!is_readable($file_path)) {
+    if (!$file_path) {
         return $template;
     }
 
@@ -110,10 +81,55 @@ function medispace_resolve_flow_template($template, $id, $template_type)
     return $new_template;
 }
 
+/**
+ * Path of the active flow's file for a generic template / part slug, or null.
+ *
+ * - header / footer parts and the front-page / home templates come from the flow registry
+ *   (inc/flows.php);
+ * - any other template is found by convention: templates/{slug}-{flow}.html (e.g.
+ *   archive-msc_service-construction.html), so each flow can ship its own archive / single
+ *   templates without touching the registry.
+ *
+ * @param string $slug          Generic slug ("header", "archive-msc_service", ...).
+ * @param string $template_type 'wp_template' or 'wp_template_part'.
+ * @return string|null
+ */
+function medispace_flow_template_file($slug, $template_type)
+{
+    $managed = [
+        "wp_template" => [
+            "front-page" => "front_page_template",
+            "home"       => "front_page_template",
+        ],
+        "wp_template_part" => [
+            "header" => "header_template_part",
+            "footer" => "footer_template_part",
+        ],
+    ];
+
+    $flow_slug = medispace_get_active_flow();
+    $flows = medispace_get_available_flows();
+
+    if (!$flow_slug || !isset($flows[$flow_slug])) {
+        return null;
+    }
+
+    if (!empty($managed[$template_type][$slug])) {
+        $file_path = MEDISPACE_THEME_PATH . $flows[$flow_slug][$managed[$template_type][$slug]];
+    } elseif ("wp_template" === $template_type && preg_match("/^[a-z0-9_-]+$/", $slug)) {
+        $file_path = MEDISPACE_THEME_PATH . "/templates/" . $slug . "-" . $flow_slug . ".html";
+    } else {
+        return null;
+    }
+
+    return is_readable($file_path) ? $file_path : null;
+}
+
 add_filter("get_block_templates", "medispace_resolve_flow_templates", 10, 3);
 
 /**
- * Filters the list of queried block templates to inject the active flow's home template.
+ * Filters the list of queried block templates to inject the active flow's templates
+ * (front page, and per-flow templates such as archive-msc_service-{flow}.html).
  *
  * Why this filter is needed:
  * On the front end, WordPress resolves the main page template by calling `get_block_templates()`
@@ -139,9 +155,10 @@ function medispace_resolve_flow_templates($query_result, $query, $template_type)
         return $query_result;
     }
 
-    // Slugs we want to resolve dynamically.
-    $target_slugs = ["front-page", "home"];
-    $intersect = array_intersect($slugs, $target_slugs);
+    // Only slugs the active flow has a file for (front page, per-flow archives, ...).
+    $intersect = array_filter($slugs, function ($slug) {
+        return null !== medispace_flow_template_file($slug, "wp_template");
+    });
 
     if (empty($intersect)) {
         return $query_result;
@@ -149,19 +166,9 @@ function medispace_resolve_flow_templates($query_result, $query, $template_type)
 
     // If there is already a database override (user customization) for a target slug, let it win.
     foreach ($query_result as $tpl) {
-        if (in_array($tpl->slug, $target_slugs) && "custom" === $tpl->source) {
+        if (in_array($tpl->slug, $intersect, true) && "custom" === $tpl->source) {
             return $query_result;
         }
-    }
-
-    $flow_slug = medispace_get_active_flow();
-    if (!$flow_slug) {
-        return $query_result;
-    }
-
-    $flows = medispace_get_available_flows();
-    if (!isset($flows[$flow_slug])) {
-        return $query_result;
     }
 
     foreach ($intersect as $slug) {
