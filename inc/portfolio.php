@@ -39,3 +39,49 @@ function medispace_projects_archive_label($labels)
     return $labels;
 }
 add_filter("post_type_labels_project", "medispace_projects_archive_label", 20);
+
+/**
+ * Project category tabs keep the order the categories were created in (the design's order:
+ * Medical office, Dental practice, ...) instead of alphabetical: only while the core Categories
+ * block renders the msc_project_cat list.
+ */
+function medispace_project_tabs_order($parsed_block)
+{
+    if ("core/categories" === ($parsed_block["blockName"] ?? "") && "msc_project_cat" === ($parsed_block["attrs"]["taxonomy"] ?? "")) {
+        add_filter("get_terms_args", "medispace_project_terms_by_id");
+    }
+    return $parsed_block;
+}
+add_filter("render_block_data", "medispace_project_tabs_order");
+
+function medispace_project_terms_by_id($args)
+{
+    $args["orderby"] = "term_id";
+    return $args;
+}
+
+function medispace_project_tabs_order_done($block_content, $block)
+{
+    remove_filter("get_terms_args", "medispace_project_terms_by_id");
+    return $block_content;
+}
+add_filter("render_block_core/categories", "medispace_project_tabs_order_done", 5, 2);
+
+/**
+ * Single project breadcrumbs as in the design: Home → Portfolio → project, without the project
+ * category core adds for non-hierarchical post types.
+ */
+function medispace_project_breadcrumbs($items)
+{
+    if (!is_singular("project")) {
+        return $items;
+    }
+    $term_links = [];
+    foreach (get_the_terms(get_queried_object_id(), "msc_project_cat") ?: [] as $term) {
+        $term_links[] = untrailingslashit(get_term_link($term));
+    }
+    return array_values(array_filter($items, function ($item) use ($term_links) {
+        return empty($item["url"]) || !in_array(untrailingslashit($item["url"]), $term_links, true);
+    }));
+}
+add_filter("block_core_breadcrumbs_items", "medispace_project_breadcrumbs");
