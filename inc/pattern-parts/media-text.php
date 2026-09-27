@@ -14,18 +14,44 @@
 /**
  * @param array{
  *     title:string,
- *     paragraphs:string[],
+ *     paragraphs:array<string|array{text:string, bold?:bool}|array{list:string[]}>,
  *     image:string,
  *     image_alt?:string,
  *     image_position?:"left"|"right",
  *     button?:array{label:string, url:string}
  * } $args
+ *
+ * paragraphs: plain strings, ["text" => ..., "bold" => true] for a bold paragraph, or
+ * ["list" => [...]] for a check list (core List, "Check list" style from inc/block-styles.php).
  * @return string Block markup.
  */
 return function (array $args) {
     $paragraphs = "";
-    foreach ($args["paragraphs"] as $text) {
-        $paragraphs .= '<!-- wp:paragraph {"textColor":"gray-80"} -->
+    foreach ($args["paragraphs"] as $item) {
+        if (is_array($item) && isset($item["list"])) {
+            $items = "";
+            foreach ($item["list"] as $li) {
+                $items .= '<!-- wp:list-item -->
+<li>' . esc_html($li) . '</li>
+<!-- /wp:list-item -->';
+            }
+            $paragraphs .= '<!-- wp:list {"className":"is-style-check","textColor":"gray-80"} -->
+<ul class="wp-block-list is-style-check has-gray-80-color has-text-color">' . $items . '</ul>
+<!-- /wp:list -->
+
+';
+            continue;
+        }
+
+        $text = is_array($item) ? $item["text"] : $item;
+        $bold = is_array($item) && !empty($item["bold"]);
+        $paragraphs .= $bold
+            ? '<!-- wp:paragraph {"style":{"typography":{"fontWeight":"700"}},"textColor":"gray-80"} -->
+<p class="has-gray-80-color has-text-color" style="font-weight:700">' . esc_html($text) . '</p>
+<!-- /wp:paragraph -->
+
+'
+            : '<!-- wp:paragraph {"textColor":"gray-80"} -->
 <p class="has-gray-80-color has-text-color">' . esc_html($text) . '</p>
 <!-- /wp:paragraph -->
 

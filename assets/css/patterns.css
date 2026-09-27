@@ -657,6 +657,33 @@
 	overflow: hidden;
 }
 
+/* Static image cards (inc/pattern-parts/image-cards.php): same look, a plain image block. */
+.image-cards > .service-card {
+	height: 100%;
+}
+
+.image-cards > .service-card > .wp-block-image {
+	margin: 0;
+	width: 100%;
+}
+
+.image-cards > .service-card > .wp-block-image img {
+	width: 100%;
+	display: block;
+}
+
+.image-cards > .service-card :is(h3, p) {
+	margin: 0;
+}
+
+.image-cards > .service-card p {
+	line-height: 1.5;
+}
+
+.image-cards > * {
+	min-width: 0;
+}
+
 .service-card .wp-block-post-title {
 	margin: 0;
 }

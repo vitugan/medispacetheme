@@ -1,0 +1,31 @@
+/**
+ * List block styles (inc/block-styles.php). Loaded only when a list is on the page.
+ */
+
+/* "Check list": a white check on a primary-pressed circle (the flow's token) before each item,
+   12px between items, as in the design (service pages). */
+.wp-block-list.is-style-check {
+	list-style: none;
+	padding-left: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.wp-block-list.is-style-check > li {
+	position: relative;
+	margin: 0;
+	padding-left: 36px;
+	line-height: 1.5;
+}
+
+.wp-block-list.is-style-check > li::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	background: var(--wp--preset--color--primary-pressed) url("../images/icons/check.svg") center / 24px no-repeat;
+}
