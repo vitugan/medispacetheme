@@ -25,6 +25,12 @@ function medispace_register_required_plugins()
             "slug" => "contact-form-7",
             "required" => true,
         ],
+        // Demo content per flow (inc/activation/demo-import.php); not needed afterwards.
+        [
+            "name" => "One Click Demo Import",
+            "slug" => "one-click-demo-import",
+            "required" => false,
+        ],
     ];
 
     $config = [

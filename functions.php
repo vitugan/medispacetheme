@@ -41,6 +41,7 @@ require MEDISPACE_THEME_PATH . "/inc/portfolio.php";
  */
 require_once MEDISPACE_THEME_PATH . "/inc/activation/class-tgm-plugin-activation.php";
 require_once MEDISPACE_THEME_PATH . "/inc/activation/tgm-config.php";
+require_once MEDISPACE_THEME_PATH . "/inc/activation/demo-import.php";
 
 // Pattern CSS in the editor canvas too, so sections look the same while editing.
 add_action("after_setup_theme", function () {
