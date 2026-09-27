@@ -85,8 +85,8 @@ return function (array $args) {
     }
 
     return '<!-- wp:group {"metadata":{"name":"Why choose us"},"align":"full","style":{"spacing":{' . $spacing[0] . ',"blockGap":"32px"}}' . $section_bg . ',"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull' . $section_cls . '" style="' . $spacing[1] . '"><!-- wp:heading {"textAlign":"center"} -->
-<h2 class="wp-block-heading has-text-align-center">' . esc_html($args["title"]) . '</h2>
+<div class="wp-block-group alignfull' . $section_cls . '" style="' . $spacing[1] . '"><!-- wp:heading {"textAlign":"center","className":"feature-cards__title"} -->
+<h2 class="wp-block-heading has-text-align-center feature-cards__title">' . esc_html($args["title"]) . '</h2>
 <!-- /wp:heading -->
 
 <!-- wp:group {"metadata":{"name":"Cards"},"style":{"spacing":{"blockGap":"var:preset|spacing|50"}},"layout":{"type":"grid","columnCount":' . $columns . ',"minimumColumnWidth":"' . ($columns > 2 ? "280px" : "320px") . '"}} -->

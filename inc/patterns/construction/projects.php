@@ -2,6 +2,9 @@
 /**
  * Pattern: Our projects - Construction.
  *
+ * $medispace_projects_title (set by a pattern that requires this file) overrides the heading,
+ * e.g. inc/patterns/construction/service-projects.php.
+ *
  * Heading, intro, button and the Swiper slider block from the MediSpace Core plugin
  * (medispace-core/swiper-slider). The block only accepts hex colors, so its CSS variables
  * are re-pointed to the flow's palette in assets/css/patterns.css (.projects-slider).
@@ -51,7 +54,7 @@ return [
 <div class="wp-block-group alignfull" style="margin-top:var(--wp--custom--section-gap);margin-bottom:var(--wp--custom--section-gap)"><!-- wp:group {"metadata":{"name":"Headings"},"style":{"spacing":{"padding":{"right":"var:preset|spacing|40","left":"var:preset|spacing|40"},"blockGap":"clamp(30px, 3vw, 40px)"}},"layout":{"type":"constrained","contentSize":"534px"}} -->
 <div class="wp-block-group" style="padding-right:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)"><!-- wp:group {"metadata":{"name":"Text"},"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"textAlign":"center"} -->
-<h2 class="wp-block-heading has-text-align-center">' . esc_html__("Our projects", "medispace") . '</h2>
+<h2 class="wp-block-heading has-text-align-center">' . esc_html($medispace_projects_title ?? __("Our projects", "medispace")) . '</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","textColor":"gray-80"} -->

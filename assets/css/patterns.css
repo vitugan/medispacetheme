@@ -55,6 +55,19 @@
 	color: var(--wp--preset--color--white);
 }
 
+/* Light hero (service pages): grey crumbs and separators, blue links. */
+.page-hero.is-light .page-hero__breadcrumbs {
+	color: var(--wp--preset--color--gray-80);
+}
+
+.page-hero.is-light .page-hero__breadcrumbs a {
+	color: var(--wp--preset--color--primary);
+}
+
+.page-hero.is-light .page-hero__breadcrumbs a:hover {
+	color: var(--wp--preset--color--primary-hover);
+}
+
 /* Core Breadcrumbs separator ("→" set on the block): full color, 8px each side. */
 .page-hero .page-hero__breadcrumbs li:not(:last-child)::after {
 	margin: 0 8px;
@@ -83,8 +96,9 @@
 /* Overlay header (className "is-overlay" on the template part, pages that open with a hero; front end only,
    the editor canvas body has .editor-styles-wrapper and keeps the normal header):
    fixed and transparent over the hero with white text and the light logo; white with dark text
-   and a shadow once scrolled (.is-scrolled from assets/js/header.js). Phones keep the plain
-   white header, as in the design. !important: the preset color classes use it. */
+   and a shadow once scrolled (.is-scrolled from assets/js/header.js). "is-on-light" (light
+   heroes: service pages) keeps the dark logo and menu. Phones keep the plain white header, as
+   in the design. !important: the preset color classes use it. */
 @media (min-width: 600px) {
 	body:not(.editor-styles-wrapper) header.is-overlay {
 		position: fixed;
@@ -105,19 +119,19 @@
 		box-shadow: 0 4px 17.5px rgba(0, 0, 0, 0.05) !important;
 	}
 
-	body:not(.editor-styles-wrapper) header.is-overlay:not(.is-scrolled) .site-header__logo--dark {
+	body:not(.editor-styles-wrapper) header.is-overlay:not(.is-scrolled):not(.is-on-light) .site-header__logo--dark {
 		display: none;
 	}
 
-	body:not(.editor-styles-wrapper) header.is-overlay:not(.is-scrolled) .site-header__logo--light {
+	body:not(.editor-styles-wrapper) header.is-overlay:not(.is-scrolled):not(.is-on-light) .site-header__logo--light {
 		display: block;
 	}
 
-	body:not(.editor-styles-wrapper) header.is-overlay:not(.is-scrolled) .site-header__nav.has-text-color {
+	body:not(.editor-styles-wrapper) header.is-overlay:not(.is-scrolled):not(.is-on-light) .site-header__nav.has-text-color {
 		color: var(--wp--preset--color--white) !important;
 	}
 
-	body:not(.editor-styles-wrapper) header.is-overlay:not(.is-scrolled) .site-header__nav .wp-block-navigation-item__content:hover {
+	body:not(.editor-styles-wrapper) header.is-overlay:not(.is-scrolled):not(.is-on-light) .site-header__nav .wp-block-navigation-item__content:hover {
 		color: var(--wp--preset--color--primary-hover);
 	}
 
@@ -500,6 +514,11 @@
    Feature cards (inc/pattern-parts/feature-cards.php)
    ========================================================================== */
 
+/* Section title in a 534px column like the design (longer titles wrap). */
+.wp-block-heading.feature-cards__title {
+	max-width: 534px;
+}
+
 /* Text takes the rest of the row and drops below the icon when the card is narrower than
    icon + gap + 240px (mobile), as in the design. Flex sizing of a child is not a block setting here. */
 .feature-card > .feature-card__text {
@@ -636,6 +655,33 @@
 .service-card .wp-block-post-featured-image {
 	margin: 0;
 	overflow: hidden;
+}
+
+/* Static image cards (inc/pattern-parts/image-cards.php): same look, a plain image block. */
+.image-cards > .service-card {
+	height: 100%;
+}
+
+.image-cards > .service-card > .wp-block-image {
+	margin: 0;
+	width: 100%;
+}
+
+.image-cards > .service-card > .wp-block-image img {
+	width: 100%;
+	display: block;
+}
+
+.image-cards > .service-card :is(h3, p) {
+	margin: 0;
+}
+
+.image-cards > .service-card p {
+	line-height: 1.5;
+}
+
+.image-cards > * {
+	min-width: 0;
 }
 
 .service-card .wp-block-post-title {
@@ -798,7 +844,9 @@
 	filter: url(#medispace-map-tint);
 }
 
+/* #contact: target of the "Get in touch" buttons; clear the fixed header when scrolled to. */
 .contact-map .contact-card {
+	scroll-margin-top: 120px;
 	max-width: 603px;
 	box-sizing: border-box;
 }
