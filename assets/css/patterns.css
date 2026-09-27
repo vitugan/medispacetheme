@@ -627,8 +627,15 @@
 	flex: 1 1 auto;
 }
 
+/* Grid items may shrink below the photo's width, and the photo stays in its 346:240 frame
+   (a portrait featured image otherwise widens its column). */
+.service-cards .wp-block-post-template > li {
+	min-width: 0;
+}
+
 .service-card .wp-block-post-featured-image {
 	margin: 0;
+	overflow: hidden;
 }
 
 .service-card .wp-block-post-title {
