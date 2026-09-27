@@ -24,13 +24,15 @@
 /**
  * @param array{
  *     title?:string, text?:string, image?:string, breadcrumbs?:bool, dynamic?:bool,
- *     variant?:"dark"|"light", button?:array{label:string, url:string}
+ *     variant?:"dark"|"light", button?:array{label:string, url:string}, archive_title?:bool
  * } $args
  *
  * breadcrumbs: core Breadcrumbs block ("Home → Services") above the heading.
  * variant: "dark" (80% black overlay, white text; default) or "light" (80% white overlay, dark
  * text, blue crumb links - service pages; the header needs the "is-on-light" class there).
  * button: primary button under the title instead of the intro text (service pages).
+ * archive_title: the heading is core Query Title (archive name without the "Category:" prefix)
+ * instead of the static title - archive templates (category, tag, date).
  * @return string Block markup.
  */
 return function (array $args) {
@@ -45,6 +47,8 @@ return function (array $args) {
 
 <!-- wp:post-excerpt {"className":"page-hero__text"} /-->';
         }
+    } elseif (!empty($args["archive_title"])) {
+        $heading = '<!-- wp:query-title {"type":"archive","showPrefix":false,"level":1,"style":{"typography":{"fontWeight":"500"}},"fontSize":"h-1"} /-->';
     } else {
         $heading = '<!-- wp:heading {"level":1,"style":{"typography":{"fontWeight":"500"}},"fontSize":"h-1"} -->
 <h1 class="wp-block-heading has-h-1-font-size" style="font-weight:500">' . esc_html($args["title"]) . '</h1>
