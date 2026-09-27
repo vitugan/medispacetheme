@@ -1291,3 +1291,54 @@
 		content: none;
 	}
 }
+
+/* ==========================================================================
+   Project case (inc/patterns/construction/project-case.php)
+   ========================================================================== */
+
+/* Specifications: rows of icon + label / value, split by thin gray-80 rules. */
+.project-specs p {
+	margin: 0;
+	font-weight: 500;
+}
+
+.project-specs .wp-block-image {
+	flex: none;
+	margin: 0;
+	line-height: 0;
+}
+
+/* Phones: the label keeps one line, the value takes the rest and wraps only if it must. */
+.project-specs__row > .wp-block-group p {
+	white-space: nowrap;
+}
+
+.project-specs__row > p {
+	min-width: 0;
+}
+
+@media (max-width: 599px) {
+	.project-specs {
+		font-size: 16px !important;
+	}
+}
+
+.project-specs .wp-block-separator {
+	width: 100%;
+	height: 1px;
+	margin: 0;
+	border: 0;
+}
+
+.project-case .wp-block-heading {
+	margin: 0;
+}
+
+.project-case p {
+	font-weight: 500;
+}
+
+/* The design's lists here are 16px apart (12px elsewhere). */
+.wp-block-list.is-style-check.project-list {
+	gap: 16px;
+}

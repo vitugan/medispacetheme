@@ -66,3 +66,22 @@ function medispace_project_tabs_order_done($block_content, $block)
     return $block_content;
 }
 add_filter("render_block_core/categories", "medispace_project_tabs_order_done", 5, 2);
+
+/**
+ * Single project breadcrumbs as in the design: Home → Portfolio → project, without the project
+ * category core adds for non-hierarchical post types.
+ */
+function medispace_project_breadcrumbs($items)
+{
+    if (!is_singular("project")) {
+        return $items;
+    }
+    $term_links = [];
+    foreach (get_the_terms(get_queried_object_id(), "msc_project_cat") ?: [] as $term) {
+        $term_links[] = untrailingslashit(get_term_link($term));
+    }
+    return array_values(array_filter($items, function ($item) use ($term_links) {
+        return empty($item["url"]) || !in_array(untrailingslashit($item["url"]), $term_links, true);
+    }));
+}
+add_filter("block_core_breadcrumbs_items", "medispace_project_breadcrumbs");
