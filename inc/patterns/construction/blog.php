@@ -8,7 +8,7 @@
  * @package Medispace
  */
 
-$medispace_gradient = "linear-gradient(180deg,rgba(7,11,27,0) 0%,#070b1b 100%)";
+$medispace_gradient = "linear-gradient(180deg, rgba(7, 11, 27, 0) 0%, rgba(7, 11, 27, 1) 100%)";
 
 return [
     "title" => __("Latest news - Construction", "medispace"),

@@ -10,7 +10,7 @@
  */
 
 $medispace_team_dir = MEDISPACE_THEME_URL . "/assets/images/construction/team";
-$medispace_gradient = "linear-gradient(180deg,rgba(7,11,27,0) 0%,#070b1b 100%)";
+$medispace_gradient = "linear-gradient(180deg, rgba(7, 11, 27, 0) 0%, rgba(7, 11, 27, 1) 100%)";
 
 $medispace_contact_row = function ($icon, $text, $href) use ($medispace_team_dir) {
     return '<!-- wp:group {"metadata":{"name":"' . ($icon === "phone" ? "Phone" : "Email") . '"},"style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
