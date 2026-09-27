@@ -802,6 +802,33 @@
 	overflow: hidden;
 }
 
+/* Project cards (inc/pattern-parts/project-cards.php): dark category badge, date with a
+   calendar icon (#52636b in the design). */
+.project-card .project-card__badge {
+	margin: 0;
+}
+
+.project-card .project-card__date {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin: 0;
+	color: #52636b;
+}
+
+.project-card .project-card__date::before {
+	content: "";
+	flex: none;
+	width: 24px;
+	height: 24px;
+	background: url("../images/icons/calendar.svg") center / 24px no-repeat;
+}
+
+.project-card .wp-block-post-excerpt__excerpt {
+	margin: 0;
+	line-height: 1.5;
+}
+
 /* Static image cards (inc/pattern-parts/image-cards.php): same look, a plain image block. */
 .image-cards > .service-card {
 	height: 100%;

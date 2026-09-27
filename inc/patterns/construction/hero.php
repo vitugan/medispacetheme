@@ -57,7 +57,7 @@ return [
 <!-- /wp:button -->
 
 <!-- wp:button {"className":"is-style-outline-light"} -->
-<div class="wp-block-button is-style-outline-light"><a class="wp-block-button__link wp-element-button" href="' . esc_url(home_url("/portfolio/")) . '">' . esc_html__("View portfolio", "medispace") . '</a></div>
+<div class="wp-block-button is-style-outline-light"><a class="wp-block-button__link wp-element-button" href="' . esc_url(medispace_projects_url()) . '">' . esc_html__("View portfolio", "medispace") . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->

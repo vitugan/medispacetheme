@@ -11,7 +11,7 @@
  */
 
 $medispace_link = function ($label, $path) {
-    return '<!-- wp:navigation-link {"label":"' . esc_attr($label) . '","url":"' . esc_url(home_url($path)) . '","kind":"custom"} /-->';
+    return '<!-- wp:navigation-link {"label":"' . esc_attr($label) . '","url":"' . esc_url(preg_match("#^https?://#", $path) ? $path : home_url($path)) . '","kind":"custom"} /-->';
 };
 
 $medispace_services = "";
@@ -51,7 +51,7 @@ return [
 ' . $medispace_link(__("About", "medispace"), "/about/") . '
 <!-- wp:navigation-submenu {"label":"' . esc_attr__("Services", "medispace") . '","url":"' . esc_url(home_url("/services/")) . '","kind":"custom"} -->
 ' . $medispace_services . '<!-- /wp:navigation-submenu -->
-' . $medispace_link(__("Portfolio", "medispace"), "/portfolio/") . '
+' . $medispace_link(__("Portfolio", "medispace"), medispace_projects_url()) . '
 ' . $medispace_link(__("Contacts", "medispace"), "/contact/") . '
 ' . $medispace_link(__("Blog", "medispace"), "/blog/") . '
 <!-- wp:buttons {"className":"site-header__menu-cta"} -->
