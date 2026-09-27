@@ -22,18 +22,29 @@
  */
 
 /**
- * @param array{title?:string, text?:string, image?:string, breadcrumbs?:bool, dynamic?:bool} $args
+ * @param array{
+ *     title?:string, text?:string, image?:string, breadcrumbs?:bool, dynamic?:bool,
+ *     variant?:"dark"|"light", button?:array{label:string, url:string}
+ * } $args
  *
  * breadcrumbs: core Breadcrumbs block ("Home → Services") above the heading.
+ * variant: "dark" (80% black overlay, white text; default) or "light" (80% white overlay, dark
+ * text, blue crumb links - service pages; the header needs the "is-on-light" class there).
+ * button: primary button under the title instead of the intro text (service pages).
  * @return string Block markup.
  */
 return function (array $args) {
     $dynamic = !empty($args["dynamic"]);
+    $light = ($args["variant"] ?? "dark") === "light";
+    $button = $args["button"] ?? null;
 
     if ($dynamic) {
-        $heading = '<!-- wp:post-title {"level":1,"style":{"typography":{"fontWeight":"500"}},"fontSize":"h-1"} /-->
+        $heading = '<!-- wp:post-title {"level":1,"style":{"typography":{"fontWeight":"500"}},"fontSize":"h-1"} /-->';
+        if (!$button) {
+            $heading .= '
 
 <!-- wp:post-excerpt {"className":"page-hero__text"} /-->';
+        }
     } else {
         $heading = '<!-- wp:heading {"level":1,"style":{"typography":{"fontWeight":"500"}},"fontSize":"h-1"} -->
 <h1 class="wp-block-heading has-h-1-font-size" style="font-weight:500">' . esc_html($args["title"]) . '</h1>
@@ -47,15 +58,31 @@ return function (array $args) {
         }
     }
 
-    // With breadcrumbs the heading and intro keep their 16px gap and the crumbs sit 12px above.
+    if ($button) {
+        $heading .= '
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url($button["url"]) . '">' . esc_html($button["label"]) . '</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons -->';
+    }
+
+    // With breadcrumbs the heading and intro keep their 16px gap (24px to a button) and the
+    // crumbs sit 12px above.
+    $inner_gap = $button ? "var:preset|spacing|50" : "var:preset|spacing|40";
     if (!empty($args["breadcrumbs"])) {
         $heading = '<!-- wp:breadcrumbs {"separator":"→","className":"page-hero__breadcrumbs","fontSize":"body-s"} /-->
 
-<!-- wp:group {"metadata":{"name":"Heading"},"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","orientation":"vertical"}} -->
+<!-- wp:group {"metadata":{"name":"Heading"},"style":{"spacing":{"blockGap":"' . $inner_gap . '"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group">' . $heading . '</div>
 <!-- /wp:group -->';
     }
-    $gap = empty($args["breadcrumbs"]) ? "var:preset|spacing|40" : "12px";
+    $gap = empty($args["breadcrumbs"]) ? $inner_gap : "12px";
+
+    $overlay = $light ? "#ffffff" : "#000000";
+    $text_color = $light ? "gray-100" : "white";
+    $class = "page-hero" . ($light ? " is-light" : "");
 
     if ($dynamic) {
         $image_attr = '"useFeaturedImage":true,';
@@ -66,9 +93,9 @@ return function (array $args) {
         $image_tag = '<img class="wp-block-cover__image-background" alt="" src="' . $image . '" data-object-fit="cover"/>';
     }
 
-    return '<!-- wp:cover {' . $image_attr . '"dimRatio":80,"customOverlayColor":"#000000","isUserOverlayColor":true,"contentPosition":"top left","isDark":true,"metadata":{"name":"Page hero"},"align":"full","className":"page-hero","style":{"spacing":{"padding":{"top":"clamp(40px, 6.25vw, 120px)","right":"var:preset|spacing|40","bottom":"40px","left":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-cover alignfull has-custom-content-position is-position-top-left page-hero" style="padding-top:clamp(40px, 6.25vw, 120px);padding-right:var(--wp--preset--spacing--40);padding-bottom:40px;padding-left:var(--wp--preset--spacing--40)">' . $image_tag . '<span aria-hidden="true" class="wp-block-cover__background has-background-dim-80 has-background-dim" style="background-color:#000000"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"metadata":{"name":"Text"},"align":"wide","style":{"spacing":{"blockGap":"' . $gap . '"}},"textColor":"white","layout":{"type":"flex","orientation":"vertical"}} -->
-<div class="wp-block-group alignwide has-white-color has-text-color">' . $heading . '</div>
+    return '<!-- wp:cover {' . $image_attr . '"dimRatio":80,"customOverlayColor":"' . $overlay . '","isUserOverlayColor":true,"contentPosition":"top left","isDark":' . ($light ? "false" : "true") . ',"metadata":{"name":"Page hero"},"align":"full","className":"' . $class . '","style":{"spacing":{"padding":{"top":"clamp(40px, 6.25vw, 120px)","right":"var:preset|spacing|40","bottom":"40px","left":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-cover' . ($light ? " is-light" : "") . ' alignfull has-custom-content-position is-position-top-left ' . $class . '" style="padding-top:clamp(40px, 6.25vw, 120px);padding-right:var(--wp--preset--spacing--40);padding-bottom:40px;padding-left:var(--wp--preset--spacing--40)">' . $image_tag . '<span aria-hidden="true" class="wp-block-cover__background has-background-dim-80 has-background-dim" style="background-color:' . $overlay . '"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"metadata":{"name":"Text"},"align":"wide","style":{"spacing":{"blockGap":"' . $gap . '"}},"textColor":"' . $text_color . '","layout":{"type":"flex","orientation":"vertical"}} -->
+<div class="wp-block-group alignwide has-' . $text_color . '-color has-text-color">' . $heading . '</div>
 <!-- /wp:group --></div></div>
 <!-- /wp:cover -->';
 };
