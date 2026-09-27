@@ -9,7 +9,8 @@
  *
  * After the import the flow is activated (option + style variation), the Home / Blog pages
  * become the front page and the posts page, links that still point to the export site are
- * rewritten, the theme's contact form is created and permalinks are flushed.
+ * rewritten, WordPress's "Hello world!" post goes to the trash, the theme's contact form is
+ * created and permalinks are flushed.
  *
  * @package Medispace
  */
@@ -129,6 +130,12 @@ add_action("ocdi/after_import", function ($selected_import) {
             $to,
             "%" . $wpdb->esc_like($from) . "%",
         ));
+    }
+
+    // WordPress's sample post has no place in the demo: to the trash (restorable).
+    $hello = get_page_by_path("hello-world", OBJECT, "post");
+    if ($hello && "publish" === $hello->post_status) {
+        wp_trash_post($hello->ID);
     }
 
     // The theme's Contact Form 7 form (inc/contact-form.php).
