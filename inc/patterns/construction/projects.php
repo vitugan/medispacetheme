@@ -22,7 +22,7 @@ $medispace_slide = function ($image, $badge, $title, $text) use ($medispace_img)
         "title" => $title,
         "description" => $text,
         "linkText" => __("Learn more", "medispace"),
-        "linkUrl" => home_url("/portfolio/"),
+        "linkUrl" => medispace_projects_url(),
     ];
 };
 
@@ -64,7 +64,7 @@ return [
 
 <!-- wp:buttons {"className":"is-mobile-full","layout":{"type":"flex","justifyContent":"center"}} -->
 <div class="wp-block-buttons is-mobile-full"><!-- wp:button -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url(home_url("/portfolio/")) . '">' . esc_html__("View all projects", "medispace") . '</a></div>
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url(medispace_projects_url()) . '">' . esc_html__("View all projects", "medispace") . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->

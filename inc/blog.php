@@ -22,16 +22,23 @@ add_action("pre_get_posts", "medispace_blog_posts_per_page");
 
 /**
  * Category tabs: core Categories block with the "blog-tabs" class gets an "All" tab first,
- * linking to the posts page and marked current there (core marks the current category).
+ * linking to the posts page (or, for project categories, the projects archive) and marked
+ * current there (core marks the current term).
  */
 function medispace_blog_tabs_all($block_content, $block)
 {
     if (false === strpos($block["attrs"]["className"] ?? "", "blog-tabs")) {
         return $block_content;
     }
-    $posts_page = (int) get_option("page_for_posts");
-    $url = $posts_page ? get_permalink($posts_page) : home_url("/");
-    $current = is_home() ? " current-cat" : "";
+    if (($block["attrs"]["taxonomy"] ?? "category") === "msc_project_cat") {
+        // Project categories (Portfolio): "All" is the projects archive.
+        $url = medispace_projects_url();
+        $current = is_post_type_archive("project") ? " current-cat" : "";
+    } else {
+        $posts_page = (int) get_option("page_for_posts");
+        $url = $posts_page ? get_permalink($posts_page) : home_url("/");
+        $current = is_home() ? " current-cat" : "";
+    }
     $all = '<li class="cat-item cat-item-all' . $current . '"><a href="' . esc_url($url) . '"' . ($current ? ' aria-current="page"' : "") . ">" . esc_html__("All", "medispace") . "</a></li>";
     return preg_replace("/(<ul\b[^>]*>)/", '$1' . $all, $block_content, 1);
 }

@@ -37,7 +37,7 @@ $medispace_contact = function ($name, $icon, $label, $value, $href = "") use ($m
 $medispace_nav = function (array $links) {
     $items = "";
     foreach ($links as $label => $path) {
-        $items .= '<!-- wp:navigation-link {"label":"' . esc_attr($label) . '","url":"' . esc_url(home_url($path)) . '","kind":"custom"} /-->' . "\n";
+        $items .= '<!-- wp:navigation-link {"label":"' . esc_attr($label) . '","url":"' . esc_url(preg_match("#^https?://#", $path) ? $path : home_url($path)) . '","kind":"custom"} /-->' . "\n";
     }
 
     return '<!-- wp:navigation {"textColor":"white","overlayMenu":"never","className":"footer-nav","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"fontSize":"body-m","layout":{"type":"flex","orientation":"vertical"}} -->
@@ -72,7 +72,7 @@ return [
         "\n\n" .
         $medispace_nav([
             __("Services", "medispace") => "/services/",
-            __("Portfolio", "medispace") => "/portfolio/",
+            __("Portfolio", "medispace") => medispace_projects_url(),
             __("Blog", "medispace") => "/blog/",
         ]) .
         '</div>

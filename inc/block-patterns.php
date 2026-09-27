@@ -74,4 +74,6 @@ if (!function_exists("medispace_register_block_patterns")):
     }
 endif;
 
-add_action("init", "medispace_register_block_patterns", 9);
+// After plugins register their post types and taxonomies (init 10), so patterns can link to
+// their archives (e.g. medispace_projects_url()).
+add_action("init", "medispace_register_block_patterns", 20);
