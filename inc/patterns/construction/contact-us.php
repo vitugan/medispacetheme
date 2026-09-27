@@ -6,6 +6,9 @@
  * heading, intro and the theme's Contact Form 7 form (inc/contact-form.php). Used on About,
  * Services, service pages and Contact in the design.
  *
+ * $medispace_contact_title (set by a pattern that requires this file) overrides the card heading,
+ * e.g. inc/patterns/construction/contact-page.php.
+ *
  * @package Medispace
  */
 
@@ -39,7 +42,7 @@ return [
 <!-- wp:group {"metadata":{"name":"Contact card"},"anchor":"contact","className":"contact-card","style":{"spacing":{"padding":{"top":"clamp(32px, 2.1vw, 40px)","right":"clamp(32px, 2.1vw, 40px)","bottom":"clamp(32px, 2.1vw, 40px)","left":"clamp(32px, 2.1vw, 40px)"},"blockGap":"var:preset|spacing|60"},"border":{"width":"1px"},"shadow":"0 4px 17.5px rgba(0,0,0,0.05)"},"backgroundColor":"white","borderColor":"gray-20","layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
 <div id="contact" class="wp-block-group contact-card has-border-color has-gray-20-border-color has-white-background-color has-background" style="border-width:1px;padding-top:clamp(32px, 2.1vw, 40px);padding-right:clamp(32px, 2.1vw, 40px);padding-bottom:clamp(32px, 2.1vw, 40px);padding-left:clamp(32px, 2.1vw, 40px);box-shadow:0 4px 17.5px rgba(0,0,0,0.05)"><!-- wp:group {"metadata":{"name":"Head"},"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
 <div class="wp-block-group"><!-- wp:heading -->
-<h2 class="wp-block-heading">' . esc_html__("Get in touch", "medispace") . '</h2>
+<h2 class="wp-block-heading">' . esc_html($medispace_contact_title ?? __("Get in touch", "medispace")) . '</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"textColor":"gray-80"} -->
