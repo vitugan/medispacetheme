@@ -51,7 +51,7 @@ return [
     "viewportWidth" => 1440,
     "content" =>
         '<!-- wp:group {"metadata":{"name":"Our projects"},"align":"full","style":{"spacing":{"margin":{"top":"var(--wp--custom--section-gap)","bottom":"var(--wp--custom--section-gap)"},"blockGap":"32px"}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull" style="margin-top:var(--wp--custom--section-gap);margin-bottom:var(--wp--custom--section-gap)"><!-- wp:group {"metadata":{"name":"Headings"},"style":{"spacing":{"padding":{"right":"var:preset|spacing|40","left":"var:preset|spacing|40"},"blockGap":"clamp(30px, 3vw, 40px)"}},"layout":{"type":"constrained","contentSize":"534px"}} -->
+<div class="wp-block-group alignfull" style="margin-top:var(--wp--custom--section-gap);margin-bottom:var(--wp--custom--section-gap)"><!-- wp:group {"metadata":{"name":"Headings"},"style":{"spacing":{"padding":{"right":"var:preset|spacing|40","left":"var:preset|spacing|40"},"blockGap":"var:preset|spacing|fluid-40"}},"layout":{"type":"constrained","contentSize":"534px"}} -->
 <div class="wp-block-group" style="padding-right:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)"><!-- wp:group {"metadata":{"name":"Text"},"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"textAlign":"center"} -->
 <h2 class="wp-block-heading has-text-align-center">' . esc_html($medispace_projects_title ?? __("Our projects", "medispace")) . '</h2>

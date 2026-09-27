@@ -92,7 +92,12 @@
         { "slug": "70", "name": "48", "size": "48px" },
         { "slug": "80", "name": "64", "size": "64px" },
         { "slug": "90", "name": "96", "size": "96px" },
-        { "slug": "100", "name": "140", "size": "140px" }
+        { "slug": "100", "name": "140", "size": "140px" },
+        { "slug": "fluid-24", "name": "16-24 fluid", "size": "clamp(16px, 2vw, 24px)" },
+        { "slug": "fluid-32", "name": "24-32 fluid", "size": "clamp(24px, 2.5vw, 32px)" },
+        { "slug": "fluid-40", "name": "30-40 fluid", "size": "clamp(30px, 3vw, 40px)" },
+        { "slug": "fluid-80", "name": "48-80 fluid", "size": "clamp(48px, 4.17vw, 80px)" },
+        { "slug": "fluid-129", "name": "40-129 fluid", "size": "clamp(40px, 6.7vw, 129px)" }
       ]
     }
   },

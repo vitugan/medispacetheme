@@ -21,7 +21,7 @@ $medispace_steps = [
 $medispace_items = "";
 foreach ($medispace_steps as $i => $title) {
     $open = 0 === $i ? '{"openByDefault":true}' : "";
-    $item_attrs = '{' . (0 === $i ? '"openByDefault":true,' : "") . '"style":{"spacing":{"padding":{"top":"clamp(16px, 2vw, 24px)","right":"clamp(16px, 2vw, 24px)","bottom":"clamp(16px, 2vw, 24px)","left":"clamp(16px, 2vw, 24px)"},"blockGap":"clamp(16px, 2vw, 24px)"}},"backgroundColor":"light-gray"}';
+    $item_attrs = '{' . (0 === $i ? '"openByDefault":true,' : "") . '"style":{"spacing":{"padding":{"top":"clamp(16px, 2vw, 24px)","right":"clamp(16px, 2vw, 24px)","bottom":"clamp(16px, 2vw, 24px)","left":"clamp(16px, 2vw, 24px)"},"blockGap":"var:preset|spacing|fluid-24"}},"backgroundColor":"light-gray"}';
     $medispace_items .= '<!-- wp:accordion-item ' . $item_attrs . ' -->
 <div class="wp-block-accordion-item' . (0 === $i ? " is-open" : "") . ' has-light-gray-background-color has-background" style="padding-top:clamp(16px, 2vw, 24px);padding-right:clamp(16px, 2vw, 24px);padding-bottom:clamp(16px, 2vw, 24px);padding-left:clamp(16px, 2vw, 24px)"><!-- wp:accordion-heading' . ($open ? " " . $open : "") . ' -->
 <h3 class="wp-block-accordion-heading"><button type="button" class="wp-block-accordion-heading__toggle"><span class="wp-block-accordion-heading__toggle-title">' . esc_html($title) . '</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
@@ -43,7 +43,7 @@ return [
     "keywords" => ["process", "steps", "accordion", "faq"],
     "viewportWidth" => 1440,
     "content" =>
-        '<!-- wp:group {"metadata":{"name":"Our process"},"align":"full","className":"process-section","style":{"spacing":{"margin":{"top":"var(--wp--custom--section-gap)","bottom":"var(--wp--custom--section-gap)"},"padding":{"right":"var:preset|spacing|40","left":"var:preset|spacing|40"},"blockGap":"clamp(24px, 2.5vw, 32px)"}},"layout":{"type":"constrained"}} -->
+        '<!-- wp:group {"metadata":{"name":"Our process"},"align":"full","className":"process-section","style":{"spacing":{"margin":{"top":"var(--wp--custom--section-gap)","bottom":"var(--wp--custom--section-gap)"},"padding":{"right":"var:preset|spacing|40","left":"var:preset|spacing|40"},"blockGap":"var:preset|spacing|fluid-32"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull process-section" style="margin-top:var(--wp--custom--section-gap);margin-bottom:var(--wp--custom--section-gap);padding-right:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)"><!-- wp:group {"metadata":{"name":"Head"},"className":"process-head","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained","contentSize":"513px","justifyContent":"left"}} -->
 <div class="wp-block-group process-head"><!-- wp:heading -->
 <h2 class="wp-block-heading">' . esc_html__("Our process", "medispace") . '</h2>
@@ -62,7 +62,7 @@ return [
 <!-- /wp:column -->
 
 <!-- wp:column -->
-<div class="wp-block-column"><!-- wp:accordion {"autoclose":true,"className":"process-steps","style":{"spacing":{"blockGap":"clamp(16px, 2vw, 24px)"}}} -->
+<div class="wp-block-column"><!-- wp:accordion {"autoclose":true,"className":"process-steps","style":{"spacing":{"blockGap":"var:preset|spacing|fluid-24"}}} -->
 <div role="group" class="wp-block-accordion process-steps">' . rtrim($medispace_items) . '</div>
 <!-- /wp:accordion --></div>
 <!-- /wp:column --></div>
