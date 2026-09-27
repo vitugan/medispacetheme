@@ -633,10 +633,13 @@
 	align-items: stretch;
 }
 
+/* Content position "bottom center" (block setting, so the editor shows it too) makes core shrink the
+   inner container to its content width; the panel spans the card. */
 .team-card .wp-block-cover__inner-container {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
+	width: 100% !important;
 }
 
 .team-card .wp-block-heading,
