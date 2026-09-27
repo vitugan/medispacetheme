@@ -233,7 +233,20 @@ function medispace_apply_style_variation($variation_slug, $force = false)
         return false;
     }
 
+    // Core creates the user global styles post with tax_input, which is skipped when nobody with
+    // the right capability is logged in (WP-CLI, cron, a demo import run from the command line).
+    // Without its wp_theme term core never finds that post again - the front end misses the
+    // flow's styles and the next lookup creates a duplicate. Re-attach an orphan first.
+    $orphan = get_page_by_path("wp-global-styles-" . urlencode(get_stylesheet()), OBJECT, "wp_global_styles");
+    if ($orphan && !has_term(get_stylesheet(), "wp_theme", $orphan)) {
+        wp_set_object_terms($orphan->ID, get_stylesheet(), "wp_theme");
+    }
+
     $global_styles_id = WP_Theme_JSON_Resolver::get_user_global_styles_post_id();
+
+    if ($global_styles_id && !has_term(get_stylesheet(), "wp_theme", $global_styles_id)) {
+        wp_set_object_terms($global_styles_id, get_stylesheet(), "wp_theme");
+    }
 
     if (!$force && medispace_styles_were_customized($global_styles_id)) {
         return "blocked";
