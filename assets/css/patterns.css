@@ -415,6 +415,151 @@
 }
 
 /* ==========================================================================
+   Blog list: category tabs and pagination (inc/patterns/construction/blog-list.php)
+   ========================================================================== */
+
+/* Tabs: core Categories list in a bordered bar, equal-width tabs; the current one (core
+   "current-cat", "All" from inc/blog.php) is filled. Phones: two columns of bordered tabs. */
+.wp-block-categories-list.blog-tabs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	margin: 0;
+	padding: 8px;
+	list-style: none;
+	border: 1px solid #ced2d5;
+}
+
+.blog-tabs .cat-item {
+	flex: 1 1 0;
+	min-width: max-content;
+	margin: 0;
+}
+
+.blog-tabs .cat-item a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 48px;
+	padding: 0 20px;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 1;
+	color: var(--wp--preset--color--gray-100);
+	text-decoration: none;
+	transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.blog-tabs .cat-item a:hover {
+	color: var(--wp--preset--color--primary);
+}
+
+.blog-tabs .cat-item.current-cat a {
+	background-color: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--white);
+	font-weight: 700;
+}
+
+@media (max-width: 599px) {
+	.wp-block-categories-list.blog-tabs {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 10px;
+		padding: 0;
+		border: 0;
+	}
+
+	.blog-tabs .cat-item {
+		min-width: 0;
+	}
+
+	.blog-tabs .cat-item a {
+		padding: 0 12px;
+		border: 1px solid #ced2d5;
+		font-size: 16px;
+		text-align: center;
+	}
+
+	.blog-tabs .cat-item.current-cat a {
+		border-color: var(--wp--preset--color--primary);
+	}
+}
+
+/* Pagination: 44px square pages with a border, the current one filled; chevrons only. */
+.blog-pagination {
+	gap: 4px;
+	align-items: center;
+}
+
+.blog-pagination .wp-block-query-pagination-numbers {
+	display: flex;
+	gap: 4px;
+}
+
+.blog-pagination .page-numbers {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 44px;
+	height: 44px;
+	box-sizing: border-box;
+	border: 1px solid #ced2d5;
+	font-weight: 500;
+	color: #52636b;
+	text-decoration: none;
+}
+
+.blog-pagination .page-numbers.current {
+	background-color: var(--wp--preset--color--primary);
+	border-color: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--white);
+}
+
+.blog-pagination .page-numbers.dots {
+	border: 0;
+}
+
+.blog-pagination a.page-numbers:hover {
+	border-color: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--primary);
+}
+
+.blog-pagination :is(.wp-block-query-pagination-previous, .wp-block-query-pagination-next) {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 44px;
+	margin: 0 6px;
+	color: var(--wp--preset--color--gray-100);
+	text-decoration: none;
+}
+
+/* The block prints «/» as the arrow; the design has a thin chevron. */
+.blog-pagination :is(.wp-block-query-pagination-previous-arrow, .wp-block-query-pagination-next-arrow) {
+	margin: 0;
+	font-size: 0;
+}
+
+.blog-pagination :is(.wp-block-query-pagination-previous-arrow, .wp-block-query-pagination-next-arrow)::before {
+	content: "";
+	display: block;
+	width: 8px;
+	height: 8px;
+	border-right: 1.5px solid currentColor;
+	border-bottom: 1.5px solid currentColor;
+	transform: rotate(-45deg);
+}
+
+.blog-pagination .wp-block-query-pagination-previous-arrow::before {
+	transform: rotate(135deg);
+}
+
+.blog-pagination :is(.wp-block-query-pagination-previous, .wp-block-query-pagination-next):hover {
+	color: var(--wp--preset--color--primary);
+}
+
+/* ==========================================================================
    Our projects slider (MediSpace Core swiper-slider, className "projects-slider")
    ========================================================================== */
 

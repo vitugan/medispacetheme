@@ -84,8 +84,9 @@ function medispace_resolve_flow_template($template, $id, $template_type)
 /**
  * Path of the active flow's file for a generic template / part slug, or null.
  *
- * - header / footer parts and the front-page / home templates come from the flow registry
- *   (inc/flows.php);
+ * - header / footer parts and the front-page template come from the flow registry
+ *   (inc/flows.php); "front-page" wins for the front page whatever the reading settings, so
+ *   "home" is left to the posts page (templates/home-{flow}.html, the blog);
  * - any other template is found by convention: templates/{slug}-{flow}.html (e.g.
  *   archive-msc_service-construction.html), so each flow can ship its own archive / single
  *   templates without touching the registry.
@@ -99,7 +100,6 @@ function medispace_flow_template_file($slug, $template_type)
     $managed = [
         "wp_template" => [
             "front-page" => "front_page_template",
-            "home"       => "front_page_template",
         ],
         "wp_template_part" => [
             "header" => "header_template_part",

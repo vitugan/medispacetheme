@@ -33,6 +33,7 @@ require MEDISPACE_THEME_PATH . "/inc/query-sticky-first.php";
 require MEDISPACE_THEME_PATH . "/inc/contact-form.php";
 require MEDISPACE_THEME_PATH . "/inc/map-tint.php";
 require MEDISPACE_THEME_PATH . "/inc/page-hero.php";
+require MEDISPACE_THEME_PATH . "/inc/blog.php";
 
 /**
  * Required plugins (MediSpace Core, Contact Form 7).
