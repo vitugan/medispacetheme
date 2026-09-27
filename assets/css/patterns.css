@@ -16,6 +16,19 @@
 }
 
 /* ==========================================================================
+   Page hero (inc/pattern-parts/page-hero.php)
+   ========================================================================== */
+
+/* Sized by its padding (core cover defaults to min-height:430px); text column 534px. */
+.page-hero.wp-block-cover {
+	min-height: 0;
+}
+
+.page-hero .page-hero__text {
+	max-width: 534px;
+}
+
+/* ==========================================================================
    Header — Construction (inc/patterns/construction/header.php)
    ========================================================================== */
 
@@ -76,7 +89,9 @@
 	}
 
 	/* The first section starts under the fixed header (92px) plus its own top padding. */
-	body:not(.editor-styles-wrapper) header.is-overlay + main > :first-child {
+	/* Front page: sections sit directly in <main>; page templates: inside the post content. */
+	body:not(.editor-styles-wrapper) header.is-overlay + main > :first-child:not(.wp-block-post-content),
+	body:not(.editor-styles-wrapper) header.is-overlay + main > .wp-block-post-content > :first-child {
 		padding-top: calc(92px + clamp(40px, 6.25vw, 120px)) !important;
 	}
 }
