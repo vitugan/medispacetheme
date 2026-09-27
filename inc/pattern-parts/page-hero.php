@@ -80,7 +80,10 @@ return function (array $args) {
     }
     $gap = empty($args["breadcrumbs"]) ? $inner_gap : "12px";
 
-    $overlay = $light ? "#ffffff" : "#000000";
+    $overlay_attr = $light ? '"overlayColor":"white",' : '"customOverlayColor":"#000000",';
+    $overlay_span = $light
+        ? '<span aria-hidden="true" class="wp-block-cover__background has-white-background-color has-background-dim-80 has-background-dim"></span>'
+        : '<span aria-hidden="true" class="wp-block-cover__background has-background-dim-80 has-background-dim" style="background-color:#000000"></span>';
     $text_color = $light ? "gray-100" : "white";
     $class = "page-hero" . ($light ? " is-light" : "");
 
@@ -93,8 +96,8 @@ return function (array $args) {
         $image_tag = '<img class="wp-block-cover__image-background" alt="" src="' . $image . '" data-object-fit="cover"/>';
     }
 
-    return '<!-- wp:cover {' . $image_attr . '"dimRatio":80,"customOverlayColor":"' . $overlay . '","isUserOverlayColor":true,"contentPosition":"top left","isDark":' . ($light ? "false" : "true") . ',"metadata":{"name":"Page hero"},"align":"full","className":"' . $class . '","style":{"spacing":{"padding":{"top":"clamp(40px, 6.25vw, 120px)","right":"var:preset|spacing|40","bottom":"40px","left":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-cover' . ($light ? " is-light" : "") . ' alignfull has-custom-content-position is-position-top-left ' . $class . '" style="padding-top:clamp(40px, 6.25vw, 120px);padding-right:var(--wp--preset--spacing--40);padding-bottom:40px;padding-left:var(--wp--preset--spacing--40)">' . $image_tag . '<span aria-hidden="true" class="wp-block-cover__background has-background-dim-80 has-background-dim" style="background-color:' . $overlay . '"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"metadata":{"name":"Text"},"align":"wide","style":{"spacing":{"blockGap":"' . $gap . '"}},"textColor":"' . $text_color . '","layout":{"type":"flex","orientation":"vertical"}} -->
+    return '<!-- wp:cover {' . $image_attr . '"dimRatio":80,' . $overlay_attr . '"isUserOverlayColor":true,"contentPosition":"top left","isDark":' . ($light ? "false" : "true") . ',"metadata":{"name":"Page hero"},"align":"full","className":"' . $class . '","style":{"spacing":{"padding":{"top":"clamp(40px, 6.25vw, 120px)","right":"var:preset|spacing|40","bottom":"40px","left":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-cover' . ($light ? " is-light" : "") . ' alignfull has-custom-content-position is-position-top-left ' . $class . '" style="padding-top:clamp(40px, 6.25vw, 120px);padding-right:var(--wp--preset--spacing--40);padding-bottom:40px;padding-left:var(--wp--preset--spacing--40)">' . $image_tag . '' . $overlay_span . '<div class="wp-block-cover__inner-container"><!-- wp:group {"metadata":{"name":"Text"},"align":"wide","style":{"spacing":{"blockGap":"' . $gap . '"}},"textColor":"' . $text_color . '","layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group alignwide has-' . $text_color . '-color has-text-color">' . $heading . '</div>
 <!-- /wp:group --></div></div>
 <!-- /wp:cover -->';
