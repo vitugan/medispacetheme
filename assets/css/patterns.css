@@ -1104,3 +1104,163 @@
    ========================================================================== */
 
 /* ... наступна секція, коли дійдемо ... */
+/* ==========================================================================
+   FAQ page (inc/patterns/construction/faq-page.php, assets/js/faq-nav.js)
+   ========================================================================== */
+
+/* Desktop: questions in the content column (947px, left edge on the 1086px column), the
+   "Categories" navigation sticky on the right. Phones/tablets: navigation dropdown on top. */
+.faq-page {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 32px;
+}
+
+.faq-page > .faq-groups {
+	margin: 0;
+}
+
+.faq-group h2 {
+	margin: 0;
+}
+
+.faq-nav summary {
+	list-style: none;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 1.15;
+	color: var(--wp--preset--color--gray-100);
+}
+
+.faq-nav summary::-webkit-details-marker {
+	display: none;
+}
+
+.faq-nav .faq-nav__list {
+	margin: 16px 0 0;
+	padding: 0;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.faq-nav .faq-nav__list li {
+	margin: 0;
+}
+
+.faq-nav .faq-nav__list a {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	font-weight: 500;
+	color: #52636b;
+	text-decoration: none;
+}
+
+.faq-nav .faq-nav__list a:hover,
+.faq-nav .faq-nav__list a.is-current {
+	color: var(--wp--preset--color--primary);
+}
+
+/* Chevron before the current group, as in the design. */
+.faq-nav .faq-nav__list a.is-current::before {
+	content: "";
+	width: 7px;
+	height: 7px;
+	margin: 0 8px 0 3px;
+	border-right: 2px solid var(--wp--preset--color--gray-100);
+	border-bottom: 2px solid var(--wp--preset--color--gray-100);
+	transform: rotate(-45deg);
+}
+
+.faq-group {
+	scroll-margin-top: 120px;
+}
+
+@media (min-width: 1024px) {
+	.faq-page {
+		/* First track = the gap between the wide and the content column, so the questions start
+		   on the 1086px column's left edge; the rest of the width is left after the navigation. */
+		grid-template-columns: max(0px, calc((100% - var(--wp--style--global--content-size)) / 2)) minmax(0, 947px) 60px 217px;
+		gap: 0;
+	}
+
+	.faq-page > .faq-groups {
+		grid-column: 2;
+		grid-row: 1;
+	}
+
+	.faq-page > .faq-nav {
+		grid-column: 4;
+		grid-row: 1;
+		align-self: start;
+		position: sticky;
+		top: calc(120px + var(--wp-admin--admin-bar--height, 0px));
+	}
+
+	.faq-nav summary {
+		padding-bottom: 12px;
+		border-bottom: 1px solid #ced2d5;
+		cursor: default;
+	}
+}
+
+/* Phones and tablets: a dropdown between two rules - "Categories", the current group under it
+   and a chevron; open, the groups are listed with the current one on a grey band. */
+@media (max-width: 1023px) {
+	.faq-nav {
+		border-top: 1px solid #ced2d5;
+		border-bottom: 1px solid #ced2d5;
+	}
+
+	.faq-nav summary {
+		position: relative;
+		padding: 12px 40px 12px 0;
+		cursor: pointer;
+	}
+
+	.faq-nav summary::after {
+		content: attr(data-current);
+		display: block;
+		margin-top: 6px;
+		font-size: 16px;
+		font-weight: 400;
+	}
+
+	.faq-nav summary::before {
+		content: "";
+		position: absolute;
+		right: 8px;
+		top: 50%;
+		width: 8px;
+		height: 8px;
+		border-right: 2px solid var(--wp--preset--color--gray-100);
+		border-bottom: 2px solid var(--wp--preset--color--gray-100);
+		transform: translateY(-75%) rotate(45deg);
+	}
+
+	.faq-nav[open] summary::before {
+		transform: translateY(-25%) rotate(-135deg);
+	}
+
+	.faq-nav .faq-nav__list {
+		margin: 0 0 8px;
+		gap: 0;
+		border-top: 1px solid #ced2d5;
+	}
+
+	.faq-nav .faq-nav__list a {
+		padding: 12px;
+		color: var(--wp--preset--color--gray-100);
+	}
+
+	.faq-nav .faq-nav__list a.is-current {
+		background-color: var(--wp--preset--color--gray-20);
+		color: var(--wp--preset--color--gray-100);
+	}
+
+	.faq-nav .faq-nav__list a.is-current::before {
+		content: none;
+	}
+}

@@ -1,6 +1,6 @@
 <?php
 /**
- * Blog listing support (templates/home-{flow}.html, templates/archive-{flow}.html,
+ * Blog listing and FAQ page support (templates/home-{flow}.html, templates/archive-{flow}.html,
  * inc/patterns/<flow>/blog-list.php).
  *
  * @package Medispace
@@ -36,3 +36,21 @@ function medispace_blog_tabs_all($block_content, $block)
     return preg_replace("/(<ul\b[^>]*>)/", '$1' . $all, $block_content, 1);
 }
 add_filter("render_block_core/categories", "medispace_blog_tabs_all", 10, 2);
+
+/**
+ * FAQ page navigation script (inc/patterns/<flow>/faq-page.php): loaded only with the block.
+ */
+function medispace_faq_nav_script($block_content, $block)
+{
+    if (false !== strpos($block["attrs"]["className"] ?? "", "faq-nav")) {
+        wp_enqueue_script(
+            "medispace-faq-nav",
+            MEDISPACE_THEME_URL . "/assets/js/faq-nav.js",
+            [],
+            filemtime(MEDISPACE_THEME_PATH . "/assets/js/faq-nav.js"),
+            ["in_footer" => true, "strategy" => "defer"],
+        );
+    }
+    return $block_content;
+}
+add_filter("render_block_core/details", "medispace_faq_nav_script", 10, 2);

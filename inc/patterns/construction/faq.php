@@ -16,25 +16,7 @@ $medispace_questions = [
     __("How long does an office fit-out take?", "medispace"),
     __("Do you have an Occupational, Health and Safety Policy?", "medispace"),
 ];
-$medispace_open = 1;
-
-$medispace_items = "";
-foreach ($medispace_questions as $i => $question) {
-    $open = $i === $medispace_open;
-    $medispace_items .= '<!-- wp:accordion-item {' . ($open ? '"openByDefault":true,' : "") . '"style":{"spacing":{"padding":{"top":"clamp(16px, 2vw, 24px)","right":"clamp(16px, 2vw, 24px)","bottom":"clamp(16px, 2vw, 24px)","left":"clamp(16px, 2vw, 24px)"},"blockGap":"var:preset|spacing|40"},"border":{"width":"1px"}},"borderColor":"gray-20"} -->
-<div class="wp-block-accordion-item' . ($open ? " is-open" : "") . ' has-border-color has-gray-20-border-color" style="border-width:1px;padding-top:clamp(16px, 2vw, 24px);padding-right:clamp(16px, 2vw, 24px);padding-bottom:clamp(16px, 2vw, 24px);padding-left:clamp(16px, 2vw, 24px)"><!-- wp:accordion-heading' . ($open ? ' {"openByDefault":true}' : "") . ' -->
-<h3 class="wp-block-accordion-heading"><button type="button" class="wp-block-accordion-heading__toggle"><span class="wp-block-accordion-heading__toggle-title">' . esc_html($question) . '</span><span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span></button></h3>
-<!-- /wp:accordion-heading -->
-
-<!-- wp:accordion-panel -->
-<div role="region" class="wp-block-accordion-panel"><!-- wp:paragraph {"textColor":"gray-80"} -->
-<p class="has-gray-80-color has-text-color">' . esc_html($medispace_answer) . '</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:accordion-panel --></div>
-<!-- /wp:accordion-item -->
-
-';
-}
+$medispace_faq_accordion = require MEDISPACE_THEME_PATH . "/inc/pattern-parts/faq-accordion.php";
 
 return [
     "title" => __("Frequently asked questions - Construction", "medispace"),
@@ -54,9 +36,7 @@ return [
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:accordion {"autoclose":true,"className":"faq-list","style":{"spacing":{"blockGap":"var:preset|spacing|30"}}} -->
-<div role="group" class="wp-block-accordion faq-list">' . rtrim($medispace_items) . '</div>
-<!-- /wp:accordion --></div>
+' . $medispace_faq_accordion(["questions" => $medispace_questions, "answer" => $medispace_answer, "open" => 1]) . '</div>
 <!-- /wp:group -->
 
 <!-- wp:buttons {"className":"is-mobile-full","layout":{"type":"flex","justifyContent":"center"}} -->

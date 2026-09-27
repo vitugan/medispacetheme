@@ -76,7 +76,7 @@ return function (array $args) {
 <!-- /wp:column -->';
 
     $text = '<!-- wp:column {"verticalAlignment":"center"} -->
-<div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"metadata":{"name":"Content"},"style":{"spacing":{"blockGap":"clamp(30px, 3vw, 40px)"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
+<div class="wp-block-column is-vertically-aligned-center"><!-- wp:group {"metadata":{"name":"Content"},"style":{"spacing":{"blockGap":"var:preset|spacing|fluid-40"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
 <div class="wp-block-group"><!-- wp:group {"metadata":{"name":"Text"},"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
 <div class="wp-block-group"><!-- wp:heading -->
 <h2 class="wp-block-heading">' . esc_html($args["title"]) . '</h2>
