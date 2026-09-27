@@ -752,9 +752,10 @@
 	}
 }
 
-/* Grey map like the design (the marker keeps its color: it is in the marker pane). */
+/* Light-blue map like the design: SVG lookup filter from inc/map-tint.php (the marker keeps its
+   color: it is in the marker pane). */
 .contact-map .leaflet-tile-pane {
-	filter: grayscale(1) contrast(0.9) brightness(1.05);
+	filter: url(#medispace-map-tint);
 }
 
 .contact-map .contact-card {

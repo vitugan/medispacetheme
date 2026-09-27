@@ -13,7 +13,7 @@
 $medispace_map = serialize_block_attributes([
     "lat" => -31.8756,
     "lng" => 115.8162,
-    "zoom" => 15,
+    "zoom" => 14,
     "height" => 662,
     "markerImage" => [
         "url" => MEDISPACE_THEME_URL . "/assets/images/construction/contact/map-marker.svg",
