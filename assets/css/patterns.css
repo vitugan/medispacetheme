@@ -354,6 +354,107 @@
 }
 
 /* ==========================================================================
+   Footer — Medical (inc/patterns/medical/footer.php)
+   ========================================================================== */
+
+.medical-footer__info {
+	max-width: 304px;
+}
+
+/* The design's menu block is 396px wide, which puts it at the same distance from both sides. */
+@media (min-width: 782px) {
+	.medical-footer__menu {
+		min-width: 396px;
+	}
+}
+
+/* 48px tile + 16px gap + 213px text, as in the design (the address wraps). */
+.medical-footer__contacts {
+	max-width: 277px;
+}
+
+.medical-footer__info p,
+.medical-footer p {
+	margin: 0;
+}
+
+/* Menu links with the design's blue chevron (24px box, 6px gap). */
+.footer-nav--chevron .wp-block-navigation-item__content {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.footer-nav--chevron .wp-block-navigation-item__content::before {
+	content: "";
+	flex: none;
+	width: 24px;
+	height: 24px;
+	background: var(--wp--preset--color--primary);
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center / 24px no-repeat;
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center / 24px no-repeat;
+}
+
+.footer-nav--chevron .wp-block-navigation-item__content:hover,
+.footer-nav--chevron .current-menu-item > a {
+	color: var(--wp--preset--color--primary);
+}
+
+/* Rounded tiles and social squares, as everything in the Medical flow. */
+.medical-footer .footer-contact__icon {
+	flex: none;
+	border-radius: 8px;
+}
+
+.medical-footer .footer-contact__icon .wp-block-image {
+	margin: 0;
+	line-height: 0;
+}
+
+.medical-footer__social.wp-block-social-links .wp-social-link {
+	border-radius: 4px;
+}
+
+.medical-footer__social.wp-block-social-links.has-small-icon-size {
+	font-size: 16px;
+}
+
+.medical-footer__social.wp-block-social-links .wp-block-social-link-anchor {
+	padding: 4px;
+}
+
+/* Phones: menus side by side under the intro; bottom bar centered, legal links and icons
+   above the copyright. */
+@media (max-width: 781px) {
+	.medical-footer__main {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.medical-footer__info,
+	.medical-footer__contacts {
+		max-width: none;
+	}
+
+	.medical-footer__menu {
+		gap: 24px 64px !important;
+	}
+
+	.medical-footer__bottom {
+		flex-direction: column-reverse;
+		align-items: center;
+		text-align: center;
+		gap: var(--wp--preset--spacing--40);
+	}
+
+	.medical-footer__legal {
+		flex-direction: column;
+		align-items: center;
+		gap: var(--wp--preset--spacing--40) !important;
+	}
+}
+
+/* ==========================================================================
    Call to Action banner (inc/pattern-parts/cta-banner.php)
    ========================================================================== */
 
