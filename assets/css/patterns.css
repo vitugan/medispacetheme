@@ -181,12 +181,31 @@
 		background: url("../images/construction/header/logo-dark.svg") left center / contain no-repeat;
 	}
 
+	/* Links start 40px under the 60px bar, as in the design. */
 	.site-header .site-header__nav .is-menu-open .wp-block-navigation__responsive-container-content {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		min-height: calc(100dvh - 60px);
+		min-height: calc(100dvh - 100px);
+		padding-top: 100px !important;
 		padding-bottom: 40px;
+		box-sizing: border-box;
+	}
+
+	/* Close button where the burger was: centered on the bar (60px), 16px from the right edge. */
+	.site-header .site-header__nav .is-menu-open .wp-block-navigation__responsive-container-close {
+		top: 18px;
+		right: var(--wp--preset--spacing--40);
+		width: 24px;
+		height: 24px;
+	}
+
+	/* Never wider than the screen, whatever the page content does. */
+	.site-header .site-header__nav .wp-block-navigation__responsive-container.is-menu-open {
+		width: 100%;
+		max-width: 100%;
+		overflow-x: hidden;
+		box-sizing: border-box;
 	}
 
 	/* Services: collapsed until tapped (assets/js/header.js), chevron turns, light-blue panel. */
