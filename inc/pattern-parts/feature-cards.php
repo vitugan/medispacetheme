@@ -15,7 +15,7 @@
 /**
  * @param array{
  *     title:string,
- *     items:array<array{icon:string, title:string, text:string}>,
+ *     items:array<array{icon:string, title?:string, text:string}>,
  *     variant?:"tinted"|"plain",
  *     columns?:int,
  *     stacked?:bool,
@@ -74,11 +74,11 @@ return function (array $args) {
 <div class="wp-block-group feature-card' . ($stacked ? " is-stacked" : "") . ' has-' . $card_bg . '-background-color has-background" style="padding-top:' . $pad_y_css . ';padding-right:var(--wp--preset--spacing--50);padding-bottom:' . $pad_y_css . ';padding-left:var(--wp--preset--spacing--50)">' . $icon . '
 
 <!-- wp:group {"metadata":{"name":"Text"},"className":"feature-card__text","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":' . $text_layout . '} -->
-<div class="wp-block-group feature-card__text"><!-- wp:heading {' . $align_attr . '"level":3,"fontSize":"h-5"} -->
+<div class="wp-block-group feature-card__text">' . (empty($item["title"]) ? "" : '<!-- wp:heading {' . $align_attr . '"level":3,"fontSize":"h-5"} -->
 <h3 class="wp-block-heading' . $align_class . ' has-h-5-font-size">' . esc_html($item["title"]) . '</h3>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {' . ($stacked ? '"align":"center",' : "") . '"textColor":"gray-80"} -->
+') . '<!-- wp:paragraph {' . ($stacked ? '"align":"center",' : "") . '"textColor":"gray-80"} -->
 <p class="' . ($stacked ? "has-text-align-center " : "") . 'has-gray-80-color has-text-color">' . esc_html($item["text"]) . '</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
