@@ -1,21 +1,4 @@
 /* ==========================================================================
-   Hero — Home
-   ========================================================================== */
-
-.medispace-hero-badge {
-	position: absolute;
-	top: 8px;
-	right: 0;
-}
-
-@media (max-width: 782px) {
-	.medispace-hero-badge {
-		position: static;
-		margin-top: 16px;
-	}
-}
-
-/* ==========================================================================
    Page hero (inc/pattern-parts/page-hero.php)
    ========================================================================== */
 
@@ -198,12 +181,31 @@
 		background: url("../images/construction/header/logo-dark.svg") left center / contain no-repeat;
 	}
 
+	/* Links start 40px under the 60px bar, as in the design. */
 	.site-header .site-header__nav .is-menu-open .wp-block-navigation__responsive-container-content {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		min-height: calc(100dvh - 60px);
+		min-height: 100dvh;
+		padding-top: 100px !important;
 		padding-bottom: 40px;
+		box-sizing: border-box;
+	}
+
+	/* Close button where the burger was: centered on the bar (60px), 16px from the right edge. */
+	.site-header .site-header__nav .is-menu-open .wp-block-navigation__responsive-container-close {
+		top: 18px;
+		right: var(--wp--preset--spacing--40);
+		width: 24px;
+		height: 24px;
+	}
+
+	/* Never wider than the screen, whatever the page content does. */
+	.site-header .site-header__nav .wp-block-navigation__responsive-container.is-menu-open {
+		width: 100%;
+		max-width: 100%;
+		overflow-x: hidden;
+		box-sizing: border-box;
 	}
 
 	/* Services: collapsed until tapped (assets/js/header.js), chevron turns, light-blue panel. */
@@ -351,6 +353,114 @@
 /* Current page link is highlighted in the design; theme.json cannot target the current menu item. */
 .footer-nav .current-menu-item > a {
 	color: var(--wp--preset--color--primary-hover);
+}
+
+/* ==========================================================================
+   Footer — Medical (inc/patterns/medical/footer.php)
+   ========================================================================== */
+
+.medical-footer__info {
+	max-width: 304px;
+}
+
+.medical-footer__info p {
+	line-height: 25px;
+}
+
+/* The design's menu block is 396px wide, which puts it at the same distance from both sides. */
+@media (min-width: 782px) {
+	.medical-footer__menu {
+		min-width: 396px;
+	}
+}
+
+/* 48px tile + 16px gap + 213px text, as in the design (the address wraps). */
+.medical-footer__contacts {
+	max-width: 277px;
+}
+
+.medical-footer__info p,
+.medical-footer p {
+	margin: 0;
+}
+
+/* Menu links with the design's blue chevron (24px box, 6px gap). */
+.footer-nav--chevron .wp-block-navigation-item__content {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.footer-nav--chevron .wp-block-navigation-item__content::before {
+	content: "";
+	flex: none;
+	width: 24px;
+	height: 24px;
+	background: url("../images/medical/footer/chevron-right.svg") center / 24px no-repeat;
+}
+
+.footer-nav--chevron .wp-block-navigation-item__content:hover,
+.footer-nav--chevron .current-menu-item > a {
+	color: var(--wp--preset--color--primary);
+}
+
+/* Rounded tiles and social squares, as everything in the Medical flow. The separator between
+   the legal links stays grey (the links themselves are blue). */
+.medical-footer__legal p {
+	color: var(--wp--preset--color--gray-30);
+}
+
+.medical-footer .footer-contact__icon {
+	flex: none;
+	border-radius: 12px;
+}
+
+.medical-footer .footer-contact__icon .wp-block-image {
+	margin: 0;
+	line-height: 0;
+}
+
+.medical-footer__social.wp-block-social-links .wp-social-link {
+	border-radius: 4px;
+}
+
+.medical-footer__social.wp-block-social-links.has-small-icon-size {
+	font-size: 16px;
+}
+
+.medical-footer__social.wp-block-social-links .wp-block-social-link-anchor {
+	padding: 4px;
+}
+
+/* Phones: menus side by side under the intro; bottom bar centered, legal links and icons
+   above the copyright. */
+@media (max-width: 781px) {
+	.medical-footer__main {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.medical-footer__info,
+	.medical-footer__contacts {
+		max-width: none;
+	}
+
+	.medical-footer__menu {
+		gap: 24px 64px !important;
+	}
+
+	.medical-footer__bottom {
+		flex-direction: column-reverse;
+		align-items: center;
+		text-align: center;
+		gap: var(--wp--preset--spacing--40);
+	}
+
+	.medical-footer__legal {
+		flex-direction: column;
+		align-items: center;
+		gap: var(--wp--preset--spacing--40) !important;
+	}
 }
 
 /* ==========================================================================
@@ -659,6 +769,17 @@
    Feature cards (inc/pattern-parts/feature-cards.php)
    ========================================================================== */
 
+/* Card corners follow the flow (custom.radius.card: square in Construction, 30px in Medical). */
+.feature-card {
+	border-radius: var(--wp--custom--radius--card, 0);
+}
+
+/* Icons that carry their own tile (Medical). */
+.feature-card .feature-card__icon {
+	margin: 0;
+	line-height: 0;
+}
+
 /* Section title in a 534px column like the design (longer titles wrap). */
 .wp-block-heading.feature-cards__title {
 	max-width: 534px;
@@ -669,6 +790,12 @@
 .feature-card > .feature-card__text {
 	flex: 1 1 240px;
 	min-width: 0;
+}
+
+/* Stacked cards: one flex line, otherwise (flex-wrap: wrap) the line is only as wide as its
+   widest child and a short text pulls the icon and text to the left. */
+.wp-block-group.feature-card.is-stacked {
+	flex-wrap: nowrap;
 }
 
 /* Stacked cards (icon above centered text): the text takes its natural height. */
@@ -1341,4 +1468,357 @@
 /* The design's lists here are 16px apart (12px elsewhere). */
 .wp-block-list.is-style-check.project-list {
 	gap: 16px;
+}
+
+/* ==========================================================================
+   Rounded post cards (inc/pattern-parts/post-cards-rounded.php, Medical)
+   ========================================================================== */
+
+/* Equal-height cards with the flow's large radius; the date row sits at the bottom. */
+.post-cards-rounded .wp-block-post-template > li {
+	min-width: 0;
+}
+
+.post-cards-rounded .wp-block-post-template > li > .post-card-rounded {
+	height: 100%;
+	border-radius: var(--wp--custom--radius--m, 30px);
+	overflow: hidden;
+}
+
+.post-card-rounded > .post-card-rounded__text {
+	flex: 1 1 auto;
+}
+
+.post-card-rounded .wp-block-post-featured-image {
+	margin: 0;
+	overflow: hidden;
+}
+
+.post-card-rounded .wp-block-post-title {
+	margin: 0;
+}
+
+/* Three lines of excerpt, as in the design. */
+.post-card-rounded .wp-block-post-excerpt__excerpt {
+	margin: 0;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden;
+}
+
+.post-card-rounded .post-card-rounded__meta {
+	margin-top: auto;
+	align-items: center;
+}
+
+.post-card-rounded__meta .wp-block-post-date {
+	margin: 0;
+}
+
+/* Round arrow link: the label stays for screen readers, the circle is the designer's icon. */
+.post-card-rounded .wp-block-read-more.post-card-rounded__more {
+	/* position: relative so overflow clips the absolutely positioned screen-reader text too;
+	   otherwise it sits past the right edge of the screen and phones widen the page. */
+	position: relative;
+	flex: none;
+	width: 36px;
+	height: 36px;
+	overflow: hidden;
+	text-indent: 100%;
+	white-space: nowrap;
+	background: url("../images/medical/icons/arrow-circle.svg") center / 36px no-repeat;
+	border-radius: 50%;
+	transition: transform 0.2s ease;
+}
+
+.post-card-rounded .wp-block-read-more.post-card-rounded__more:hover {
+	transform: translateX(2px);
+}
+
+/* ==========================================================================
+   Workspace cards (inc/patterns/medical/workspaces.php)
+   ========================================================================== */
+
+.workspace-card.wp-block-cover {
+	border-radius: var(--wp--custom--radius--card, 0);
+	overflow: hidden;
+	align-items: flex-start;
+}
+
+.workspace-card .wp-block-heading {
+	margin: 0;
+	font-weight: 600;
+	line-height: 1.25;
+}
+
+/* ==========================================================================
+   Flexible booking (inc/patterns/medical/booking.php)
+   ========================================================================== */
+
+.booking-columns h2,
+.booking-columns p {
+	margin: 0;
+}
+
+/* Pricing list: label and price on the first line, the note under it; 29px lines and items
+   61px apart, as in the design. */
+.wp-block-list.is-style-check.booking-prices {
+	gap: 3px;
+}
+
+.wp-block-list.booking-prices > li {
+	line-height: 29px;
+}
+
+.booking-collage.wp-block-image {
+	margin: 0;
+	max-width: 100%;
+}
+
+.booking-collage.wp-block-image img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* ==========================================================================
+   Gallery mosaic (inc/patterns/medical/gallery.php)
+   ========================================================================== */
+
+/* Large image left (530 x 542), 2 x 2 small ones right (254 x 260), 24px gaps. Phones: the
+   large image across the top, the small ones in two columns under it. */
+.gallery-mosaic {
+	display: grid;
+	grid-template-columns: 530fr 254fr 254fr;
+	grid-auto-rows: auto;
+	gap: var(--wp--preset--spacing--50);
+}
+
+.gallery-mosaic > .gallery-mosaic__item {
+	margin: 0;
+	min-width: 0;
+	aspect-ratio: 254 / 260;
+	overflow: hidden;
+	border-radius: var(--wp--custom--radius--card, 0);
+}
+
+.gallery-mosaic > .gallery-mosaic__item:first-child {
+	grid-row: span 2;
+	aspect-ratio: auto;
+}
+
+.gallery-mosaic > .gallery-mosaic__item img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+@media (max-width: 781px) {
+	.gallery-mosaic {
+		grid-template-columns: 1fr 1fr;
+		gap: var(--wp--preset--spacing--40);
+	}
+
+	.gallery-mosaic > .gallery-mosaic__item:first-child {
+		grid-column: span 2;
+		grid-row: auto;
+		aspect-ratio: 530 / 542;
+	}
+}
+
+/* ==========================================================================
+   Health care collage (inc/patterns/medical/health-care.php)
+   ========================================================================== */
+
+/* Two columns in the design's proportions (239 : 309, 16px apart), kept side by side on phones. */
+.health-care-collage > .health-care-collage__side {
+	flex: 239 1 0;
+	min-width: 0;
+}
+
+.health-care-collage > .health-care-collage__tall {
+	flex: 309 1 0;
+	min-width: 0;
+	margin: 0;
+}
+
+.health-care-collage .wp-block-image {
+	margin: 0;
+}
+
+.health-care-collage .wp-block-image img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+/* The first photo has square corners in the file; the tall one carries its arch. */
+.health-care-collage__photo img {
+	border-radius: var(--wp--custom--radius--card, 0);
+}
+
+.health-care-stat {
+	border-radius: var(--wp--custom--radius--card, 0);
+}
+
+.health-care-stat .health-care-stat__icon {
+	margin: 0 0 var(--wp--preset--spacing--50);
+	line-height: 0;
+}
+
+.health-care-stat .health-care-stat__icon img {
+	width: 60px !important;
+}
+
+.health-care-stat p {
+	margin: 0;
+}
+
+.health-care-stat .health-care-stat__label {
+	margin-bottom: 10px;
+}
+
+.health-care-columns h2,
+.health-care-columns p {
+	margin: 0;
+}
+
+/* ==========================================================================
+   Why choose us - Medical (inc/patterns/medical/why-choose-us.php)
+   ========================================================================== */
+
+.why-card {
+	border-radius: var(--wp--custom--radius--card, 0);
+}
+
+.why-cards > .why-card {
+	height: 100%;
+}
+
+.why-card .why-card__icon {
+	margin: 0;
+	line-height: 0;
+}
+
+.why-card :is(h3, p),
+.why-columns h2,
+.why-columns p {
+	margin: 0;
+}
+
+/* ==========================================================================
+   Hero - Medical (inc/patterns/medical/hero.php)
+   ========================================================================== */
+
+.medical-hero h1,
+.medical-hero p {
+	margin: 0;
+}
+
+.medical-hero .medical-hero__text {
+	max-width: 534px;
+}
+
+.medical-hero .medical-hero__image {
+	margin: 0;
+	max-width: 100%;
+}
+
+.medical-hero .medical-hero__image img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* White metrics panel: from the left edge of the screen to 590px past the wide column's start,
+   the design's 80px corner top right. 100% + 32px = the hero width (it has 16px side padding). */
+.medical-hero .medical-hero__metrics {
+	--medical-hero-inset: max(16px, (100% + 32px - 1640px) / 2);
+	box-sizing: border-box;
+	width: calc(var(--medical-hero-inset) + 590px);
+	/* !important: the constrained layout centers its children with margin: auto !important. */
+	margin: 0 0 0 -16px !important;
+	padding: 30px 0 24px var(--medical-hero-inset);
+	gap: 50px;
+	border-top-right-radius: 80px;
+}
+
+.medical-hero__metric {
+	flex: 0 0 150px;
+}
+
+.medical-hero .medical-hero__columns {
+	margin-bottom: 0;
+}
+
+@media (max-width: 781px) {
+	.medical-hero .medical-hero__metrics {
+		width: calc(100% + 32px);
+		margin-top: 40px !important;
+		padding: 32px 16px;
+		flex-direction: column;
+		align-items: center;
+		gap: 24px;
+		text-align: center;
+		border-top-right-radius: 0;
+		background: transparent !important;
+	}
+
+	.medical-hero__metric {
+		flex: none;
+		align-items: center;
+	}
+}
+
+/* ==========================================================================
+   Header — Medical (inc/patterns/medical/header.php; shares the .site-header rules)
+   ========================================================================== */
+
+/* Phone link with the designer's icon. */
+.site-header--medical .site-header__phone {
+	margin: 0;
+	white-space: nowrap;
+}
+
+.site-header--medical .site-header__phone a {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.site-header--medical .site-header__phone a::before {
+	content: "";
+	flex: none;
+	width: 20px;
+	height: 20px;
+	background: url("../images/medical/header/icon-phone.svg") center / 20px no-repeat;
+}
+
+/* Current page in bold, as "Pricing" in the design. */
+.site-header--medical .site-header__nav .current-menu-item > .wp-block-navigation-item__content {
+	font-weight: 700;
+}
+
+/* The designer's burger (shorter middle line) instead of core's icon. */
+.site-header--medical .wp-block-navigation__responsive-container-open svg {
+	visibility: hidden;
+}
+
+.site-header--medical .wp-block-navigation__responsive-container-open {
+	width: 24px;
+	height: 24px;
+	background: url("../images/medical/header/burger.svg") center / 24px no-repeat;
+}
+
+/* The home hero is 80px under the header (not the default page offset). */
+@media (min-width: 600px) {
+	body:not(.editor-styles-wrapper) header.is-overlay + main > .medical-hero:first-child {
+		padding-top: calc(93px + clamp(40px, 4.2vw, 80px)) !important;
+	}
+}
+
+@media (max-width: 599px) {
+	.site-header--medical .site-header__nav .is-menu-open .wp-block-navigation__responsive-dialog::before {
+		background-image: url("../images/medical/logo-dark.svg");
+	}
 }

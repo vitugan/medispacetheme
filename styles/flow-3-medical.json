@@ -60,6 +60,9 @@
 			]
 		},
 		"custom": {
+			"checkList": {
+				"circle": "var(--wp--preset--color--dark)"
+			},
 			"button": {
 				"arrow": {
 					"size": "36px",
@@ -75,7 +78,8 @@
 			"radius": {
 				"s": "16px",
 				"m": "30px",
-				"l": "80px"
+				"l": "80px",
+				"card": "30px"
 			}
 		}
 	},
@@ -117,7 +121,7 @@
 					"lineHeight": "1.5"
 				},
 				"border": {
-					"radius": "16px",
+					"radius": "var(--wp--custom--radius--l)",
 					"width": "1px",
 					"style": "solid",
 					"color": "var(--wp--preset--color--primary)"

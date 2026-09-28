@@ -2,7 +2,8 @@
  * List block styles (inc/block-styles.php). Loaded only when a list is on the page.
  */
 
-/* "Check list": a white check on a primary-pressed circle (the flow's token) before each item,
+/* "Check list": a white check on a circle before each item - primary-pressed, or the flow's
+   custom.checkList.circle (Medical: dark),
    12px between items, as in the design (service pages). */
 .wp-block-list.is-style-check {
 	list-style: none;
@@ -27,5 +28,5 @@
 	width: 24px;
 	height: 24px;
 	border-radius: 50%;
-	background: var(--wp--preset--color--primary-pressed) url("../images/icons/check.svg") center / 24px no-repeat;
+	background: var(--wp--custom--check-list--circle, var(--wp--preset--color--primary-pressed)) url("../images/icons/check.svg") center / 24px no-repeat;
 }

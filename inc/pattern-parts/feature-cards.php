@@ -20,12 +20,19 @@
  *     columns?:int,
  *     stacked?:bool,
  *     section_bg?:string,
- *     button?:array{label:string, url:string}
+ *     button?:array{label:string, url:string, padding_x?:string},
+ *     icon_tile?:bool,
+ *     icon_size?:int,
+ *     card_padding_y?:string,
+ *     card_gap?:string
  * } $args
  *
  * columns: cards per row on wide screens (2 by default); stacked: icon above centered text
  * (Values) instead of icon beside the text; section_bg: palette slug of a tinted section
- * (light-gray by default); button: optional CTA under the cards.
+ * (light-gray by default); button: optional CTA under the cards; icon_tile: false when the icon
+ * file already contains its tile (Medical), shown at icon_size px (72 by default);
+ * card_padding_y / card_gap: card top-bottom padding and icon-text gap (block style values,
+ * 24px presets by default).
  * @return string Block markup.
  */
 return function (array $args) {
@@ -43,14 +50,28 @@ return function (array $args) {
     $align_attr = $stacked ? '"textAlign":"center",' : "";
     $align_class = $stacked ? " has-text-align-center" : "";
 
+    $icon_tile = $args["icon_tile"] ?? true;
+    $icon_size = (int) ($args["icon_size"] ?? 72);
+    $pad_y = $args["card_padding_y"] ?? "var:preset|spacing|50";
+    $pad_y_css = str_starts_with($pad_y, "var:preset|spacing|") ? "var(--wp--preset--spacing--" . substr($pad_y, 19) . ")" : $pad_y;
+    $card_gap = $args["card_gap"] ?? "var:preset|spacing|50";
+
     $cards = "";
     foreach ($args["items"] as $item) {
-        $cards .= '<!-- wp:group {"metadata":{"name":"Card"},"className":"feature-card' . ($stacked ? " is-stacked" : "") . '","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","right":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|50"},"blockGap":"var:preset|spacing|50"}},"backgroundColor":"' . $card_bg . '","layout":' . $card_layout . '} -->
-<div class="wp-block-group feature-card' . ($stacked ? " is-stacked" : "") . ' has-' . $card_bg . '-background-color has-background" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)"><!-- wp:group {"metadata":{"name":"Icon"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|30","right":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30"}}},"backgroundColor":"' . $icon_bg . '","layout":{"type":"flex","flexWrap":"nowrap"}} -->
+        if ($icon_tile) {
+            $icon = '<!-- wp:group {"metadata":{"name":"Icon"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|30","right":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30"}}},"backgroundColor":"' . $icon_bg . '","layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group has-' . $icon_bg . '-background-color has-background" style="padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)"><!-- wp:image {"width":"32px","height":"32px","sizeSlug":"full","linkDestination":"none"} -->
 <figure class="wp-block-image size-full is-resized"><img src="' . esc_url($item["icon"]) . '" alt="" style="width:32px;height:32px"/></figure>
 <!-- /wp:image --></div>
-<!-- /wp:group -->
+<!-- /wp:group -->';
+        } else {
+            $icon = '<!-- wp:image {"width":"' . $icon_size . 'px","height":"' . $icon_size . 'px","sizeSlug":"full","linkDestination":"none","className":"feature-card__icon"} -->
+<figure class="wp-block-image size-full is-resized feature-card__icon"><img src="' . esc_url($item["icon"]) . '" alt="" style="width:' . $icon_size . 'px;height:' . $icon_size . 'px"/></figure>
+<!-- /wp:image -->';
+        }
+
+        $cards .= '<!-- wp:group {"metadata":{"name":"Card"},"className":"feature-card' . ($stacked ? " is-stacked" : "") . '","style":{"spacing":{"padding":{"top":"' . $pad_y . '","right":"var:preset|spacing|50","bottom":"' . $pad_y . '","left":"var:preset|spacing|50"},"blockGap":"' . $card_gap . '"}},"backgroundColor":"' . $card_bg . '","layout":' . $card_layout . '} -->
+<div class="wp-block-group feature-card' . ($stacked ? " is-stacked" : "") . ' has-' . $card_bg . '-background-color has-background" style="padding-top:' . $pad_y_css . ';padding-right:var(--wp--preset--spacing--50);padding-bottom:' . $pad_y_css . ';padding-left:var(--wp--preset--spacing--50)">' . $icon . '
 
 <!-- wp:group {"metadata":{"name":"Text"},"className":"feature-card__text","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":' . $text_layout . '} -->
 <div class="wp-block-group feature-card__text"><!-- wp:heading {' . $align_attr . '"level":3,"fontSize":"h-5"} -->
@@ -75,11 +96,17 @@ return function (array $args) {
 
     $button = "";
     if (!empty($args["button"])) {
+        // Optional side padding (fixed-width buttons in the Medical design).
+        $pad_x = $args["button"]["padding_x"] ?? "";
+        $button_open = $pad_x
+            ? '<!-- wp:button {"style":{"spacing":{"padding":{"left":"' . $pad_x . '","right":"' . $pad_x . '"}}}} -->'
+            : "<!-- wp:button -->";
+        $button_style = $pad_x ? ' style="padding-right:' . $pad_x . ';padding-left:' . $pad_x . '"' : "";
         $button = '
 
 <!-- wp:buttons {"className":"is-mobile-full","style":{"spacing":{"margin":{"top":"40px"}}},"layout":{"type":"flex","justifyContent":"center"}} -->
-<div class="wp-block-buttons is-mobile-full" style="margin-top:40px"><!-- wp:button -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url($args["button"]["url"]) . '">' . esc_html($args["button"]["label"]) . '</a></div>
+<div class="wp-block-buttons is-mobile-full" style="margin-top:40px">' . $button_open . '
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url($args["button"]["url"]) . '"' . $button_style . '>' . esc_html($args["button"]["label"]) . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons -->';
     }
