@@ -35,8 +35,8 @@ return [
 <p class="health-care-stat__label has-gray-80-color has-text-color has-body-s-font-size">' . esc_html__("Daily Visitors", "medispace") . '</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"className":"health-care-stat__value","style":{"typography":{"fontSize":"28px","fontWeight":"600","lineHeight":"1.2"}},"textColor":"gray-100"} -->
-<p class="health-care-stat__value has-gray-100-color has-text-color" style="font-size:28px;font-weight:600;line-height:1.2">7,980</p>
+<!-- wp:paragraph {"className":"health-care-stat__value","style":{"typography":{"fontWeight":"600","lineHeight":"1.2"}},"textColor":"gray-100","fontSize":"h-3"} -->
+<p class="health-care-stat__value has-gray-100-color has-text-color has-h-3-font-size" style="font-weight:600;line-height:1.2">7,980</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->

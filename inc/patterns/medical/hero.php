@@ -12,8 +12,8 @@
 
 $medispace_metric = function ($value, $label) {
     return '<!-- wp:group {"metadata":{"name":"' . esc_attr($value) . '"},"className":"medical-hero__metric","style":{"spacing":{"blockGap":"6px"}},"layout":{"type":"flex","orientation":"vertical"}} -->
-<div class="wp-block-group medical-hero__metric"><!-- wp:paragraph {"className":"medical-hero__metric-value","style":{"typography":{"fontSize":"28px","fontWeight":"600","lineHeight":"1.25"}},"textColor":"primary","fontFamily":"heading"} -->
-<p class="medical-hero__metric-value has-primary-color has-text-color has-heading-font-family" style="font-size:28px;font-weight:600;line-height:1.25">' . esc_html($value) . '</p>
+<div class="wp-block-group medical-hero__metric"><!-- wp:paragraph {"className":"medical-hero__metric-value","style":{"typography":{"fontWeight":"600","lineHeight":"1.25"}},"textColor":"primary","fontSize":"h-3","fontFamily":"heading"} -->
+<p class="medical-hero__metric-value has-primary-color has-text-color has-heading-font-family has-h-3-font-size" style="font-weight:600;line-height:1.25">' . esc_html($value) . '</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"textColor":"gray-100","fontSize":"body-s"} -->

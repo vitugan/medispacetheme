@@ -55,6 +55,12 @@
 			]
 		},
 		"custom": {
+			"form": {
+				"fieldRadius": "0px",
+				"textareaRadius": "0px",
+				"buttonRadius": "0px",
+				"buttonFont": "var(--wp--preset--font-family--heading)"
+			},
 			"button": {
 				"arrow": {
 					"size": "24px",
