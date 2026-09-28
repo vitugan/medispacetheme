@@ -9,7 +9,7 @@
  */
 
 $medispace_dir = MEDISPACE_THEME_URL . "/assets/images/medical/workspaces";
-$medispace_gradient = "linear-gradient(180deg,rgba(5,29,72,1) 0%,rgba(5,29,72,0.1) 86%)";
+$medispace_gradient = "linear-gradient(180deg,rgba(5,29,72,1) 12%,rgba(5,29,72,0.1) 100%)";
 
 $medispace_card = function ($image, $title) use ($medispace_dir, $medispace_gradient) {
     $url = esc_url($medispace_dir . "/" . $image);
