@@ -11,6 +11,7 @@
       "custom": true,
       "customDuotone": false,
       "customGradient": false,
+      "defaultGradients": false,
       "defaultPalette": false,
       "palette": []
     },

@@ -19,6 +19,15 @@
 				{ "slug": "gray-30", "name": "Gray 30", "color": "#b5bcc0" },
 				{ "slug": "gray-20", "name": "Gray 20", "color": "#ced2d5" },
 				{ "slug": "white", "name": "White", "color": "#ffffff" }
+			],
+			"gradients": [
+				{ "slug": "hero-sky", "name": "Hero: sky (Home)", "gradient": "linear-gradient(180deg, #d7ecff 0%, #ebf9ff 100%)" },
+				{ "slug": "hero-mint-peach", "name": "Hero: mint to peach (Spaces)", "gradient": "linear-gradient(180deg, #e0fff7 0%, #fff2eb 100%)" },
+				{ "slug": "hero-peach-sky", "name": "Hero: peach to sky (About)", "gradient": "linear-gradient(180deg, #ffe9e0 0%, #ebf4ff 100%)" },
+				{ "slug": "hero-sky-mint", "name": "Hero: sky to mint (Pricing)", "gradient": "linear-gradient(180deg, #e0f2ff 0%, #ebffef 100%)" },
+				{ "slug": "hero-blue-green", "name": "Hero: blue to green (Blog)", "gradient": "linear-gradient(180deg, #b2dfff 0%, #ccffd8 100%)" },
+				{ "slug": "hero-lavender", "name": "Hero: lavender (Space, Contact)", "gradient": "linear-gradient(180deg, #e0e7ff 0%, #ebf9ff 100%)" },
+				{ "slug": "hero-sand-aqua", "name": "Hero: sand to aqua (Location)", "gradient": "linear-gradient(180deg, #fff6e0 0%, #ebfffd 100%)" }
 			]
 		},
 		"typography": {
