@@ -37,20 +37,6 @@
   <wp:author_last_name><![CDATA[]]></wp:author_last_name>
 </wp:author>
 <wp:category>
-  <wp:term_id>5</wp:term_id>
-  <wp:category_nicename>design</wp:category_nicename>
-  <wp:category_parent/>
-  <wp:cat_name><![CDATA[Design]]></wp:cat_name>
-  <wp:category_description><![CDATA[Blocks in the design category]]></wp:category_description>
-</wp:category>
-<wp:category>
-  <wp:term_id>6</wp:term_id>
-  <wp:category_nicename>embeds</wp:category_nicename>
-  <wp:category_parent/>
-  <wp:cat_name><![CDATA[Embeds]]></wp:cat_name>
-  <wp:category_description><![CDATA[Blocks in the embeds category]]></wp:category_description>
-</wp:category>
-<wp:category>
   <wp:term_id>17</wp:term_id>
   <wp:category_nicename>fit-outs</wp:category_nicename>
   <wp:category_parent/>
@@ -61,13 +47,6 @@
   <wp:category_nicename>interior-design</wp:category_nicename>
   <wp:category_parent/>
   <wp:cat_name><![CDATA[Interior design]]></wp:cat_name>
-</wp:category>
-<wp:category>
-  <wp:term_id>7</wp:term_id>
-  <wp:category_nicename>media</wp:category_nicename>
-  <wp:category_parent/>
-  <wp:cat_name><![CDATA[Media]]></wp:cat_name>
-  <wp:category_description><![CDATA[Blocks in the media category]]></wp:category_description>
 </wp:category>
 <wp:category>
   <wp:term_id>21</wp:term_id>
@@ -82,20 +61,6 @@
   <wp:cat_name><![CDATA[Projects]]></wp:cat_name>
 </wp:category>
 <wp:category>
-  <wp:term_id>8</wp:term_id>
-  <wp:category_nicename>text</wp:category_nicename>
-  <wp:category_parent/>
-  <wp:cat_name><![CDATA[Text]]></wp:cat_name>
-  <wp:category_description><![CDATA[Blocks in the text category]]></wp:category_description>
-</wp:category>
-<wp:category>
-  <wp:term_id>9</wp:term_id>
-  <wp:category_nicename>theme</wp:category_nicename>
-  <wp:category_parent/>
-  <wp:cat_name><![CDATA[Theme]]></wp:cat_name>
-  <wp:category_description><![CDATA[Blocks in the theme category]]></wp:category_description>
-</wp:category>
-<wp:category>
   <wp:term_id>19</wp:term_id>
   <wp:category_nicename>tips-and-guides</wp:category_nicename>
   <wp:category_parent/>
@@ -107,33 +72,6 @@
   <wp:category_parent/>
   <wp:cat_name><![CDATA[Uncategorized]]></wp:cat_name>
 </wp:category>
-<wp:category>
-  <wp:term_id>10</wp:term_id>
-  <wp:category_nicename>widgets</wp:category_nicename>
-  <wp:category_parent/>
-  <wp:cat_name><![CDATA[Widgets]]></wp:cat_name>
-  <wp:category_description><![CDATA[Blocks in the widget category]]></wp:category_description>
-</wp:category>
-<wp:tag>
-  <wp:term_id>11</wp:term_id>
-  <wp:tag_slug>block-spacing</wp:tag_slug>
-  <wp:tag_name><![CDATA[Block spacing]]></wp:tag_name>
-</wp:tag>
-<wp:tag>
-  <wp:term_id>13</wp:term_id>
-  <wp:tag_slug>blocks</wp:tag_slug>
-  <wp:tag_name><![CDATA[Blocks]]></wp:tag_name>
-</wp:tag>
-<wp:tag>
-  <wp:term_id>14</wp:term_id>
-  <wp:tag_slug>border</wp:tag_slug>
-  <wp:tag_name><![CDATA[Border]]></wp:tag_name>
-</wp:tag>
-<wp:tag>
-  <wp:term_id>12</wp:term_id>
-  <wp:tag_slug>shadow</wp:tag_slug>
-  <wp:tag_name><![CDATA[Shadow]]></wp:tag_name>
-</wp:tag>
 <wp:term>
   <wp:term_id>23</wp:term_id>
   <wp:term_taxonomy>msc_project_cat</wp:term_taxonomy>
