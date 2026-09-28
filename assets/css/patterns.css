@@ -1931,3 +1931,16 @@
 		gap: var(--wp--preset--spacing--50) !important;
 	}
 }
+
+/* Blog page cards: the 40px arrow of the design (post-cards-rounded, large_arrow). */
+.post-card-rounded .wp-block-read-more.post-card-rounded__more--lg {
+	width: 40px;
+	height: 40px;
+	background-image: url("../images/medical/icons/arrow-circle-40.svg");
+	background-size: 40px;
+}
+
+/* Rounded page numbers (Medical blog). */
+.blog-pagination.is-rounded .page-numbers {
+	border-radius: var(--wp--custom--radius--s, 16px);
+}
