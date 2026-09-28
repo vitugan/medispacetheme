@@ -1849,6 +1849,12 @@
 	height: auto;
 }
 
+/* The first section under an inner-page hero starts 80px below it in the designs (40px on
+   phones), not a full section gap. */
+.medical-page-hero + * {
+	margin-top: clamp(40px, 4.2vw, 80px) !important;
+}
+
 /* 50px under the transparent 93px header, as in the design (not the default page offset). */
 @media (min-width: 600px) {
 	body:not(.editor-styles-wrapper) header.is-overlay + main > .medical-page-hero:first-child,
@@ -1950,7 +1956,8 @@
    ========================================================================== */
 
 .medical-media h2,
-.medical-media p {
+.medical-media p,
+.medical-media .wp-block-list {
 	margin: 0;
 }
 
@@ -2298,8 +2305,10 @@
 }
 
 @media (min-width: 782px) {
+	/* Room for the 2px hover shift of the arrow, or overflow clips it. */
 	.medical-space .wp-block-read-more.medical-space__more {
 		gap: 0;
+		padding-right: 2px;
 		overflow: hidden;
 		font-size: 0;
 	}

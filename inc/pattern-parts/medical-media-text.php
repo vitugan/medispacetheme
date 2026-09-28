@@ -1,9 +1,9 @@
 <?php
 /**
  * Shared builder for Medical text + collage sections (About: Our Vision, About Doctor Office
- * Space for Rent): heading, paragraphs and an optional button next to one collage image from
- * the design (transparent PNG/WebP, the shapes are in the image). Styles: assets/css/patterns.css
- * ("Medical media and text").
+ * Space for Rent; Single Space): heading, paragraphs, an optional check list and button next to
+ * one collage image from the design (transparent PNG/WebP, the shapes are in the image).
+ * Styles: assets/css/patterns.css ("Medical media and text").
  *
  * Lives outside inc/patterns/ so the pattern auto-discovery does not register it.
  *
@@ -12,9 +12,13 @@
 
 /**
  * @param array{
- *     title:string, paragraphs:string[], image:string, image_alt?:string, image_width?:int,
- *     image_position?:"left"|"right", button?:array{label:string, url:string}
+ *     title:string, paragraphs:string[], list?:string[], image:string, image_alt?:string,
+ *     image_width?:int, image_position?:"left"|"right",
+ *     button?:array{label:string, url:string, padding_x?:string}
  * } $args
+ *
+ * list: check list items under the paragraphs (the "Check list" list style); button padding_x:
+ * the button's side padding (70px by default).
  * @return string Block markup.
  */
 return function (array $args) {
@@ -27,13 +31,28 @@ return function (array $args) {
 <!-- /wp:paragraph -->';
     }
 
+    if (!empty($args["list"])) {
+        $items = "";
+        foreach ($args["list"] as $item) {
+            $items .= '<!-- wp:list-item -->
+<li>' . esc_html($item) . '</li>
+<!-- /wp:list-item -->';
+        }
+        $paragraphs .= '
+
+<!-- wp:list {"className":"is-style-check","textColor":"gray-80"} -->
+<ul class="wp-block-list is-style-check has-gray-80-color has-text-color">' . $items . '</ul>
+<!-- /wp:list -->';
+    }
+
     $button = "";
     if (!empty($args["button"])) {
+        $pad_x = $args["button"]["padding_x"] ?? "70px";
         $button = '
 
 <!-- wp:buttons {"className":"is-mobile-full"} -->
-<div class="wp-block-buttons is-mobile-full"><!-- wp:button {"style":{"spacing":{"padding":{"left":"70px","right":"70px"}}}} -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url($args["button"]["url"]) . '" style="padding-right:70px;padding-left:70px">' . esc_html($args["button"]["label"]) . '</a></div>
+<div class="wp-block-buttons is-mobile-full"><!-- wp:button {"style":{"spacing":{"padding":{"left":"' . $pad_x . '","right":"' . $pad_x . '"}}}} -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url($args["button"]["url"]) . '" style="padding-right:' . $pad_x . ';padding-left:' . $pad_x . '">' . esc_html($args["button"]["label"]) . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons -->';
     }
