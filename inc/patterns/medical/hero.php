@@ -1,121 +1,67 @@
 <?php
 /**
- * Pattern: Hero - Medical
+ * Pattern: Hero - Medical (Home).
+ *
+ * Light-blue gradient section: heading, intro and "Schedule Tour" on the left, the photo pair
+ * on the right (one image from the design), and a white metrics panel with a rounded corner at
+ * the bottom left (phones: stacked, metrics centered). Styles: assets/css/patterns.css
+ * ("Hero - Medical").
  *
  * @package Medispace
  */
 
-$hero_photo_url = esc_url(
-    MEDISPACE_THEME_URL . "/assets/images/medical/hero/hero-collage.png",
-);
-$badge_url = esc_url(
-    MEDISPACE_THEME_URL . "/assets/images/medical/hero/trusted-badge.png",
-);
+$medispace_metric = function ($value, $label) {
+    return '<!-- wp:group {"metadata":{"name":"' . esc_attr($value) . '"},"className":"medical-hero__metric","style":{"spacing":{"blockGap":"6px"}},"layout":{"type":"flex","orientation":"vertical"}} -->
+<div class="wp-block-group medical-hero__metric"><!-- wp:paragraph {"className":"medical-hero__metric-value","style":{"typography":{"fontSize":"28px","fontWeight":"600","lineHeight":"1.25"}},"textColor":"primary","fontFamily":"heading"} -->
+<p class="medical-hero__metric-value has-primary-color has-text-color has-heading-font-family" style="font-size:28px;font-weight:600;line-height:1.25">' . esc_html($value) . '</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"textColor":"gray-100","fontSize":"body-s"} -->
+<p class="has-gray-100-color has-text-color has-body-s-font-size">' . esc_html($label) . '</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->';
+};
 
 return [
     "title" => __("Hero - Medical", "medispace"),
-    "categories" => ["medispace-medical"],
+    "categories" => ["medispace-medical", "banner"],
+    "keywords" => ["hero", "banner", "home"],
+    "viewportWidth" => 1440,
     "content" =>
-        '<!-- wp:group {"align":"full","backgroundColor":"light-blue","style":{"spacing":{"padding":{"top":"var:preset|spacing|80","bottom":"var:preset|spacing|10","left":"var:preset|spacing|100","right":"var:preset|spacing|100"}}},"layout":{"type":"constrained","contentSize":"1640px"}} -->
-<div class="wp-block-group alignfull has-light-blue-background-color has-background" style="padding-top:var(--wp--preset--spacing--80);padding-right:var(--wp--preset--spacing--100);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--100)">
+        '<!-- wp:group {"metadata":{"name":"Hero"},"align":"full","className":"medical-hero","style":{"spacing":{"padding":{"top":"clamp(40px, 4.2vw, 80px)","right":"var:preset|spacing|40","bottom":"0","left":"var:preset|spacing|40"},"blockGap":"0"},"color":{"gradient":"linear-gradient(180deg,#d7ecff 0%,#ebf9ff 100%)"}},"layout":{"type":"constrained","wideSize":"1640px"}} -->
+<div class="wp-block-group alignfull medical-hero has-background" style="background:linear-gradient(180deg,#d7ecff 0%,#ebf9ff 100%);padding-top:clamp(40px, 4.2vw, 80px);padding-right:var(--wp--preset--spacing--40);padding-bottom:0;padding-left:var(--wp--preset--spacing--40)"><!-- wp:columns {"verticalAlignment":"center","align":"wide","className":"medical-hero__columns","style":{"spacing":{"blockGap":{"top":"40px","left":"65px"}}}} -->
+<div class="wp-block-columns alignwide are-vertically-aligned-center medical-hero__columns"><!-- wp:column {"verticalAlignment":"center","width":"46%"} -->
+<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:46%"><!-- wp:group {"metadata":{"name":"Text"},"style":{"spacing":{"blockGap":"40px"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
+<div class="wp-block-group"><!-- wp:group {"metadata":{"name":"Content"},"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
+<div class="wp-block-group"><!-- wp:heading {"level":1,"style":{"typography":{"fontWeight":"600"}},"fontSize":"h-1"} -->
+<h1 class="wp-block-heading has-h-1-font-size" style="font-weight:600">' . esc_html__("Flexible Medical & Therapy Office Spaces for Rent", "medispace") . '</h1>
+<!-- /wp:heading -->
 
-	<!-- wp:columns {"verticalAlignment":"center","style":{"spacing":{"blockGap":{"left":"64px","top":"32px"}}}} -->
-	<div class="wp-block-columns are-vertically-aligned-center">
+<!-- wp:paragraph {"className":"medical-hero__text","textColor":"gray-100"} -->
+<p class="medical-hero__text has-gray-100-color has-text-color">' . esc_html__("Rent private exam rooms – daily, weekly, monthly, or annual medical office rentals", "medispace") . '</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
 
-		<!-- wp:column {"verticalAlignment":"center"} -->
-		<div class="wp-block-column is-vertically-aligned-center">
+<!-- wp:buttons {"className":"is-mobile-full"} -->
+<div class="wp-block-buttons is-mobile-full"><!-- wp:button {"style":{"spacing":{"padding":{"left":"38px","right":"38px"}}}} -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url(home_url("/contact/")) . '" style="padding-right:38px;padding-left:38px">' . esc_html__("Schedule Tour", "medispace") . '</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
+<!-- /wp:group --></div>
+<!-- /wp:column -->
 
-			<!-- wp:heading {"level":1,"fontSize":"h-1"} -->
-			<h1 class="wp-block-heading has-h-1-font-size">Flexible Medical &amp; Therapy Office Spaces for Rent</h1>
-			<!-- /wp:heading -->
+<!-- wp:column {"verticalAlignment":"center","width":"54%"} -->
+<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:54%"><!-- wp:image {"width":"838px","sizeSlug":"full","linkDestination":"none","className":"medical-hero__image"} -->
+<figure class="wp-block-image size-full is-resized medical-hero__image"><img src="' . esc_url(MEDISPACE_THEME_URL . "/assets/images/medical/hero/hero-collage.webp") . '" alt="' . esc_attr__("Treatment room and dental chair", "medispace") . '" style="width:838px"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
 
-			<!-- wp:paragraph {"fontSize":"body-m","style":{"spacing":{"margin":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|50"}}}} -->
-			<p class="has-body-m-font-size" style="margin-top:var(--wp--preset--spacing--40);margin-bottom:var(--wp--preset--spacing--50)">Rent private exam rooms &#8211; daily, weekly, monthly, or annual medical office rentals</p>
-			<!-- /wp:paragraph -->
-
-			<!-- wp:buttons -->
-			<div class="wp-block-buttons">
-				<!-- wp:button {"fontSize":"button"} -->
-				<div class="wp-block-button has-button-font-size">
-					<a class="wp-block-button__link has-button-font-size has-custom-font-size wp-element-button" href="#">Schedule Tour</a>
-				</div>
-				<!-- /wp:button -->
-			</div>
-			<!-- /wp:buttons -->
-
-		</div>
-		<!-- /wp:column -->
-
-		<!-- wp:column {"verticalAlignment":"center"} -->
-		<div class="wp-block-column is-vertically-aligned-center">
-
-			<!-- wp:image {"style":{"border":{"radius":"30px"}},"className":"medispace-hero-photo"} -->
-			<figure class="wp-block-image medispace-hero-photo has-custom-border">
-				<img src="' .
-        $hero_photo_url .
-        '" alt="Медичний кабінет" style="border-radius:30px" />
-			</figure>
-			<!-- /wp:image -->
-
-			<!-- wp:image {"className":"medispace-hero-badge"} -->
-			<figure class="wp-block-image medispace-hero-badge">
-				<img src="' .
-        $badge_url .
-        '" alt="Trusted by 100+ doctors and therapists" />
-			</figure>
-			<!-- /wp:image -->
-
-		</div>
-		<!-- /wp:column -->
-
-	</div>
-	<!-- /wp:columns -->
-
-	<!-- wp:group {"backgroundColor":"white","style":{"spacing":{"margin":{"top":"-40px"},"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|50","right":"var:preset|spacing|50"}},"border":{"radius":{"topRight":"80px"}}},"layout":{"type":"constrained"}} -->
-	<div class="wp-block-group has-white-background-color has-background" style="border-top-right-radius:80px;margin-top:-40px;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)">
-
-		<!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"50px"}}}} -->
-		<div class="wp-block-columns">
-
-			<!-- wp:column -->
-			<div class="wp-block-column">
-				<!-- wp:heading {"level":3,"fontSize":"h-3","textColor":"primary"} -->
-				<h3 class="wp-block-heading has-primary-color has-text-color has-h-3-font-size">100+</h3>
-				<!-- /wp:heading -->
-				<!-- wp:paragraph {"fontSize":"body-s"} -->
-				<p class="has-body-s-font-size">Healthcare providers launch their practices</p>
-				<!-- /wp:paragraph -->
-			</div>
-			<!-- /wp:column -->
-
-			<!-- wp:column -->
-			<div class="wp-block-column">
-				<!-- wp:heading {"level":3,"fontSize":"h-3","textColor":"primary"} -->
-				<h3 class="wp-block-heading has-primary-color has-text-color has-h-3-font-size">95%</h3>
-				<!-- /wp:heading -->
-				<!-- wp:paragraph {"fontSize":"body-s"} -->
-				<p class="has-body-s-font-size">Satisfaction rate from our clients</p>
-				<!-- /wp:paragraph -->
-			</div>
-			<!-- /wp:column -->
-
-			<!-- wp:column -->
-			<div class="wp-block-column">
-				<!-- wp:heading {"level":3,"fontSize":"h-3","textColor":"primary"} -->
-				<h3 class="wp-block-heading has-primary-color has-text-color has-h-3-font-size">200+</h3>
-				<!-- /wp:heading -->
-				<!-- wp:paragraph {"fontSize":"body-s"} -->
-				<p class="has-body-s-font-size">Fully stocked exam rooms</p>
-				<!-- /wp:paragraph -->
-			</div>
-			<!-- /wp:column -->
-
-		</div>
-		<!-- /wp:columns -->
-
-	</div>
-	<!-- /wp:group -->
-
-</div>
+<!-- wp:group {"metadata":{"name":"Metrics"},"className":"medical-hero__metrics","backgroundColor":"white","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
+<div class="wp-block-group medical-hero__metrics has-white-background-color has-background">' .
+        $medispace_metric("100+", __("Healthcare providers launch their practices", "medispace")) . "\n\n" .
+        $medispace_metric("95%", __("Satisfaction rate from our clients", "medispace")) . "\n\n" .
+        $medispace_metric("200+", __("Fully stocked exam rooms", "medispace")) . '</div>
+<!-- /wp:group --></div>
 <!-- /wp:group -->',
 ];

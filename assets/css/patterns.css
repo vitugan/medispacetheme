@@ -1701,3 +1701,66 @@
 .why-columns p {
 	margin: 0;
 }
+
+/* ==========================================================================
+   Hero - Medical (inc/patterns/medical/hero.php)
+   ========================================================================== */
+
+.medical-hero h1,
+.medical-hero p {
+	margin: 0;
+}
+
+.medical-hero .medical-hero__text {
+	max-width: 534px;
+}
+
+.medical-hero .medical-hero__image {
+	margin: 0;
+	max-width: 100%;
+}
+
+.medical-hero .medical-hero__image img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* White metrics panel: from the left edge of the screen to 590px past the wide column's start,
+   the design's 80px corner top right. 100% + 32px = the hero width (it has 16px side padding). */
+.medical-hero .medical-hero__metrics {
+	--medical-hero-inset: max(16px, (100% + 32px - 1640px) / 2);
+	box-sizing: border-box;
+	width: calc(var(--medical-hero-inset) + 590px);
+	/* !important: the constrained layout centers its children with margin: auto !important. */
+	margin: 0 0 0 -16px !important;
+	padding: 30px 0 24px var(--medical-hero-inset);
+	gap: 50px;
+	border-top-right-radius: 80px;
+}
+
+.medical-hero__metric {
+	flex: 0 0 150px;
+}
+
+.medical-hero .medical-hero__columns {
+	margin-bottom: 0;
+}
+
+@media (max-width: 781px) {
+	.medical-hero .medical-hero__metrics {
+		width: calc(100% + 32px);
+		margin-top: 40px !important;
+		padding: 32px 16px;
+		flex-direction: column;
+		align-items: center;
+		gap: 24px;
+		text-align: center;
+		border-top-right-radius: 0;
+		background: transparent !important;
+	}
+
+	.medical-hero__metric {
+		flex: none;
+		align-items: center;
+	}
+}
