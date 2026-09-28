@@ -1747,3 +1747,56 @@
 		align-items: center;
 	}
 }
+
+/* ==========================================================================
+   Header — Medical (inc/patterns/medical/header.php; shares the .site-header rules)
+   ========================================================================== */
+
+/* Phone link with the designer's icon. */
+.site-header--medical .site-header__phone {
+	margin: 0;
+	white-space: nowrap;
+}
+
+.site-header--medical .site-header__phone a {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.site-header--medical .site-header__phone a::before {
+	content: "";
+	flex: none;
+	width: 20px;
+	height: 20px;
+	background: url("../images/medical/header/icon-phone.svg") center / 20px no-repeat;
+}
+
+/* Current page in bold, as "Pricing" in the design. */
+.site-header--medical .site-header__nav .current-menu-item > .wp-block-navigation-item__content {
+	font-weight: 700;
+}
+
+/* The designer's burger (shorter middle line) instead of core's icon. */
+.site-header--medical .wp-block-navigation__responsive-container-open svg {
+	visibility: hidden;
+}
+
+.site-header--medical .wp-block-navigation__responsive-container-open {
+	width: 24px;
+	height: 24px;
+	background: url("../images/medical/header/burger.svg") center / 24px no-repeat;
+}
+
+/* The home hero is 80px under the header (not the default page offset). */
+@media (min-width: 600px) {
+	body:not(.editor-styles-wrapper) header.is-overlay + main > .medical-hero:first-child {
+		padding-top: calc(93px + clamp(40px, 4.2vw, 80px)) !important;
+	}
+}
+
+@media (max-width: 599px) {
+	.site-header--medical .site-header__nav .is-menu-open .wp-block-navigation__responsive-dialog::before {
+		background-image: url("../images/medical/logo-dark.svg");
+	}
+}
