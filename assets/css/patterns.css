@@ -1944,3 +1944,31 @@
 .blog-pagination.is-rounded .page-numbers {
 	border-radius: var(--wp--custom--radius--s, 16px);
 }
+
+/* ==========================================================================
+   Medical media and text (inc/pattern-parts/medical-media-text.php), Who we are
+   ========================================================================== */
+
+.medical-media h2,
+.medical-media p {
+	margin: 0;
+}
+
+.medical-media .medical-media__image {
+	margin: 0;
+	max-width: 100%;
+}
+
+.medical-media .medical-media__image img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Bottom margin only: the 32px block gap above the photo is its top margin. */
+.medical-who__image {
+	margin-bottom: 0;
+}
+
+.medical-who__image img {
+	border-radius: var(--wp--custom--radius--card, 0);
+}
