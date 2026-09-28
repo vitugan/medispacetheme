@@ -1575,3 +1575,49 @@
 	max-width: 100%;
 	height: auto;
 }
+
+/* ==========================================================================
+   Gallery mosaic (inc/patterns/medical/gallery.php)
+   ========================================================================== */
+
+/* Large image left (530 x 542), 2 x 2 small ones right (254 x 260), 24px gaps. Phones: the
+   large image across the top, the small ones in two columns under it. */
+.gallery-mosaic {
+	display: grid;
+	grid-template-columns: 530fr 254fr 254fr;
+	grid-auto-rows: auto;
+	gap: var(--wp--preset--spacing--50);
+}
+
+.gallery-mosaic > .gallery-mosaic__item {
+	margin: 0;
+	min-width: 0;
+	aspect-ratio: 254 / 260;
+	overflow: hidden;
+	border-radius: var(--wp--custom--radius--card, 0);
+}
+
+.gallery-mosaic > .gallery-mosaic__item:first-child {
+	grid-row: span 2;
+	aspect-ratio: auto;
+}
+
+.gallery-mosaic > .gallery-mosaic__item img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+@media (max-width: 781px) {
+	.gallery-mosaic {
+		grid-template-columns: 1fr 1fr;
+		gap: var(--wp--preset--spacing--40);
+	}
+
+	.gallery-mosaic > .gallery-mosaic__item:first-child {
+		grid-column: span 2;
+		grid-row: auto;
+		aspect-ratio: 530 / 542;
+	}
+}
