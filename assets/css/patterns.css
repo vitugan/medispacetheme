@@ -767,6 +767,17 @@
    Feature cards (inc/pattern-parts/feature-cards.php)
    ========================================================================== */
 
+/* Card corners follow the flow (custom.radius.card: square in Construction, 30px in Medical). */
+.feature-card {
+	border-radius: var(--wp--custom--radius--card, 0);
+}
+
+/* Icons that carry their own tile (Medical). */
+.feature-card .feature-card__icon {
+	margin: 0;
+	line-height: 0;
+}
+
 /* Section title in a 534px column like the design (longer titles wrap). */
 .wp-block-heading.feature-cards__title {
 	max-width: 534px;
@@ -777,6 +788,12 @@
 .feature-card > .feature-card__text {
 	flex: 1 1 240px;
 	min-width: 0;
+}
+
+/* Stacked cards: one flex line, otherwise (flex-wrap: wrap) the line is only as wide as its
+   widest child and a short text pulls the icon and text to the left. */
+.wp-block-group.feature-card.is-stacked {
+	flex-wrap: nowrap;
 }
 
 /* Stacked cards (icon above centered text): the text takes its natural height. */
