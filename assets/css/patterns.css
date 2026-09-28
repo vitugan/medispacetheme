@@ -1530,3 +1530,19 @@
 .post-card-rounded .wp-block-read-more.post-card-rounded__more:hover {
 	transform: translateX(2px);
 }
+
+/* ==========================================================================
+   Workspace cards (inc/patterns/medical/workspaces.php)
+   ========================================================================== */
+
+.workspace-card.wp-block-cover {
+	border-radius: var(--wp--custom--radius--card, 0);
+	overflow: hidden;
+	align-items: flex-start;
+}
+
+.workspace-card .wp-block-heading {
+	margin: 0;
+	font-weight: 600;
+	line-height: 1.25;
+}
