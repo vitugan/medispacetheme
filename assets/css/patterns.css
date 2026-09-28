@@ -1450,3 +1450,66 @@
 .wp-block-list.is-style-check.project-list {
 	gap: 16px;
 }
+
+/* ==========================================================================
+   Rounded post cards (inc/pattern-parts/post-cards-rounded.php, Medical)
+   ========================================================================== */
+
+/* Equal-height cards with the flow's large radius; the date row sits at the bottom. */
+.post-cards-rounded .wp-block-post-template > li {
+	min-width: 0;
+}
+
+.post-cards-rounded .wp-block-post-template > li > .post-card-rounded {
+	height: 100%;
+	border-radius: var(--wp--custom--radius--m, 30px);
+	overflow: hidden;
+}
+
+.post-card-rounded > .post-card-rounded__text {
+	flex: 1 1 auto;
+}
+
+.post-card-rounded .wp-block-post-featured-image {
+	margin: 0;
+	overflow: hidden;
+}
+
+.post-card-rounded .wp-block-post-title {
+	margin: 0;
+}
+
+/* Three lines of excerpt, as in the design. */
+.post-card-rounded .wp-block-post-excerpt__excerpt {
+	margin: 0;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden;
+}
+
+.post-card-rounded .post-card-rounded__meta {
+	margin-top: auto;
+	align-items: center;
+}
+
+.post-card-rounded__meta .wp-block-post-date {
+	margin: 0;
+}
+
+/* Round arrow link: the label stays for screen readers, the circle is the designer's icon. */
+.post-card-rounded .wp-block-read-more.post-card-rounded__more {
+	flex: none;
+	width: 36px;
+	height: 36px;
+	overflow: hidden;
+	text-indent: 100%;
+	white-space: nowrap;
+	background: url("../images/medical/icons/arrow-circle.svg") center / 36px no-repeat;
+	border-radius: 50%;
+	transition: transform 0.2s ease;
+}
+
+.post-card-rounded .wp-block-read-more.post-card-rounded__more:hover {
+	transform: translateX(2px);
+}

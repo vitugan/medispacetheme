@@ -117,7 +117,7 @@
 					"lineHeight": "1.5"
 				},
 				"border": {
-					"radius": "16px",
+					"radius": "var(--wp--custom--radius--l)",
 					"width": "1px",
 					"style": "solid",
 					"color": "var(--wp--preset--color--primary)"
