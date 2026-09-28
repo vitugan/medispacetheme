@@ -60,6 +60,9 @@
 			]
 		},
 		"custom": {
+			"checkList": {
+				"circle": "var(--wp--preset--color--dark)"
+			},
 			"button": {
 				"arrow": {
 					"size": "36px",

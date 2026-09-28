@@ -1546,3 +1546,32 @@
 	font-weight: 600;
 	line-height: 1.25;
 }
+
+/* ==========================================================================
+   Flexible booking (inc/patterns/medical/booking.php)
+   ========================================================================== */
+
+.booking-columns h2,
+.booking-columns p {
+	margin: 0;
+}
+
+/* Pricing list: label and price on the first line, the note under it; 29px lines and items
+   61px apart, as in the design. */
+.wp-block-list.is-style-check.booking-prices {
+	gap: 3px;
+}
+
+.wp-block-list.booking-prices > li {
+	line-height: 29px;
+}
+
+.booking-collage.wp-block-image {
+	margin: 0;
+	max-width: 100%;
+}
+
+.booking-collage.wp-block-image img {
+	max-width: 100%;
+	height: auto;
+}
