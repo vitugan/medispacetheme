@@ -16,13 +16,14 @@ $medispace_link = function ($label, $path) {
 };
 
 $medispace_spaces = "";
+// The demo spaces (msc_space posts of MediSpace Core).
 foreach ([
-    __("Exam Rooms", "medispace"),
-    __("Therapy Spaces", "medispace"),
-    __("Medical Procedure Rooms", "medispace"),
-    __("Bodywork Spaces", "medispace"),
-] as $label) {
-    $medispace_spaces .= $medispace_link($label, "/spaces/") . "\n";
+    "medical-exam-rooms" => __("Exam Rooms", "medispace"),
+    "therapy-spaces" => __("Therapy Spaces", "medispace"),
+    "medical-procedure-rooms" => __("Medical Procedure Rooms", "medispace"),
+    "bodywork-spaces" => __("Bodywork Spaces", "medispace"),
+] as $slug => $label) {
+    $medispace_spaces .= $medispace_link($label, "/spaces/" . $slug . "/") . "\n";
 }
 
 $medispace_cta = __("Book Now", "medispace");
