@@ -1678,3 +1678,26 @@
 .health-care-columns p {
 	margin: 0;
 }
+
+/* ==========================================================================
+   Why choose us - Medical (inc/patterns/medical/why-choose-us.php)
+   ========================================================================== */
+
+.why-card {
+	border-radius: var(--wp--custom--radius--card, 0);
+}
+
+.why-cards > .why-card {
+	height: 100%;
+}
+
+.why-card .why-card__icon {
+	margin: 0;
+	line-height: 0;
+}
+
+.why-card :is(h3, p),
+.why-columns h2,
+.why-columns p {
+	margin: 0;
+}
