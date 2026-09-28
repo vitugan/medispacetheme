@@ -1621,3 +1621,60 @@
 		aspect-ratio: 530 / 542;
 	}
 }
+
+/* ==========================================================================
+   Health care collage (inc/patterns/medical/health-care.php)
+   ========================================================================== */
+
+/* Two columns in the design's proportions (239 : 309, 16px apart), kept side by side on phones. */
+.health-care-collage > .health-care-collage__side {
+	flex: 239 1 0;
+	min-width: 0;
+}
+
+.health-care-collage > .health-care-collage__tall {
+	flex: 309 1 0;
+	min-width: 0;
+	margin: 0;
+}
+
+.health-care-collage .wp-block-image {
+	margin: 0;
+}
+
+.health-care-collage .wp-block-image img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+/* The first photo has square corners in the file; the tall one carries its arch. */
+.health-care-collage__photo img {
+	border-radius: var(--wp--custom--radius--card, 0);
+}
+
+.health-care-stat {
+	border-radius: var(--wp--custom--radius--card, 0);
+}
+
+.health-care-stat .health-care-stat__icon {
+	margin: 0 0 var(--wp--preset--spacing--50);
+	line-height: 0;
+}
+
+.health-care-stat .health-care-stat__icon img {
+	width: 60px !important;
+}
+
+.health-care-stat p {
+	margin: 0;
+}
+
+.health-care-stat .health-care-stat__label {
+	margin-bottom: 10px;
+}
+
+.health-care-columns h2,
+.health-care-columns p {
+	margin: 0;
+}
