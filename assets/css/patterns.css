@@ -1972,3 +1972,151 @@
 .medical-who__image img {
 	border-radius: var(--wp--custom--radius--card, 0);
 }
+
+/* ==========================================================================
+   Pricing table - Medical (inc/patterns/medical/pricing-table.php)
+   One card per space; from 1024px the cards become the columns of the design's table.
+   ========================================================================== */
+
+.medical-pricing > *,
+.medical-pricing .medical-pricing__cell,
+.medical-pricing .medical-pricing__cell > *,
+.medical-pricing .medical-pricing__space > * {
+	margin: 0;
+}
+
+.medical-pricing__value {
+	font-weight: 600;
+	color: var(--wp--preset--color--gray-100);
+}
+
+.medical-pricing .medical-pricing__cell:first-child .medical-pricing__value {
+	font-weight: 400;
+}
+
+/* The design's table buttons are 43px tall (the site button is 54px). */
+.medical-pricing .wp-block-button__link {
+	padding-top: 9.5px;
+	padding-bottom: 9.5px;
+	white-space: nowrap;
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+	.medical-pricing__actions .wp-block-button__link {
+		padding-right: 20px !important;
+		padding-left: 20px !important;
+	}
+}
+
+/* Phones and tablets: cards as in the mobile design. */
+@media (max-width: 1023px) {
+	.medical-pricing {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+		gap: 16px;
+	}
+
+	.medical-pricing__labels,
+	.medical-pricing__actions {
+		display: none;
+	}
+
+	.medical-pricing__space {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		padding: 16px;
+		border: 1px solid var(--wp--preset--color--gray-20);
+		border-radius: var(--wp--custom--radius--card, 0);
+	}
+
+	.medical-pricing .medical-pricing__space > .wp-block-buttons {
+		margin-top: 12px;
+	}
+
+	.medical-pricing__space .wp-block-button,
+	.medical-pricing__space .wp-block-button__link {
+		width: 100%;
+	}
+
+	.medical-pricing__label {
+		flex-shrink: 0;
+		color: var(--wp--preset--color--gray-50);
+	}
+
+	.medical-pricing__value {
+		text-align: right;
+	}
+}
+
+/* Desktop: the table. Each card is a column; subgrid keeps the rows level when a name wraps. */
+@media (min-width: 1024px) {
+	.medical-pricing {
+		display: grid;
+		grid-template-columns: 224fr 242fr 224fr 224fr 224fr 224fr;
+		grid-template-rows: repeat(4, auto);
+		border: 1px solid var(--wp--preset--color--gray-20);
+		border-radius: var(--wp--custom--radius--card, 0);
+		overflow: hidden;
+	}
+
+	.medical-pricing > * {
+		grid-row: 1 / -1;
+		display: grid;
+		grid-template-rows: subgrid;
+		margin: 0;
+	}
+
+	.medical-pricing .medical-pricing__cell {
+		display: flex;
+		align-items: center;
+		box-sizing: border-box;
+		min-height: 77px;
+		padding: 16px 14px;
+		border-top: 1px solid var(--wp--preset--color--gray-20);
+		color: var(--wp--preset--color--gray-100);
+	}
+
+	.medical-pricing .medical-pricing__cell:first-child {
+		border-top: 0;
+		background: var(--wp--preset--color--light-blue);
+	}
+
+	.medical-pricing__labels .medical-pricing__cell {
+		padding-left: 24px;
+	}
+
+	.medical-pricing__actions .medical-pricing__cell {
+		justify-content: center;
+	}
+
+	.medical-pricing__label,
+	.medical-pricing__space > .wp-block-buttons {
+		display: none;
+	}
+}
+
+/* ==========================================================================
+   Rental coverage - Medical (inc/patterns/medical/pricing-coverage.php)
+   ========================================================================== */
+
+.medical-coverage__card {
+	border-radius: var(--wp--custom--radius--card, 0);
+}
+
+/* Bottom margin only: the 24px block gap under the card title is the list's top margin. */
+.medical-coverage__card > * {
+	margin-bottom: 0;
+}
+
+.wp-block-list.medical-coverage__list {
+	gap: 16px;
+}
+
+.medical-coverage__list.is-included > li::before {
+	background: url("../images/medical/pricing/icon-check.svg") center / 24px no-repeat;
+}
+
+.medical-coverage__list.is-excluded > li::before {
+	background: url("../images/medical/pricing/icon-cross.svg") center / 24px no-repeat;
+}
