@@ -1198,12 +1198,13 @@
 	box-sizing: border-box;
 	padding: 18px 16px;
 	border: 1px solid var(--wp--preset--color--gray-20);
-	border-radius: 0;
+	/* custom.form.* per flow: square in Construction, pill fields in Medical. */
+	border-radius: var(--wp--custom--form--field-radius, 0);
 	background: var(--wp--preset--color--white);
 	color: var(--wp--preset--color--gray-100);
 	font-family: inherit;
-	font-size: var(--wp--preset--font-size--body-s);
-	font-weight: 500;
+	font-size: var(--wp--custom--form--field-font-size, var(--wp--preset--font-size--body-s));
+	font-weight: var(--wp--custom--form--field-font-weight, 500);
 	line-height: 1.4;
 }
 
@@ -1215,6 +1216,7 @@
 .medispace-form textarea {
 	height: 92px;
 	resize: vertical;
+	border-radius: var(--wp--custom--form--textarea-radius, 0);
 }
 
 .medispace-form input:focus,
@@ -1229,9 +1231,10 @@
 	min-width: 232px;
 	padding: 15px 23px;
 	border: 1px solid var(--wp--preset--color--primary);
+	border-radius: var(--wp--custom--form--button-radius, 0);
 	background: var(--wp--preset--color--primary);
 	color: var(--wp--preset--color--white);
-	font-family: var(--wp--preset--font-family--heading);
+	font-family: var(--wp--custom--form--button-font, var(--wp--preset--font-family--heading));
 	font-size: var(--wp--preset--font-size--button);
 	font-weight: 600;
 	cursor: pointer;
@@ -1864,5 +1867,67 @@
 
 	body:not(.editor-styles-wrapper) header.is-overlay:not(.is-scrolled) .site-header--medical .site-header__nav .wp-block-navigation-item__content:hover {
 		color: var(--wp--preset--color--primary);
+	}
+}
+
+/* ==========================================================================
+   Contact - Medical (inc/patterns/medical/contact.php)
+   ========================================================================== */
+
+.medical-contact h2,
+.medical-contact h3,
+.medical-contact p {
+	margin: 0;
+}
+
+.medical-contact .wp-block-image {
+	margin: 0;
+	line-height: 0;
+}
+
+.medical-contact .medical-contact__icon {
+	flex: none;
+}
+
+/* Thin vertical dividers between the details (desktop). */
+@media (min-width: 782px) {
+	.medical-contact__details {
+		flex-wrap: nowrap !important;
+	}
+
+	.medical-contact__details > .medical-contact__detail + .medical-contact__detail {
+		padding-left: 40px;
+		border-left: 1px solid var(--wp--preset--color--gray-20);
+	}
+
+	.medical-contact__details > .medical-contact__detail:last-child p:last-child {
+		max-width: 215px;
+	}
+}
+
+/* Side margins only: the section's 32px block gap sits in the top margin. */
+.medical-contact .medical-contact__rule {
+	width: 100%;
+	height: 1px;
+	margin-left: 0;
+	margin-right: 0;
+	border: 0;
+}
+
+.medical-contact .medical-contact__columns {
+	margin-bottom: 0;
+}
+
+.medical-contact__card {
+	height: 100%;
+	box-sizing: border-box;
+	border-radius: var(--wp--custom--radius--card, 0);
+}
+
+@media (max-width: 781px) {
+	.medical-contact__details {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--wp--preset--spacing--50) !important;
 	}
 }

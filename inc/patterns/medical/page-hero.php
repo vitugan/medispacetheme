@@ -41,7 +41,7 @@ return [
 
 <!-- wp:column {"verticalAlignment":"center","width":"55%"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:55%"><!-- wp:image {"width":"810px","sizeSlug":"full","linkDestination":"none","align":"right","className":"medical-page-hero__image"} -->
-<figure class="wp-block-image alignright size-full is-resized medical-page-hero__image"><img src="' . esc_url(MEDISPACE_THEME_URL . "/assets/images/medical/page-hero/office.webp") . '" alt="" style="width:810px"/></figure>
+<figure class="wp-block-image alignright size-full is-resized medical-page-hero__image"><img src="' . esc_url(MEDISPACE_THEME_URL . "/assets/images/medical/page-hero/contact.webp") . '" alt="" style="width:810px"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
