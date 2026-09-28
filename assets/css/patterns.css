@@ -2120,3 +2120,109 @@
 .medical-coverage__list.is-excluded > li::before {
 	background: url("../images/medical/pricing/icon-cross.svg") center / 24px no-repeat;
 }
+
+/* ==========================================================================
+   Location - Medical (inc/patterns/medical/location-map.php, location-features.php)
+   ========================================================================== */
+
+/* The design's grey street map: SVG lookup filter from inc/map-tint.php (the marker keeps its
+   colors: it is in the marker pane). */
+.medical-location-map .leaflet-tile-pane {
+	filter: url(#medispace-map-tint-medical);
+}
+
+/* No content over this map: on phones the plugin sets the height to auto and stacks the map
+   with a 300px minimum; keep 558px as in the mobile design (the block's height still applies
+   on larger screens when it is taller). */
+.medical-location-map {
+	min-height: 558px;
+	overflow: hidden;
+}
+
+.medical-location-map .cover-map__background {
+	position: absolute !important;
+	inset: 0;
+	min-height: 0 !important;
+}
+
+.medical-location-map .cover-map__content {
+	display: none;
+}
+
+/* Navy band: four points divided by thin lines (stacked with horizontal lines on phones). */
+.medical-location-features {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	padding: 40px;
+	border-radius: var(--wp--custom--radius--card, 0);
+}
+
+.medical-location-features > .medical-location-features__item {
+	margin: 0;
+	padding: 0 26px;
+	border-left: 1px solid #9ca6ab;
+}
+
+.medical-location-features > .medical-location-features__item:first-child {
+	padding-left: 0;
+	border-left: 0;
+}
+
+.medical-location-features > .medical-location-features__item:last-child {
+	padding-right: 0;
+}
+
+.medical-location-features__item > * {
+	margin: 0;
+}
+
+.medical-location-features__item .wp-block-image {
+	flex-shrink: 0;
+}
+
+@media (max-width: 1199px) {
+	.medical-location-features {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		row-gap: 32px;
+	}
+
+	.medical-location-features > .medical-location-features__item:nth-child(odd) {
+		padding-left: 0;
+		border-left: 0;
+	}
+
+	.medical-location-features > .medical-location-features__item:nth-child(even) {
+		padding-right: 0;
+	}
+}
+
+@media (max-width: 599px) {
+	/* Full-bleed band as in the mobile design. */
+	.medical-location-band {
+		padding-right: 0 !important;
+		padding-left: 0 !important;
+	}
+
+	.medical-location-features {
+		grid-template-columns: minmax(0, 1fr);
+		row-gap: 0;
+		padding: 24px;
+		border-radius: 0;
+	}
+
+	.medical-location-features > .medical-location-features__item,
+	.medical-location-features > .medical-location-features__item:nth-child(n) {
+		padding: 24px 0;
+		border-left: 0;
+		border-top: 1px solid #9ca6ab;
+	}
+
+	.medical-location-features > .medical-location-features__item:first-child {
+		padding-top: 0;
+		border-top: 0;
+	}
+
+	.medical-location-features > .medical-location-features__item:last-child {
+		padding-bottom: 0;
+	}
+}
