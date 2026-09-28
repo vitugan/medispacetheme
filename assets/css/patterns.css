@@ -361,6 +361,10 @@
 	max-width: 304px;
 }
 
+.medical-footer__info p {
+	line-height: 25px;
+}
+
 /* The design's menu block is 396px wide, which puts it at the same distance from both sides. */
 @media (min-width: 782px) {
 	.medical-footer__menu {
@@ -390,9 +394,7 @@
 	flex: none;
 	width: 24px;
 	height: 24px;
-	background: var(--wp--preset--color--primary);
-	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center / 24px no-repeat;
-	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center / 24px no-repeat;
+	background: url("../images/medical/footer/chevron-right.svg") center / 24px no-repeat;
 }
 
 .footer-nav--chevron .wp-block-navigation-item__content:hover,
@@ -400,10 +402,15 @@
 	color: var(--wp--preset--color--primary);
 }
 
-/* Rounded tiles and social squares, as everything in the Medical flow. */
+/* Rounded tiles and social squares, as everything in the Medical flow. The separator between
+   the legal links stays grey (the links themselves are blue). */
+.medical-footer__legal p {
+	color: var(--wp--preset--color--gray-30);
+}
+
 .medical-footer .footer-contact__icon {
 	flex: none;
-	border-radius: 8px;
+	border-radius: 12px;
 }
 
 .medical-footer .footer-contact__icon .wp-block-image {
