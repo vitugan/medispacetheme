@@ -19,7 +19,7 @@ return [
     "content" =>
         '<!-- wp:group {"metadata":{"name":"Blog"},"align":"full","style":{"spacing":{"margin":{"top":"clamp(40px, 4.17vw, 80px)","bottom":"var(--wp--custom--section-gap)"},"padding":{"right":"var:preset|spacing|40","left":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull" style="margin-top:clamp(40px, 4.17vw, 80px);margin-bottom:var(--wp--custom--section-gap);padding-right:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)"><!-- wp:query {"queryId":7,"query":{"inherit":true},"metadata":{"name":"Posts"},"className":"post-cards-rounded"} -->
-<div class="wp-block-query post-cards-rounded">' . $medispace_post_cards(["large_arrow" => true]) . '
+<div class="wp-block-query post-cards-rounded">' . $medispace_post_cards(["large_arrow" => true, "reveal_label" => __("Learn more", "medispace")]) . '
 
 <!-- wp:query-pagination {"paginationArrow":"chevron","className":"blog-pagination is-rounded","style":{"spacing":{"margin":{"top":"32px"}}},"layout":{"type":"flex","justifyContent":"center"}} -->
 <!-- wp:query-pagination-previous {"label":" "} /-->

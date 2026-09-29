@@ -1575,7 +1575,7 @@
 /* ==========================================================================
    Reveal arrow ("reveal-стрілка"): add className "reveal-arrow" to a core/read-more block (or any
    link). The 36px arrow alone; its label slides out to the left on hover / keyboard focus, and is
-   always shown on phones and touch screens. Secondary_text2 in the Medical design (133 x 36 with
+   always shown on phones and touch screens; "is-lg": the 40px arrow. Secondary_text2 in the Medical design (133 x 36 with
    "Learn more"). The arrow is ::after; the link, pinned to its right edge (flex-end), clips the
    label while it is 36px wide.
    ========================================================================== */
@@ -1606,13 +1606,26 @@
 	background: url("../images/medical/icons/arrow-circle.svg") center / 36px no-repeat;
 }
 
+/* 40px arrow (Medical blog page cards). */
+.reveal-arrow.is-lg {
+	max-width: 40px;
+}
+
+.reveal-arrow.is-lg::after {
+	width: 40px;
+	height: 40px;
+	background-image: url("../images/medical/icons/arrow-circle-40.svg");
+	background-size: 40px;
+}
+
 .reveal-arrow:hover,
 .reveal-arrow:focus-visible {
 	max-width: 300px;
 }
 
 @media (max-width: 599px), (hover: none) {
-	.reveal-arrow {
+	.reveal-arrow,
+	.reveal-arrow.is-lg {
 		max-width: none;
 	}
 }

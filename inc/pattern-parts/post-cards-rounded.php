@@ -22,7 +22,7 @@
 return function (array $args = []) {
     $columns = (int) ($args["columns"] ?? 3);
     $more_class = !empty($args["reveal_label"])
-        ? "reveal-arrow"
+        ? "reveal-arrow" . (!empty($args["large_arrow"]) ? " is-lg" : "")
         : "post-card-rounded__more" . (!empty($args["large_arrow"]) ? " post-card-rounded__more--lg" : "");
     $more_label = $args["reveal_label"] ?? __("Read more", "medispace");
 
