@@ -1518,6 +1518,13 @@
 	flex: 1 1 auto;
 }
 
+/* Phones: 16px around the text (!important: the group's inline padding). */
+@media (max-width: 599px) {
+	.post-card-rounded > .post-card-rounded__text {
+		padding: 16px !important;
+	}
+}
+
 .post-card-rounded .wp-block-post-featured-image {
 	margin: 0;
 	overflow: hidden;
