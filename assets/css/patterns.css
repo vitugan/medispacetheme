@@ -822,6 +822,16 @@
 	.medispace-flow-medical .feature-card.is-stacked :is(h3, p).has-text-align-center {
 		text-align: left;
 	}
+
+	/* 16px all round, 56px icons (!important: the card's and the image's inline sizes). */
+	.medispace-flow-medical .wp-block-group.feature-card.is-stacked {
+		padding: 16px !important;
+	}
+
+	.medispace-flow-medical .feature-card.is-stacked .feature-card__icon img {
+		width: 56px !important;
+		height: 56px !important;
+	}
 }
 
 /* ==========================================================================
