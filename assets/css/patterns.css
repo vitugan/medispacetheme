@@ -1813,6 +1813,25 @@
 	background: url("../images/medical/header/burger.svg") center / 24px no-repeat;
 }
 
+@media (min-width: 600px) {
+	/* Menu centered on the screen, not in the space left between the logo and the contact block:
+	   equal side columns. They never shrink below their content (max-content: the logo image
+	   would collapse otherwise), so a tight bar shifts or wraps the menu instead of overlapping. */
+	.site-header--medical .site-header__brand,
+	.site-header--medical .site-header__cta {
+		flex: 1 1 0;
+		min-width: max-content;
+	}
+
+	.site-header--medical .site-header__cta {
+		justify-content: flex-end;
+	}
+
+	.site-header--medical .site-header__nav {
+		flex: 0 1 auto;
+	}
+}
+
 /* The home hero is 80px under the header (not the default page offset). */
 @media (min-width: 600px) {
 	body:not(.editor-styles-wrapper) header.is-overlay + main > .medical-hero:first-child {
