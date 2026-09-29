@@ -168,119 +168,121 @@
 	.site-header .site-header__nav {
 		flex: 0 0 auto;
 	}
+}
 
-	/* Overlay: logo top-left (decorative - the navigation block cannot hold an image),
-	   centered links, full-width CTA pinned to the bottom. */
-	.site-header .site-header__nav .is-menu-open .wp-block-navigation__responsive-dialog::before {
-		content: "";
-		position: absolute;
-		top: 20px;
-		left: var(--wp--preset--spacing--40);
-		width: 123px;
-		height: 20px;
-		background: url("../images/construction/header/logo-dark.svg") left center / contain no-repeat;
-	}
+/* Overlay menu (the burger is shown below 600px, or wider where a flow asks for it). Every rule
+   depends on .is-menu-open, so no media query: it styles the overlay at whatever width it opens. */
+/* Logo top-left (decorative - the navigation block cannot hold an image),
+   centered links, full-width CTA pinned to the bottom. */
+.site-header .site-header__nav .is-menu-open .wp-block-navigation__responsive-dialog::before {
+	content: "";
+	position: absolute;
+	top: 20px;
+	left: var(--wp--preset--spacing--40);
+	width: 123px;
+	height: 20px;
+	background: url("../images/construction/header/logo-dark.svg") left center / contain no-repeat;
+}
 
-	/* Links start 40px under the 60px bar, as in the design. */
-	.site-header .site-header__nav .is-menu-open .wp-block-navigation__responsive-container-content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		min-height: 100dvh;
-		padding-top: 100px !important;
-		padding-bottom: 40px;
-		box-sizing: border-box;
-	}
+/* Links start 40px under the 60px bar, as in the design. */
+.site-header .site-header__nav .is-menu-open .wp-block-navigation__responsive-container-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 100dvh;
+	padding-top: 100px !important;
+	padding-bottom: 40px;
+	box-sizing: border-box;
+}
 
-	/* Close button where the burger was: centered on the bar (60px), 16px from the right edge. */
-	.site-header .site-header__nav .is-menu-open .wp-block-navigation__responsive-container-close {
-		top: 18px;
-		right: var(--wp--preset--spacing--40);
-		width: 24px;
-		height: 24px;
-	}
+/* Close button where the burger was: centered on the bar (60px), 16px from the right edge. */
+.site-header .site-header__nav .is-menu-open .wp-block-navigation__responsive-container-close {
+	top: 18px;
+	right: var(--wp--preset--spacing--40);
+	width: 24px;
+	height: 24px;
+}
 
-	/* Never wider than the screen, whatever the page content does. */
-	.site-header .site-header__nav .wp-block-navigation__responsive-container.is-menu-open {
-		width: 100%;
-		max-width: 100%;
-		overflow-x: hidden;
-		box-sizing: border-box;
-	}
+/* Never wider than the screen, whatever the page content does. */
+.site-header .site-header__nav .wp-block-navigation__responsive-container.is-menu-open {
+	width: 100%;
+	max-width: 100%;
+	overflow-x: hidden;
+	box-sizing: border-box;
+}
 
-	/* Services: collapsed until tapped (assets/js/header.js), chevron turns, light-blue panel. */
-	.site-header .site-header__nav .is-menu-open .has-child {
-		align-self: stretch;
-		align-items: center;
-	}
+/* Services: collapsed until tapped (assets/js/header.js), chevron turns, light-blue panel. */
+.site-header .site-header__nav .is-menu-open .has-child {
+	align-self: stretch;
+	align-items: center;
+}
 
-	.site-header .site-header__nav .is-menu-open .has-child:not(.is-expanded) > .wp-block-navigation__submenu-container {
-		display: none !important;
-	}
+.site-header .site-header__nav .is-menu-open .has-child:not(.is-expanded) > .wp-block-navigation__submenu-container {
+	display: none !important;
+}
 
-	.site-header .site-header__nav .is-menu-open .has-child > .wp-block-navigation-submenu__toggle {
-		display: none !important;
-	}
+.site-header .site-header__nav .is-menu-open .has-child > .wp-block-navigation-submenu__toggle {
+	display: none !important;
+}
 
-	.site-header .site-header__nav .is-menu-open .has-child > .wp-block-navigation-item__content {
-		display: inline-flex;
-		align-items: center;
-		gap: 4px;
-	}
+.site-header .site-header__nav .is-menu-open .has-child > .wp-block-navigation-item__content {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+}
 
-	.site-header .site-header__nav .is-menu-open .has-child > .wp-block-navigation-item__content::after {
-		content: "";
-		width: 16px;
-		height: 16px;
-		background-color: currentColor;
-		-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E") center / contain no-repeat;
-		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E") center / contain no-repeat;
-		transition: transform 0.2s ease;
-	}
+.site-header .site-header__nav .is-menu-open .has-child > .wp-block-navigation-item__content::after {
+	content: "";
+	width: 16px;
+	height: 16px;
+	background-color: currentColor;
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E") center / contain no-repeat;
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E") center / contain no-repeat;
+	transition: transform 0.2s ease;
+}
 
-	.site-header .site-header__nav .is-menu-open .has-child.is-expanded > .wp-block-navigation-item__content {
-		color: var(--wp--preset--color--primary);
-	}
+.site-header .site-header__nav .is-menu-open .has-child.is-expanded > .wp-block-navigation-item__content {
+	color: var(--wp--preset--color--primary);
+}
 
-	.site-header .site-header__nav .is-menu-open .has-child.is-expanded > .wp-block-navigation-item__content::after {
-		transform: rotate(180deg);
-	}
+.site-header .site-header__nav .is-menu-open .has-child.is-expanded > .wp-block-navigation-item__content::after {
+	transform: rotate(180deg);
+}
 
-	.site-header .site-header__nav .is-menu-open .has-child.is-expanded > .wp-block-navigation__submenu-container {
-		display: flex !important;
-		align-items: center;
-		width: 100vw !important;
-		margin-left: calc(50% - 50vw) !important;
-		margin-top: var(--wp--preset--spacing--40);
-		padding: var(--wp--preset--spacing--40) 0 !important;
-		background-color: var(--wp--preset--color--light-blue) !important;
-		gap: var(--wp--preset--spacing--30);
-	}
+.site-header .site-header__nav .is-menu-open .has-child.is-expanded > .wp-block-navigation__submenu-container {
+	display: flex !important;
+	align-items: center;
+	width: 100vw !important;
+	margin-left: calc(50% - 50vw) !important;
+	margin-top: var(--wp--preset--spacing--40);
+	padding: var(--wp--preset--spacing--40) 0 !important;
+	background-color: var(--wp--preset--color--light-blue) !important;
+	gap: var(--wp--preset--spacing--30);
+}
 
-	.site-header .site-header__nav .is-menu-open .wp-block-navigation__container {
-		align-self: stretch;
-		width: 100%;
-		align-items: center;
-		gap: var(--wp--preset--spacing--50);
-	}
+.site-header .site-header__nav .is-menu-open .wp-block-navigation__container {
+	align-self: stretch;
+	width: 100%;
+	align-items: center;
+	gap: var(--wp--preset--spacing--50);
+}
 
-	.site-header .site-header__nav .is-menu-open .site-header__menu-cta {
-		margin-top: auto;
-		width: 100%;
-		box-sizing: border-box;
-		padding: 0 var(--wp--preset--spacing--40);
-	}
+.site-header .site-header__nav .is-menu-open .site-header__menu-cta {
+	margin-top: auto;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 var(--wp--preset--spacing--40);
+}
 
-	/* In the overlay the submenu is an inline list, not a floating panel. */
-	.site-header .site-header__nav .is-menu-open .wp-block-navigation__submenu-container {
-		box-shadow: none;
-		padding: var(--wp--preset--spacing--30) 0 0;
-	}
+/* In the overlay the submenu is an inline list, not a floating panel. */
+.site-header .site-header__nav .is-menu-open .wp-block-navigation__submenu-container {
+	box-shadow: none;
+	padding: var(--wp--preset--spacing--30) 0 0;
+}
 
-	.site-header .site-header__nav .is-menu-open .site-header__menu-cta .wp-block-button,
-	.site-header .site-header__nav .is-menu-open .site-header__menu-cta .wp-block-button__link {
-		width: 100%;
-	}
+.site-header .site-header__nav .is-menu-open .site-header__menu-cta .wp-block-button,
+.site-header .site-header__nav .is-menu-open .site-header__menu-cta .wp-block-button__link {
+	width: 100%;
 }
 
 /* ==========================================================================
@@ -1818,10 +1820,15 @@
 	background: url("../images/medical/header/burger.svg") center / 24px no-repeat;
 }
 
+/* Three widths (the menu has 7 items plus the phone and "Book Now", core only collapses it below 600px):
+   - 1380px and up: the full bar of the design, menu centered on the screen;
+   - 1100-1379px: the phone shrinks to its icon (still a tel: link), the menu stays centered on one line;
+   - below 1100px: the burger, as on phones, with the phone and "Book Now" kept in the bar
+     (the phone as its icon again below 700px, where the number no longer fits). */
 @media (min-width: 600px) {
 	/* Menu centered on the screen, not in the space left between the logo and the contact block:
 	   equal side columns. They never shrink below their content (max-content: the logo image
-	   would collapse otherwise), so a tight bar shifts or wraps the menu instead of overlapping. */
+	   would collapse otherwise), so a tight bar shifts the menu instead of overlapping. */
 	.site-header--medical .site-header__brand,
 	.site-header--medical .site-header__cta {
 		flex: 1 1 0;
@@ -1837,6 +1844,32 @@
 	}
 }
 
+@media (min-width: 1100px) and (max-width: 1379px), (min-width: 600px) and (max-width: 699px) {
+	/* Phone number hidden visually, kept for screen readers; the icon stays as the link. */
+	.site-header--medical .site-header__phone a {
+		gap: 0;
+		font-size: 0;
+	}
+}
+
+@media (min-width: 600px) and (max-width: 1099px) {
+	/* Core's desktop state switched back to the collapsed one: burger shown, inline menu hidden. */
+	.site-header--medical .site-header__nav .wp-block-navigation__responsive-container-open:not(.always-shown) {
+		display: flex;
+	}
+
+	.site-header--medical .site-header__nav .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+		display: none;
+	}
+
+	/* Burger at the right edge, after the phone and "Book Now" (the nav element only: core repeats
+	   its classes on the inner list, which must keep its order in the overlay). */
+	.site-header--medical nav.site-header__nav {
+		order: 1;
+		flex: 0 0 auto;
+	}
+}
+
 /* The home hero is 80px under the header (not the default page offset). */
 @media (min-width: 600px) {
 	body:not(.editor-styles-wrapper) header.is-overlay + main > .medical-hero:first-child {
@@ -1844,15 +1877,13 @@
 	}
 }
 
-@media (max-width: 599px) {
-	.site-header--medical .site-header__nav .is-menu-open .wp-block-navigation__responsive-dialog::before {
-		background-image: url("../images/medical/logo-dark.svg");
-	}
+/* Overlay menu: the Medical logo and its own chevron (drawn with ::after) in the brand blue. */
+.site-header--medical .site-header__nav .is-menu-open .wp-block-navigation__responsive-dialog::before {
+	background-image: url("../images/medical/logo-dark.svg");
+}
 
-	/* Overlay menu: its own chevron (drawn with ::after), same blue. */
-	.site-header.site-header--medical .site-header__nav .is-menu-open .has-child > .wp-block-navigation-item__content::after {
-		background-color: var(--wp--preset--color--primary);
-	}
+.site-header.site-header--medical .site-header__nav .is-menu-open .has-child > .wp-block-navigation-item__content::after {
+	background-color: var(--wp--preset--color--primary);
 }
 
 /* ==========================================================================
