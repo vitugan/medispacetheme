@@ -73,6 +73,17 @@
 	border-color: var(--wp--preset--color--primary-pressed);
 }
 
+/* With a primary border ("View Pricing", Medical Contact): hover fills the button with the border
+   color, the text stays white. */
+.wp-block-button.is-style-outline-light > .wp-block-button__link.has-primary-border-color:hover,
+.wp-block-button.is-style-outline-light > .wp-block-button__link.has-primary-border-color:focus {
+	background-color: var(--wp--preset--color--primary);
+}
+
+.wp-block-button.is-style-outline-light > .wp-block-button__link.has-primary-border-color:active {
+	background-color: var(--wp--preset--color--primary-pressed);
+}
+
 .wp-block-button.is-style-outline > .wp-block-button__link[aria-disabled="true"],
 .wp-block-button.is-style-outline-light > .wp-block-button__link[aria-disabled="true"] {
 	background-color: transparent;
