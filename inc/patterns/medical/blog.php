@@ -30,7 +30,7 @@ return [
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-' . $medispace_post_cards() . '
+' . $medispace_post_cards(["reveal_label" => __("Learn more", "medispace")]) . '
 
 <!-- wp:query-no-results -->
 <!-- wp:paragraph {"align":"center"} -->

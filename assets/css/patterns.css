@@ -1565,6 +1565,47 @@
 	transform: translateX(2px);
 }
 
+/* Home "Latest News" (reveal_label): the same arrow, with "Learn more" sliding out to its left
+   on hover and always shown on phones. The arrow moves to ::after; the link, pinned to its
+   right edge (flex-end), clips the text while it is 36px wide. */
+.post-card-rounded .wp-block-read-more.post-card-rounded__more--reveal {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 8px;
+	width: auto;
+	max-width: 36px;
+	text-indent: 0;
+	background: none;
+	border-radius: 0;
+	color: var(--wp--preset--color--primary);
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 1.3;
+	text-decoration: none;
+	transition: max-width 0.3s ease;
+}
+
+.post-card-rounded .wp-block-read-more.post-card-rounded__more--reveal::after {
+	content: "";
+	flex: none;
+	width: 36px;
+	height: 36px;
+	background: url("../images/medical/icons/arrow-circle.svg") center / 36px no-repeat;
+}
+
+.post-card-rounded .wp-block-read-more.post-card-rounded__more--reveal:hover,
+.post-card-rounded .wp-block-read-more.post-card-rounded__more--reveal:focus-visible {
+	max-width: 200px;
+	transform: none;
+}
+
+@media (max-width: 599px) {
+	.post-card-rounded .wp-block-read-more.post-card-rounded__more--reveal {
+		max-width: none;
+	}
+}
+
 /* ==========================================================================
    Workspace cards (inc/patterns/medical/workspaces.php)
    ========================================================================== */
