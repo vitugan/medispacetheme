@@ -1802,6 +1802,11 @@
 	font-weight: 700;
 }
 
+/* Submenu chevron in the brand blue. */
+.site-header--medical .site-header__nav .wp-block-navigation__submenu-icon {
+	color: var(--wp--preset--color--primary);
+}
+
 /* The designer's burger (shorter middle line) instead of core's icon. */
 .site-header--medical .wp-block-navigation__responsive-container-open svg {
 	visibility: hidden;
@@ -1842,6 +1847,11 @@
 @media (max-width: 599px) {
 	.site-header--medical .site-header__nav .is-menu-open .wp-block-navigation__responsive-dialog::before {
 		background-image: url("../images/medical/logo-dark.svg");
+	}
+
+	/* Overlay menu: its own chevron (drawn with ::after), same blue. */
+	.site-header.site-header--medical .site-header__nav .is-menu-open .has-child > .wp-block-navigation-item__content::after {
+		background-color: var(--wp--preset--color--primary);
 	}
 }
 
