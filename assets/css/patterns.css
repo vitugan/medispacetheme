@@ -1558,6 +1558,20 @@
 	line-height: 1.25;
 }
 
+/* Phones: two cards per row (164 x 236 in the design). !important: the grid layout's generated
+   columns and gap, the cover's inline min-height and padding. */
+@media (max-width: 599px) {
+	.workspace-cards {
+		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+		gap: 16px !important;
+	}
+
+	.workspace-card.wp-block-cover {
+		min-height: 236px !important;
+		padding: 24px 16px !important;
+	}
+}
+
 /* ==========================================================================
    Flexible booking (inc/patterns/medical/booking.php)
    ========================================================================== */
