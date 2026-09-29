@@ -85,6 +85,8 @@
 				"fieldRadius": "80px",
 				"textareaRadius": "30px",
 				"buttonRadius": "var(--wp--custom--radius--l)",
+				"buttonLineHeight": "1.5",
+				"submitWidth": "218px",
 				"buttonFont": "var(--wp--preset--font-family--body)",
 				"fieldFontSize": "var(--wp--preset--font-size--body-m)",
 				"fieldFontWeight": "400"

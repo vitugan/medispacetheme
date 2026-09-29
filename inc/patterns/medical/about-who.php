@@ -36,8 +36,8 @@ return [
 <!-- /wp:group -->
 
 <!-- wp:buttons {"className":"is-mobile-full","layout":{"type":"flex","justifyContent":"center"}} -->
-<div class="wp-block-buttons is-mobile-full"><!-- wp:button {"style":{"spacing":{"padding":{"left":"75px","right":"75px"}}}} -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url(home_url("/contact/")) . '" style="padding-right:75px;padding-left:75px">' . esc_html__("Book Now", "medispace") . '</a></div>
+<div class="wp-block-buttons is-mobile-full"><!-- wp:button {"style":{"spacing":{"padding":{"left":"74.54px","right":"74.54px"}}}} -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url(home_url("/contact/")) . '" style="padding-right:74.54px;padding-left:74.54px">' . esc_html__("Book Now", "medispace") . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->',

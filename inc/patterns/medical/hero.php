@@ -43,8 +43,8 @@ return [
 <!-- /wp:group -->
 
 <!-- wp:buttons {"className":"is-mobile-full"} -->
-<div class="wp-block-buttons is-mobile-full"><!-- wp:button {"style":{"spacing":{"padding":{"left":"38px","right":"38px"}}}} -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url(home_url("/contact/")) . '" style="padding-right:38px;padding-left:38px">' . esc_html__("Schedule Tour", "medispace") . '</a></div>
+<div class="wp-block-buttons is-mobile-full"><!-- wp:button {"style":{"spacing":{"padding":{"left":"36.81px","right":"36.81px"}}}} -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url(home_url("/contact/")) . '" style="padding-right:36.81px;padding-left:36.81px">' . esc_html__("Schedule Tour", "medispace") . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group --></div>

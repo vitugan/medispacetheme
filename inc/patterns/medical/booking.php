@@ -50,8 +50,8 @@ return [
 <!-- /wp:group -->
 
 <!-- wp:buttons {"className":"is-mobile-full"} -->
-<div class="wp-block-buttons is-mobile-full"><!-- wp:button {"style":{"spacing":{"padding":{"left":"34px","right":"34px"}}}} -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url(home_url("/pricing/")) . '" style="padding-right:34px;padding-left:34px">' . esc_html__("Check Pricing Details", "medispace") . '</a></div>
+<div class="wp-block-buttons is-mobile-full"><!-- wp:button {"style":{"spacing":{"padding":{"left":"33.06px","right":"33.06px"}}}} -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url(home_url("/pricing/")) . '" style="padding-right:33.06px;padding-left:33.06px">' . esc_html__("Check Pricing Details", "medispace") . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group --></div>

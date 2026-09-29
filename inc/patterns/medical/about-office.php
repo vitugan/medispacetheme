@@ -21,6 +21,6 @@ return [
         "image" => MEDISPACE_THEME_URL . "/assets/images/medical/about/office-collage.webp",
         "image_alt" => __("Clinic reception and a nurse at the front desk", "medispace"),
         "image_position" => "right",
-        "button" => ["label" => __("Book Now", "medispace"), "url" => home_url("/contact/")],
+        "button" => ["label" => __("Book Now", "medispace"), "url" => home_url("/contact/"), "padding_x" => "74.54px"],
     ]),
 ];

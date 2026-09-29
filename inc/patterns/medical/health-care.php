@@ -60,8 +60,8 @@ return [
 <!-- /wp:group -->
 
 <!-- wp:buttons {"className":"is-mobile-full"} -->
-<div class="wp-block-buttons is-mobile-full"><!-- wp:button {"style":{"spacing":{"padding":{"left":"34px","right":"34px"}}}} -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url(home_url("/about/")) . '" style="padding-right:34px;padding-left:34px">' . esc_html__("Learn More About Us", "medispace") . '</a></div>
+<div class="wp-block-buttons is-mobile-full"><!-- wp:button {"style":{"spacing":{"padding":{"left":"35.29px","right":"35.29px"}}}} -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url(home_url("/about/")) . '" style="padding-right:35.29px;padding-left:35.29px">' . esc_html__("Learn More About Us", "medispace") . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group --></div>

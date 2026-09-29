@@ -66,8 +66,8 @@ return [
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons -->
-<div class="wp-block-buttons"><!-- wp:button {"style":{"spacing":{"padding":{"left":"42px","right":"42px"}}}} -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url($medispace_cta_url) . '" style="padding-right:42px;padding-left:42px">' . esc_html($medispace_cta) . '</a></div>
+<div class="wp-block-buttons"><!-- wp:button {"style":{"spacing":{"padding":{"left":"44.54px","right":"44.54px"}}}} -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url($medispace_cta_url) . '" style="padding-right:44.54px;padding-left:44.54px">' . esc_html($medispace_cta) . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group --></div>

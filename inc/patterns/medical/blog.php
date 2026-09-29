@@ -40,8 +40,8 @@ return [
 <!-- /wp:query -->
 
 <!-- wp:buttons {"className":"is-mobile-full","layout":{"type":"flex","justifyContent":"center"}} -->
-<div class="wp-block-buttons is-mobile-full"><!-- wp:button {"style":{"spacing":{"padding":{"left":"70px","right":"70px"}}}} -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url($medispace_posts_page ? get_permalink($medispace_posts_page) : home_url("/blog/")) . '" style="padding-right:70px;padding-left:70px">' . esc_html__("View All", "medispace") . '</a></div>
+<div class="wp-block-buttons is-mobile-full"><!-- wp:button {"style":{"spacing":{"padding":{"left":"69.81px","right":"69.81px"}}}} -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url($medispace_posts_page ? get_permalink($medispace_posts_page) : home_url("/blog/")) . '" style="padding-right:69.81px;padding-left:69.81px">' . esc_html__("View All", "medispace") . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->',
