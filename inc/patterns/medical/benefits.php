@@ -60,7 +60,7 @@ return [
         "button" => [
             "label" => __("Contact Us", "medispace"),
             "url" => home_url("/contact/"),
-            "padding_x" => "70px",
+            "padding_x" => "72.85px",
         ],
     ]),
 ];

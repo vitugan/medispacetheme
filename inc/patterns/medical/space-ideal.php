@@ -31,6 +31,6 @@ return [
         "image" => MEDISPACE_THEME_URL . "/assets/images/medical/spaces/ideal-team.webp",
         "image_alt" => __("Team of healthcare professionals", "medispace"),
         "image_position" => "right",
-        "button" => ["label" => __("Check Pricing Details", "medispace"), "url" => home_url("/pricing/"), "padding_x" => "32px"],
+        "button" => ["label" => __("Check Pricing Details", "medispace"), "url" => home_url("/pricing/"), "padding_x" => "33.06px"],
     ]),
 ];

@@ -26,6 +26,6 @@ return [
             ["icon" => $medispace_icons . "/icon-feature-2.svg", "title" => __("Flexible Booking That Works for Your Schedule", "medispace"), "text" => __("You can reserve exam rooms by the hour, day, or month, giving you the freedom to scale your space usage up or down as your patient load changes. No hidden fees or rigid contracts.", "medispace")],
             ["icon" => $medispace_icons . "/icon-feature-3.svg", "title" => __("Designed for Care, Ready for You", "medispace"), "text" => __("Each space is thoughtfully laid out to support smooth clinical operations while maintaining a clean, professional look that builds patient trust.", "medispace")],
         ],
-        "button" => ["label" => __("Contact Us", "medispace"), "url" => home_url("/contact/"), "padding_x" => "72px"],
+        "button" => ["label" => __("Contact Us", "medispace"), "url" => home_url("/contact/"), "padding_x" => "72.85px"],
     ]),
 ];

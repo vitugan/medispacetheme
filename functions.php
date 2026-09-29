@@ -35,6 +35,7 @@ require MEDISPACE_THEME_PATH . "/inc/map-tint.php";
 require MEDISPACE_THEME_PATH . "/inc/page-hero.php";
 require MEDISPACE_THEME_PATH . "/inc/blog.php";
 require MEDISPACE_THEME_PATH . "/inc/portfolio.php";
+require MEDISPACE_THEME_PATH . "/inc/spaces.php";
 
 /**
  * Required plugins (MediSpace Core, Contact Form 7).

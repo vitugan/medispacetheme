@@ -13,8 +13,8 @@
 
 $medispace_book = function () {
     return '<!-- wp:buttons {"className":"is-mobile-full"} -->
-<div class="wp-block-buttons is-mobile-full"><!-- wp:button {"style":{"spacing":{"padding":{"left":"33px","right":"33px"}}}} -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url(home_url("/contact/")) . '" style="padding-right:33px;padding-left:33px">' . esc_html__("Book Now", "medispace") . '</a></div>
+<div class="wp-block-buttons is-mobile-full"><!-- wp:button {"style":{"spacing":{"padding":{"left":"47.04px","right":"47.04px"}}}} -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url(home_url("/contact/")) . '" style="padding-right:47.04px;padding-left:47.04px">' . esc_html__("Book Now", "medispace") . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons -->';
 };

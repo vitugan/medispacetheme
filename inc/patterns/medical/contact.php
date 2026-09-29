@@ -77,8 +77,8 @@ return [
 <!-- /wp:group -->
 
 <!-- wp:buttons -->
-<div class="wp-block-buttons"><!-- wp:button {"borderColor":"primary","className":"is-style-outline-light","style":{"spacing":{"padding":{"left":"60px","right":"60px"}},"typography":{"fontWeight":"500"}}} -->
-<div class="wp-block-button is-style-outline-light" style="font-weight:500"><a class="wp-block-button__link has-border-color has-primary-border-color wp-element-button" href="' . esc_url(home_url("/pricing/")) . '" style="padding-right:60px;padding-left:60px">' . esc_html__("View Pricing", "medispace") . '</a></div>
+<div class="wp-block-buttons"><!-- wp:button {"borderColor":"primary","className":"is-style-outline-light","style":{"spacing":{"padding":{"left":"59.5px","right":"59.5px"}},"typography":{"fontWeight":"500"}}} -->
+<div class="wp-block-button is-style-outline-light" style="font-weight:500"><a class="wp-block-button__link has-border-color has-primary-border-color wp-element-button" href="' . esc_url(home_url("/pricing/")) . '" style="padding-right:59.5px;padding-left:59.5px">' . esc_html__("View Pricing", "medispace") . '</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group --></div>

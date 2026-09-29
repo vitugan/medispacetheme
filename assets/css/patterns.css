@@ -51,8 +51,23 @@
 	color: var(--wp--preset--color--primary-hover);
 }
 
+/* Medical heroes (light gradients): as the light hero above. */
+.medical-page-hero .page-hero__breadcrumbs {
+	color: var(--wp--preset--color--gray-80);
+}
+
+.medical-page-hero .page-hero__breadcrumbs a {
+	color: var(--wp--preset--color--primary);
+	text-decoration: none;
+}
+
+.medical-page-hero .page-hero__breadcrumbs a:hover {
+	color: var(--wp--preset--color--primary-hover);
+}
+
 /* Core Breadcrumbs separator ("→" set on the block): full color, 8px each side. */
-.page-hero .page-hero__breadcrumbs li:not(:last-child)::after {
+.page-hero .page-hero__breadcrumbs li:not(:last-child)::after,
+.medical-page-hero .page-hero__breadcrumbs li:not(:last-child)::after {
 	margin: 0 8px;
 	opacity: 1;
 }
@@ -168,119 +183,121 @@
 	.site-header .site-header__nav {
 		flex: 0 0 auto;
 	}
+}
 
-	/* Overlay: logo top-left (decorative - the navigation block cannot hold an image),
-	   centered links, full-width CTA pinned to the bottom. */
-	.site-header .site-header__nav .is-menu-open .wp-block-navigation__responsive-dialog::before {
-		content: "";
-		position: absolute;
-		top: 20px;
-		left: var(--wp--preset--spacing--40);
-		width: 123px;
-		height: 20px;
-		background: url("../images/construction/header/logo-dark.svg") left center / contain no-repeat;
-	}
+/* Overlay menu (the burger is shown below 600px, or wider where a flow asks for it). Every rule
+   depends on .is-menu-open, so no media query: it styles the overlay at whatever width it opens. */
+/* Logo top-left (decorative - the navigation block cannot hold an image),
+   centered links, full-width CTA pinned to the bottom. */
+.site-header .site-header__nav .is-menu-open .wp-block-navigation__responsive-dialog::before {
+	content: "";
+	position: absolute;
+	top: 20px;
+	left: var(--wp--preset--spacing--40);
+	width: 123px;
+	height: 20px;
+	background: url("../images/construction/header/logo-dark.svg") left center / contain no-repeat;
+}
 
-	/* Links start 40px under the 60px bar, as in the design. */
-	.site-header .site-header__nav .is-menu-open .wp-block-navigation__responsive-container-content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		min-height: 100dvh;
-		padding-top: 100px !important;
-		padding-bottom: 40px;
-		box-sizing: border-box;
-	}
+/* Links start 40px under the 60px bar, as in the design. */
+.site-header .site-header__nav .is-menu-open .wp-block-navigation__responsive-container-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 100dvh;
+	padding-top: 100px !important;
+	padding-bottom: 40px;
+	box-sizing: border-box;
+}
 
-	/* Close button where the burger was: centered on the bar (60px), 16px from the right edge. */
-	.site-header .site-header__nav .is-menu-open .wp-block-navigation__responsive-container-close {
-		top: 18px;
-		right: var(--wp--preset--spacing--40);
-		width: 24px;
-		height: 24px;
-	}
+/* Close button where the burger was: centered on the bar (60px), 16px from the right edge. */
+.site-header .site-header__nav .is-menu-open .wp-block-navigation__responsive-container-close {
+	top: 18px;
+	right: var(--wp--preset--spacing--40);
+	width: 24px;
+	height: 24px;
+}
 
-	/* Never wider than the screen, whatever the page content does. */
-	.site-header .site-header__nav .wp-block-navigation__responsive-container.is-menu-open {
-		width: 100%;
-		max-width: 100%;
-		overflow-x: hidden;
-		box-sizing: border-box;
-	}
+/* Never wider than the screen, whatever the page content does. */
+.site-header .site-header__nav .wp-block-navigation__responsive-container.is-menu-open {
+	width: 100%;
+	max-width: 100%;
+	overflow-x: hidden;
+	box-sizing: border-box;
+}
 
-	/* Services: collapsed until tapped (assets/js/header.js), chevron turns, light-blue panel. */
-	.site-header .site-header__nav .is-menu-open .has-child {
-		align-self: stretch;
-		align-items: center;
-	}
+/* Services: collapsed until tapped (assets/js/header.js), chevron turns, light-blue panel. */
+.site-header .site-header__nav .is-menu-open .has-child {
+	align-self: stretch;
+	align-items: center;
+}
 
-	.site-header .site-header__nav .is-menu-open .has-child:not(.is-expanded) > .wp-block-navigation__submenu-container {
-		display: none !important;
-	}
+.site-header .site-header__nav .is-menu-open .has-child:not(.is-expanded) > .wp-block-navigation__submenu-container {
+	display: none !important;
+}
 
-	.site-header .site-header__nav .is-menu-open .has-child > .wp-block-navigation-submenu__toggle {
-		display: none !important;
-	}
+.site-header .site-header__nav .is-menu-open .has-child > .wp-block-navigation-submenu__toggle {
+	display: none !important;
+}
 
-	.site-header .site-header__nav .is-menu-open .has-child > .wp-block-navigation-item__content {
-		display: inline-flex;
-		align-items: center;
-		gap: 4px;
-	}
+.site-header .site-header__nav .is-menu-open .has-child > .wp-block-navigation-item__content {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+}
 
-	.site-header .site-header__nav .is-menu-open .has-child > .wp-block-navigation-item__content::after {
-		content: "";
-		width: 16px;
-		height: 16px;
-		background-color: currentColor;
-		-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E") center / contain no-repeat;
-		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E") center / contain no-repeat;
-		transition: transform 0.2s ease;
-	}
+.site-header .site-header__nav .is-menu-open .has-child > .wp-block-navigation-item__content::after {
+	content: "";
+	width: 16px;
+	height: 16px;
+	background-color: currentColor;
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E") center / contain no-repeat;
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E") center / contain no-repeat;
+	transition: transform 0.2s ease;
+}
 
-	.site-header .site-header__nav .is-menu-open .has-child.is-expanded > .wp-block-navigation-item__content {
-		color: var(--wp--preset--color--primary);
-	}
+.site-header .site-header__nav .is-menu-open .has-child.is-expanded > .wp-block-navigation-item__content {
+	color: var(--wp--preset--color--primary);
+}
 
-	.site-header .site-header__nav .is-menu-open .has-child.is-expanded > .wp-block-navigation-item__content::after {
-		transform: rotate(180deg);
-	}
+.site-header .site-header__nav .is-menu-open .has-child.is-expanded > .wp-block-navigation-item__content::after {
+	transform: rotate(180deg);
+}
 
-	.site-header .site-header__nav .is-menu-open .has-child.is-expanded > .wp-block-navigation__submenu-container {
-		display: flex !important;
-		align-items: center;
-		width: 100vw !important;
-		margin-left: calc(50% - 50vw) !important;
-		margin-top: var(--wp--preset--spacing--40);
-		padding: var(--wp--preset--spacing--40) 0 !important;
-		background-color: var(--wp--preset--color--light-blue) !important;
-		gap: var(--wp--preset--spacing--30);
-	}
+.site-header .site-header__nav .is-menu-open .has-child.is-expanded > .wp-block-navigation__submenu-container {
+	display: flex !important;
+	align-items: center;
+	width: 100vw !important;
+	margin-left: calc(50% - 50vw) !important;
+	margin-top: var(--wp--preset--spacing--40);
+	padding: var(--wp--preset--spacing--40) 0 !important;
+	background-color: var(--wp--preset--color--light-blue) !important;
+	gap: var(--wp--preset--spacing--30);
+}
 
-	.site-header .site-header__nav .is-menu-open .wp-block-navigation__container {
-		align-self: stretch;
-		width: 100%;
-		align-items: center;
-		gap: var(--wp--preset--spacing--50);
-	}
+.site-header .site-header__nav .is-menu-open .wp-block-navigation__container {
+	align-self: stretch;
+	width: 100%;
+	align-items: center;
+	gap: var(--wp--preset--spacing--50);
+}
 
-	.site-header .site-header__nav .is-menu-open .site-header__menu-cta {
-		margin-top: auto;
-		width: 100%;
-		box-sizing: border-box;
-		padding: 0 var(--wp--preset--spacing--40);
-	}
+.site-header .site-header__nav .is-menu-open .site-header__menu-cta {
+	margin-top: auto;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 var(--wp--preset--spacing--40);
+}
 
-	/* In the overlay the submenu is an inline list, not a floating panel. */
-	.site-header .site-header__nav .is-menu-open .wp-block-navigation__submenu-container {
-		box-shadow: none;
-		padding: var(--wp--preset--spacing--30) 0 0;
-	}
+/* In the overlay the submenu is an inline list, not a floating panel. */
+.site-header .site-header__nav .is-menu-open .wp-block-navigation__submenu-container {
+	box-shadow: none;
+	padding: var(--wp--preset--spacing--30) 0 0;
+}
 
-	.site-header .site-header__nav .is-menu-open .site-header__menu-cta .wp-block-button,
-	.site-header .site-header__nav .is-menu-open .site-header__menu-cta .wp-block-button__link {
-		width: 100%;
-	}
+.site-header .site-header__nav .is-menu-open .site-header__menu-cta .wp-block-button,
+.site-header .site-header__nav .is-menu-open .site-header__menu-cta .wp-block-button__link {
+	width: 100%;
 }
 
 /* ==========================================================================
@@ -809,6 +826,29 @@
 	align-content: flex-start;
 }
 
+/* Medical phones: stacked cards (Amenities, Mission, Space features) align the icon and text
+   to the left, as in the mobile designs; Construction keeps them centered. */
+@media (max-width: 599px) {
+	.medispace-flow-medical .wp-block-group.feature-card.is-stacked,
+	.medispace-flow-medical .feature-card.is-stacked > .feature-card__text {
+		align-items: flex-start;
+	}
+
+	.medispace-flow-medical .feature-card.is-stacked :is(h3, p).has-text-align-center {
+		text-align: left;
+	}
+
+	/* 16px all round, 56px icons (!important: the card's and the image's inline sizes). */
+	.medispace-flow-medical .wp-block-group.feature-card.is-stacked {
+		padding: 16px !important;
+	}
+
+	.medispace-flow-medical .feature-card.is-stacked .feature-card__icon img {
+		width: 56px !important;
+		height: 56px !important;
+	}
+}
+
 /* ==========================================================================
    Our process (inc/patterns/construction/process.php, core accordion)
    ========================================================================== */
@@ -1228,8 +1268,9 @@
 /* Submit looks like the theme's primary button (CF7 renders an <input>, not a button block). */
 .medispace-form .wpcf7-submit {
 	align-self: flex-start;
-	min-width: 232px;
+	min-width: var(--wp--custom--form--submit-width, 232px);
 	padding: 15px 23px;
+	line-height: var(--wp--custom--form--button-line-height, normal);
 	border: 1px solid var(--wp--preset--color--primary);
 	border-radius: var(--wp--custom--form--button-radius, 0);
 	background: var(--wp--preset--color--primary);
@@ -1492,6 +1533,13 @@
 	flex: 1 1 auto;
 }
 
+/* Phones: 16px around the text (!important: the group's inline padding). */
+@media (max-width: 599px) {
+	.post-card-rounded > .post-card-rounded__text {
+		padding: 16px !important;
+	}
+}
+
 .post-card-rounded .wp-block-post-featured-image {
 	margin: 0;
 	overflow: hidden;
@@ -1540,6 +1588,64 @@
 }
 
 /* ==========================================================================
+   Reveal arrow ("reveal-стрілка"): add className "reveal-arrow" to a core/read-more block (or any
+   link). The 36px arrow alone; its label slides out to the left on hover / keyboard focus, and is
+   always shown on phones and touch screens; "is-lg": the 40px arrow. Secondary_text2 in the Medical design (133 x 36 with
+   "Learn more"). The arrow is ::after; the link, pinned to its right edge (flex-end), clips the
+   label while it is 36px wide.
+   ========================================================================== */
+
+.reveal-arrow {
+	position: relative;
+	display: flex;
+	flex: none;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 8px;
+	max-width: 36px;
+	overflow: hidden;
+	color: var(--wp--preset--color--primary);
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 1.3;
+	white-space: nowrap;
+	text-decoration: none;
+	transition: max-width 0.3s ease;
+}
+
+.reveal-arrow::after {
+	content: "";
+	flex: none;
+	width: 36px;
+	height: 36px;
+	background: url("../images/medical/icons/arrow-circle.svg") center / 36px no-repeat;
+}
+
+/* 40px arrow (Medical blog page cards). */
+.reveal-arrow.is-lg {
+	max-width: 40px;
+}
+
+.reveal-arrow.is-lg::after {
+	width: 40px;
+	height: 40px;
+	background-image: url("../images/medical/icons/arrow-circle-40.svg");
+	background-size: 40px;
+}
+
+.reveal-arrow:hover,
+.reveal-arrow:focus-visible {
+	max-width: 300px;
+}
+
+@media (max-width: 599px), (hover: none) {
+	.reveal-arrow,
+	.reveal-arrow.is-lg {
+		max-width: none;
+	}
+}
+
+/* ==========================================================================
    Workspace cards (inc/patterns/medical/workspaces.php)
    ========================================================================== */
 
@@ -1553,6 +1659,20 @@
 	margin: 0;
 	font-weight: 600;
 	line-height: 1.25;
+}
+
+/* Phones: two cards per row (164 x 236 in the design). !important: the grid layout's generated
+   columns and gap, the cover's inline min-height and padding. */
+@media (max-width: 599px) {
+	.workspace-cards {
+		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+		gap: 16px !important;
+	}
+
+	.workspace-card.wp-block-cover {
+		min-height: 236px !important;
+		padding: 24px 16px !important;
+	}
 }
 
 /* ==========================================================================
@@ -1682,6 +1802,32 @@
 	margin-bottom: 10px;
 }
 
+/* Phones: a compact card as in the mobile design. !important: inline padding and the preset
+   font-size classes. */
+@media (max-width: 599px) {
+	.health-care-stat {
+		padding: 14px !important;
+	}
+
+	.health-care-stat .health-care-stat__icon {
+		margin-bottom: 14px;
+	}
+
+	.health-care-stat .health-care-stat__icon img {
+		width: 36px !important;
+		height: 36px !important;
+	}
+
+	.health-care-stat .health-care-stat__label {
+		margin-bottom: 6px;
+		font-size: 8px !important;
+	}
+
+	.health-care-stat .health-care-stat__value {
+		font-size: 18px !important;
+	}
+}
+
 .health-care-columns h2,
 .health-care-columns p {
 	margin: 0;
@@ -1708,6 +1854,13 @@
 .why-columns h2,
 .why-columns p {
 	margin: 0;
+}
+
+/* Stacked columns: title and intro centered above the cards. */
+@media (max-width: 781px) {
+	.why-columns > .wp-block-column:first-child {
+		text-align: center;
+	}
 }
 
 /* ==========================================================================
@@ -1764,7 +1917,6 @@
 		gap: 24px;
 		text-align: center;
 		border-top-right-radius: 0;
-		background: transparent !important;
 	}
 
 	.medical-hero__metric {
@@ -1802,6 +1954,11 @@
 	font-weight: 700;
 }
 
+/* Submenu chevron in the brand blue. */
+.site-header--medical .site-header__nav .wp-block-navigation__submenu-icon {
+	color: var(--wp--preset--color--primary);
+}
+
 /* The designer's burger (shorter middle line) instead of core's icon. */
 .site-header--medical .wp-block-navigation__responsive-container-open svg {
 	visibility: hidden;
@@ -1813,17 +1970,70 @@
 	background: url("../images/medical/header/burger.svg") center / 24px no-repeat;
 }
 
-/* The home hero is 80px under the header (not the default page offset). */
+/* Three widths (the menu has 7 items plus the phone and "Book Now", core only collapses it below 600px):
+   - 1380px and up: the full bar of the design, menu centered on the screen;
+   - 1100-1379px: the phone shrinks to its icon (still a tel: link), the menu stays centered on one line;
+   - below 1100px: the burger, as on phones, with the phone and "Book Now" kept in the bar
+     (the phone as its icon again below 700px, where the number no longer fits). */
 @media (min-width: 600px) {
-	body:not(.editor-styles-wrapper) header.is-overlay + main > .medical-hero:first-child {
-		padding-top: calc(93px + clamp(40px, 4.2vw, 80px)) !important;
+	/* Menu centered on the screen, not in the space left between the logo and the contact block:
+	   equal side columns. They never shrink below their content (max-content: the logo image
+	   would collapse otherwise), so a tight bar shifts the menu instead of overlapping. */
+	.site-header--medical .site-header__brand,
+	.site-header--medical .site-header__cta {
+		flex: 1 1 0;
+		min-width: max-content;
+	}
+
+	.site-header--medical .site-header__cta {
+		justify-content: flex-end;
+	}
+
+	.site-header--medical .site-header__nav {
+		flex: 0 1 auto;
 	}
 }
 
-@media (max-width: 599px) {
-	.site-header--medical .site-header__nav .is-menu-open .wp-block-navigation__responsive-dialog::before {
-		background-image: url("../images/medical/logo-dark.svg");
+@media (min-width: 1100px) and (max-width: 1379px), (min-width: 600px) and (max-width: 699px) {
+	/* Phone number hidden visually, kept for screen readers; the icon stays as the link. */
+	.site-header--medical .site-header__phone a {
+		gap: 0;
+		font-size: 0;
 	}
+}
+
+@media (min-width: 600px) and (max-width: 1099px) {
+	/* Core's desktop state switched back to the collapsed one: burger shown, inline menu hidden. */
+	.site-header--medical .site-header__nav .wp-block-navigation__responsive-container-open:not(.always-shown) {
+		display: flex;
+	}
+
+	.site-header--medical .site-header__nav .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+		display: none;
+	}
+
+	/* Burger at the right edge, after the phone and "Book Now" (the nav element only: core repeats
+	   its classes on the inner list, which must keep its order in the overlay). */
+	.site-header--medical nav.site-header__nav {
+		order: 1;
+		flex: 0 0 auto;
+	}
+}
+
+/* The home hero is 80px under the header (not the default page offset). */
+@media (min-width: 600px) {
+	body:not(.editor-styles-wrapper) header.is-overlay + main > .medical-hero:first-child {
+		padding-top: calc(93px + var(--wp--custom--hero-gap, clamp(40px, 4.2vw, 80px))) !important;
+	}
+}
+
+/* Overlay menu: the Medical logo and its own chevron (drawn with ::after) in the brand blue. */
+.site-header--medical .site-header__nav .is-menu-open .wp-block-navigation__responsive-dialog::before {
+	background-image: url("../images/medical/logo-dark.svg");
+}
+
+.site-header.site-header--medical .site-header__nav .is-menu-open .has-child > .wp-block-navigation-item__content::after {
+	background-color: var(--wp--preset--color--primary);
 }
 
 /* ==========================================================================
@@ -1849,10 +2059,31 @@
 	height: auto;
 }
 
-/* The first section under an inner-page hero starts 80px below it in the designs (40px on
-   phones), not a full section gap. */
+/* The first section under a hero (Home and inner pages) starts 80px below it in the designs
+   (40px on phones), not a full section gap; the last section sits 80px above the footer (60px
+   on phones). Tokens: settings.custom of the Medical style variation. The location band keeps
+   its own phone margins (flush with the footer). */
+.medical-hero + *,
 .medical-page-hero + * {
-	margin-top: clamp(40px, 4.2vw, 80px) !important;
+	margin-top: var(--wp--custom--hero-gap, clamp(40px, 4.2vw, 80px)) !important;
+}
+
+.medispace-flow-medical main > :last-child:not(.wp-block-post-content):not(.medical-location-band),
+.medispace-flow-medical main > .wp-block-post-content:last-child > :last-child:not(.medical-location-band) {
+	margin-bottom: var(--wp--custom--footer-gap, var(--wp--custom--section-gap)) !important;
+}
+
+/* Post content followed by more sections (Single Space: the map and band): it is a flow-root, so
+   its last section's bottom margin would add to the next section's top margin (2 x gap). */
+.medispace-flow-medical main > .wp-block-post-content:not(:last-child) > :last-child {
+	margin-bottom: 0 !important;
+}
+
+@media (min-width: 600px) {
+	.medispace-flow-medical main > .medical-location-band:last-child,
+	.medispace-flow-medical main > .wp-block-post-content:last-child > .medical-location-band:last-child {
+		margin-bottom: var(--wp--custom--footer-gap, var(--wp--custom--section-gap)) !important;
+	}
 }
 
 /* 50px under the transparent 93px header, as in the design (not the default page offset). */
@@ -2001,10 +2232,10 @@
 	font-weight: 400;
 }
 
-/* The design's table buttons are 43px tall (the site button is 54px). */
+/* The design's table buttons are 43px tall (the site button is 56px). */
 .medical-pricing .wp-block-button__link {
-	padding-top: 9.5px;
-	padding-bottom: 9.5px;
+	padding-top: 8.5px;
+	padding-bottom: 8.5px;
 	white-space: nowrap;
 }
 
@@ -2111,6 +2342,13 @@
 	border-radius: var(--wp--custom--radius--card, 0);
 }
 
+/* Phones: 16px around the card content (!important: the group's inline padding). */
+@media (max-width: 599px) {
+	.medical-coverage .medical-coverage__card {
+		padding: 16px !important;
+	}
+}
+
 /* Bottom margin only: the 24px block gap under the card title is the list's top margin. */
 .medical-coverage__card > * {
 	margin-bottom: 0;
@@ -2204,8 +2442,11 @@
 }
 
 @media (max-width: 599px) {
-	/* Full-bleed band as in the mobile design. */
+	/* Full-bleed band right under the map and right above the footer, as in the mobile designs
+	   (Spaces, Location, Single Space). !important: the group's inline padding and margins. */
 	.medical-location-band {
+		margin-top: 0 !important;
+		margin-bottom: 0 !important;
 		padding-right: 0 !important;
 		padding-left: 0 !important;
 	}
@@ -2278,40 +2519,6 @@
 .medical-space .wp-block-post-title a {
 	color: inherit;
 	text-decoration: none;
-}
-
-/* "Learn more" + the 36px arrow; the arrow alone next to the image on wide screens. */
-.medical-space .wp-block-read-more.medical-space__more {
-	position: relative;
-	display: inline-flex;
-	align-items: center;
-	gap: 8px;
-	font-weight: 600;
-	color: var(--wp--preset--color--primary);
-	text-decoration: none;
-}
-
-.medical-space .wp-block-read-more.medical-space__more::after {
-	content: "";
-	flex: none;
-	width: 36px;
-	height: 36px;
-	background: url("../images/medical/icons/arrow-circle.svg") center / 36px no-repeat;
-	transition: transform 0.2s ease;
-}
-
-.medical-space .wp-block-read-more.medical-space__more:hover::after {
-	transform: translateX(2px);
-}
-
-@media (min-width: 782px) {
-	/* Room for the 2px hover shift of the arrow, or overflow clips it. */
-	.medical-space .wp-block-read-more.medical-space__more {
-		gap: 0;
-		padding-right: 2px;
-		overflow: hidden;
-		font-size: 0;
-	}
 }
 
 @media (max-width: 781px) {
