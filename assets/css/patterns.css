@@ -2314,6 +2314,13 @@
 	border-radius: var(--wp--custom--radius--card, 0);
 }
 
+/* Phones: 16px around the card content (!important: the group's inline padding). */
+@media (max-width: 599px) {
+	.medical-coverage .medical-coverage__card {
+		padding: 16px !important;
+	}
+}
+
 /* Bottom margin only: the 24px block gap under the card title is the list's top margin. */
 .medical-coverage__card > * {
 	margin-bottom: 0;
