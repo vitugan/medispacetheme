@@ -1685,6 +1685,32 @@
 	margin-bottom: 10px;
 }
 
+/* Phones: a compact card as in the mobile design. !important: inline padding and the preset
+   font-size classes. */
+@media (max-width: 599px) {
+	.health-care-stat {
+		padding: 14px !important;
+	}
+
+	.health-care-stat .health-care-stat__icon {
+		margin-bottom: 14px;
+	}
+
+	.health-care-stat .health-care-stat__icon img {
+		width: 36px !important;
+		height: 36px !important;
+	}
+
+	.health-care-stat .health-care-stat__label {
+		margin-bottom: 6px;
+		font-size: 8px !important;
+	}
+
+	.health-care-stat .health-care-stat__value {
+		font-size: 18px !important;
+	}
+}
+
 .health-care-columns h2,
 .health-care-columns p {
 	margin: 0;
