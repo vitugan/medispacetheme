@@ -811,6 +811,19 @@
 	align-content: flex-start;
 }
 
+/* Medical phones: stacked cards (Amenities, Mission, Space features) align the icon and text
+   to the left, as in the mobile designs; Construction keeps them centered. */
+@media (max-width: 599px) {
+	.medispace-flow-medical .wp-block-group.feature-card.is-stacked,
+	.medispace-flow-medical .feature-card.is-stacked > .feature-card__text {
+		align-items: flex-start;
+	}
+
+	.medispace-flow-medical .feature-card.is-stacked :is(h3, p).has-text-align-center {
+		text-align: left;
+	}
+}
+
 /* ==========================================================================
    Our process (inc/patterns/construction/process.php, core accordion)
    ========================================================================== */

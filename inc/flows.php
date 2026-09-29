@@ -70,3 +70,15 @@ if (!function_exists("medispace_get_active_flow")):
         return $flow;
     }
 endif;
+
+/**
+ * Клас активного флоу на <body> (наприклад "medispace-flow-medical"): для CSS, що стосується
+ * лише одного флоу, коли розмітка спільних патернів однакова.
+ */
+add_filter("body_class", function ($classes) {
+    $flow = medispace_get_active_flow();
+    if ($flow) {
+        $classes[] = "medispace-flow-" . sanitize_html_class($flow);
+    }
+    return $classes;
+});
