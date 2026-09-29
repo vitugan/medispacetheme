@@ -51,8 +51,23 @@
 	color: var(--wp--preset--color--primary-hover);
 }
 
+/* Medical heroes (light gradients): as the light hero above. */
+.medical-page-hero .page-hero__breadcrumbs {
+	color: var(--wp--preset--color--gray-80);
+}
+
+.medical-page-hero .page-hero__breadcrumbs a {
+	color: var(--wp--preset--color--primary);
+	text-decoration: none;
+}
+
+.medical-page-hero .page-hero__breadcrumbs a:hover {
+	color: var(--wp--preset--color--primary-hover);
+}
+
 /* Core Breadcrumbs separator ("→" set on the block): full color, 8px each side. */
-.page-hero .page-hero__breadcrumbs li:not(:last-child)::after {
+.page-hero .page-hero__breadcrumbs li:not(:last-child)::after,
+.medical-page-hero .page-hero__breadcrumbs li:not(:last-child)::after {
 	margin: 0 8px;
 	opacity: 1;
 }

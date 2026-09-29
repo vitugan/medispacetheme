@@ -13,9 +13,11 @@
 /**
  * @param array{
  *     heading:"post"|"archive"|"static", title?:string, text?:string, button?:bool,
- *     image?:string, gradient?:string
+ *     image?:string, gradient?:string, breadcrumbs?:bool
  * } $args
  *
+ * breadcrumbs: core Breadcrumbs ("Home → Spaces") 12px above the heading, as in the Construction
+ * heroes (true by default: every Medical page but Home has them).
  * heading: "post" = the page title (core Post Title), "archive" = core Query Title without the
  * prefix, "static" = $args["title"]. gradient: a "hero-…" preset of styles/flow-3-medical.json.
  * @return string Block markup.
@@ -46,6 +48,16 @@ return function (array $args) {
 <!-- /wp:paragraph -->';
     }
 
+    $content = $heading . $text;
+    if ($args["breadcrumbs"] ?? true) {
+        $content = '<!-- wp:breadcrumbs {"separator":"→","className":"page-hero__breadcrumbs","fontSize":"body-s"} /-->
+
+<!-- wp:group {"metadata":{"name":"Heading"},"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
+<div class="wp-block-group">' . $content . '</div>
+<!-- /wp:group -->';
+    }
+    $content_gap = ($args["breadcrumbs"] ?? true) ? "12px" : "var:preset|spacing|40";
+
     $button = "";
     if (!empty($args["button"])) {
         $button = '
@@ -72,8 +84,8 @@ return function (array $args) {
 <div class="wp-block-group alignfull medical-page-hero has-' . $gradient . '-gradient-background has-background" style="padding-top:clamp(32px, 2.6vw, 50px);padding-right:var(--wp--preset--spacing--40);padding-bottom:clamp(32px, 2.6vw, 50px);padding-left:var(--wp--preset--spacing--40)"><!-- wp:columns {"verticalAlignment":"center","align":"wide","className":"medical-page-hero__columns","style":{"spacing":{"blockGap":{"top":"32px","left":"60px"}}}} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center medical-page-hero__columns"><!-- wp:column {"verticalAlignment":"center","width":"45%"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:45%"><!-- wp:group {"metadata":{"name":"Text"},"style":{"spacing":{"blockGap":"40px"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
-<div class="wp-block-group"><!-- wp:group {"metadata":{"name":"Content"},"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
-<div class="wp-block-group">' . $heading . $text . '</div>
+<div class="wp-block-group"><!-- wp:group {"metadata":{"name":"Content"},"style":{"spacing":{"blockGap":"' . $content_gap . '"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
+<div class="wp-block-group">' . $content . '</div>
 <!-- /wp:group -->' . $button . '</div>
 <!-- /wp:group --></div>
 <!-- /wp:column -->' . $image . '</div>
