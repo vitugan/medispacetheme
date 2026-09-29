@@ -14,14 +14,16 @@
  * @param array{columns?:int, large_arrow?:bool, reveal_label?:string} $args
  *
  * large_arrow: the 40px arrow of the blog page design (36px on Home). reveal_label: the link
- * text shown beside the arrow on hover (always on phones), Home "Latest News"; otherwise the
+ * text of a "reveal-arrow" link (assets/css/patterns.css), Home "Latest News"; otherwise the
  * arrow alone ("Read more" for screen readers).
  * @return string wp:post-template block markup (goes inside a wp:query with the
  * "post-cards-rounded" class).
  */
 return function (array $args = []) {
     $columns = (int) ($args["columns"] ?? 3);
-    $more_class = "post-card-rounded__more" . (!empty($args["large_arrow"]) ? " post-card-rounded__more--lg" : "") . (!empty($args["reveal_label"]) ? " post-card-rounded__more--reveal" : "");
+    $more_class = !empty($args["reveal_label"])
+        ? "reveal-arrow"
+        : "post-card-rounded__more" . (!empty($args["large_arrow"]) ? " post-card-rounded__more--lg" : "");
     $more_label = $args["reveal_label"] ?? __("Read more", "medispace");
 
     return '<!-- wp:post-template {"style":{"spacing":{"blockGap":"var:preset|spacing|50"}},"layout":{"type":"grid","columnCount":' . $columns . ',"minimumColumnWidth":"280px"}} -->

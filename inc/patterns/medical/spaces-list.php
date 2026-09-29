@@ -31,7 +31,7 @@ return [
 <!-- wp:post-excerpt {"textColor":"gray-80","excerptLength":100} /--></div>
 <!-- /wp:group -->
 
-<!-- wp:read-more {"content":"' . esc_attr__("Learn more", "medispace") . '","className":"medical-space__more"} /--></div>
+<!-- wp:read-more {"content":"' . esc_attr__("Learn more", "medispace") . '","className":"medical-space__more reveal-arrow"} /--></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 <!-- /wp:post-template -->

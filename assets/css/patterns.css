@@ -1572,28 +1572,33 @@
 	transform: translateX(2px);
 }
 
-/* Home "Latest News" (reveal_label): the same arrow, with "Learn more" sliding out to its left
-   on hover and always shown on phones. The arrow moves to ::after; the link, pinned to its
-   right edge (flex-end), clips the text while it is 36px wide. */
-.post-card-rounded .wp-block-read-more.post-card-rounded__more--reveal {
+/* ==========================================================================
+   Reveal arrow ("reveal-стрілка"): add className "reveal-arrow" to a core/read-more block (or any
+   link). The 36px arrow alone; its label slides out to the left on hover / keyboard focus, and is
+   always shown on phones and touch screens. Secondary_text2 in the Medical design (133 x 36 with
+   "Learn more"). The arrow is ::after; the link, pinned to its right edge (flex-end), clips the
+   label while it is 36px wide.
+   ========================================================================== */
+
+.reveal-arrow {
+	position: relative;
 	display: flex;
+	flex: none;
 	align-items: center;
 	justify-content: flex-end;
 	gap: 8px;
-	width: auto;
 	max-width: 36px;
-	text-indent: 0;
-	background: none;
-	border-radius: 0;
+	overflow: hidden;
 	color: var(--wp--preset--color--primary);
 	font-size: 16px;
 	font-weight: 600;
 	line-height: 1.3;
+	white-space: nowrap;
 	text-decoration: none;
 	transition: max-width 0.3s ease;
 }
 
-.post-card-rounded .wp-block-read-more.post-card-rounded__more--reveal::after {
+.reveal-arrow::after {
 	content: "";
 	flex: none;
 	width: 36px;
@@ -1601,14 +1606,13 @@
 	background: url("../images/medical/icons/arrow-circle.svg") center / 36px no-repeat;
 }
 
-.post-card-rounded .wp-block-read-more.post-card-rounded__more--reveal:hover,
-.post-card-rounded .wp-block-read-more.post-card-rounded__more--reveal:focus-visible {
-	max-width: 200px;
-	transform: none;
+.reveal-arrow:hover,
+.reveal-arrow:focus-visible {
+	max-width: 300px;
 }
 
-@media (max-width: 599px) {
-	.post-card-rounded .wp-block-read-more.post-card-rounded__more--reveal {
+@media (max-width: 599px), (hover: none) {
+	.reveal-arrow {
 		max-width: none;
 	}
 }
@@ -2480,40 +2484,6 @@
 .medical-space .wp-block-post-title a {
 	color: inherit;
 	text-decoration: none;
-}
-
-/* "Learn more" + the 36px arrow; the arrow alone next to the image on wide screens. */
-.medical-space .wp-block-read-more.medical-space__more {
-	position: relative;
-	display: inline-flex;
-	align-items: center;
-	gap: 8px;
-	font-weight: 600;
-	color: var(--wp--preset--color--primary);
-	text-decoration: none;
-}
-
-.medical-space .wp-block-read-more.medical-space__more::after {
-	content: "";
-	flex: none;
-	width: 36px;
-	height: 36px;
-	background: url("../images/medical/icons/arrow-circle.svg") center / 36px no-repeat;
-	transition: transform 0.2s ease;
-}
-
-.medical-space .wp-block-read-more.medical-space__more:hover::after {
-	transform: translateX(2px);
-}
-
-@media (min-width: 782px) {
-	/* Room for the 2px hover shift of the arrow, or overflow clips it. */
-	.medical-space .wp-block-read-more.medical-space__more {
-		gap: 0;
-		padding-right: 2px;
-		overflow: hidden;
-		font-size: 0;
-	}
 }
 
 @media (max-width: 781px) {
