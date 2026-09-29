@@ -81,6 +81,9 @@
 			]
 		},
 		"custom": {
+			"section-gap": "clamp(60px, calc(60px + (100vw - 375px) * 0.0884), 140px)",
+			"hero-gap": "clamp(40px, calc(40px + (100vw - 375px) * 0.0442), 80px)",
+			"footer-gap": "clamp(60px, calc(60px + (100vw - 375px) * 0.0221), 80px)",
 			"form": {
 				"fieldRadius": "80px",
 				"textareaRadius": "30px",

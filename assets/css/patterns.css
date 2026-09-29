@@ -1991,7 +1991,7 @@
 /* The home hero is 80px under the header (not the default page offset). */
 @media (min-width: 600px) {
 	body:not(.editor-styles-wrapper) header.is-overlay + main > .medical-hero:first-child {
-		padding-top: calc(93px + clamp(40px, 4.2vw, 80px)) !important;
+		padding-top: calc(93px + var(--wp--custom--hero-gap, clamp(40px, 4.2vw, 80px))) !important;
 	}
 }
 
@@ -2027,10 +2027,31 @@
 	height: auto;
 }
 
-/* The first section under an inner-page hero starts 80px below it in the designs (40px on
-   phones), not a full section gap. */
+/* The first section under a hero (Home and inner pages) starts 80px below it in the designs
+   (40px on phones), not a full section gap; the last section sits 80px above the footer (60px
+   on phones). Tokens: settings.custom of the Medical style variation. The location band keeps
+   its own phone margins (flush with the footer). */
+.medical-hero + *,
 .medical-page-hero + * {
-	margin-top: clamp(40px, 4.2vw, 80px) !important;
+	margin-top: var(--wp--custom--hero-gap, clamp(40px, 4.2vw, 80px)) !important;
+}
+
+.medispace-flow-medical main > :last-child:not(.wp-block-post-content):not(.medical-location-band),
+.medispace-flow-medical main > .wp-block-post-content:last-child > :last-child:not(.medical-location-band) {
+	margin-bottom: var(--wp--custom--footer-gap, var(--wp--custom--section-gap)) !important;
+}
+
+/* Post content followed by more sections (Single Space: the map and band): it is a flow-root, so
+   its last section's bottom margin would add to the next section's top margin (2 x gap). */
+.medispace-flow-medical main > .wp-block-post-content:not(:last-child) > :last-child {
+	margin-bottom: 0 !important;
+}
+
+@media (min-width: 600px) {
+	.medispace-flow-medical main > .medical-location-band:last-child,
+	.medispace-flow-medical main > .wp-block-post-content:last-child > .medical-location-band:last-child {
+		margin-bottom: var(--wp--custom--footer-gap, var(--wp--custom--section-gap)) !important;
+	}
 }
 
 /* 50px under the transparent 93px header, as in the design (not the default page offset). */
