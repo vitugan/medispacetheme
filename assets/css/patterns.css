@@ -2382,8 +2382,11 @@
 }
 
 @media (max-width: 599px) {
-	/* Full-bleed band as in the mobile design. */
+	/* Full-bleed band right under the map and right above the footer, as in the mobile designs
+	   (Spaces, Location, Single Space). !important: the group's inline padding and margins. */
 	.medical-location-band {
+		margin-top: 0 !important;
+		margin-bottom: 0 !important;
 		padding-right: 0 !important;
 		padding-left: 0 !important;
 	}
