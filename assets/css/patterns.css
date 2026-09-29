@@ -1713,6 +1713,13 @@
 	margin: 0;
 }
 
+/* Stacked columns: title and intro centered above the cards. */
+@media (max-width: 781px) {
+	.why-columns > .wp-block-column:first-child {
+		text-align: center;
+	}
+}
+
 /* ==========================================================================
    Hero - Medical (inc/patterns/medical/hero.php)
    ========================================================================== */
